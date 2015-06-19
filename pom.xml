@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.comvai.maven</groupId>
+        <artifactId>super-pom</artifactId>
+        <version>1.10</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.ctoolkit.restapi</groupId>
+    <artifactId>rest-resource-client-api</artifactId>
+    <version>0.5-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Rest Resource Client API</name>
+    <description>Generic resource client API interface to perform common operations on top of REST.</description>
+    <url>https://www.turnonline.biz</url>
+
+    <scm>
+        <connection>scm:git:[fetch=]git@github.com:turnonline/rest-resource-client-api.git</connection>
+        <developerConnection>scm:git:[push=]git@github.com:turnonline/rest-resource-client-api.git</developerConnection>
+        <url>https://github.com/turnonline/rest-resource-client-api/wiki</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/turnonline/rest-resource-client-api/issues</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <name>Aurel Medvegy</name>
+            <id>medvegy</id>
+            <email>aurel.medvegy@ctoolkit.org</email>
+        </developer>
+    </developers>
+
+    <properties>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>2.0.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmockit</groupId>
+            <artifactId>jmockit</artifactId>
+            <version>1.17</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
