@@ -4,30 +4,30 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>com.comvai.maven</groupId>
-        <artifactId>super-pom</artifactId>
-        <version>1.10</version>
+        <groupId>org.ctoolkit.maven</groupId>
+        <artifactId>ctoolkit-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ctoolkit.restapi</groupId>
-    <artifactId>rest-resource-client-api</artifactId>
+    <artifactId>rest-client-wrapper-api</artifactId>
     <version>0.5-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Rest Resource Client API</name>
-    <description>Generic resource client API interface to perform common operations on top of REST.</description>
-    <url>https://www.turnonline.biz</url>
+    <name>Uniform Rest Client Wrapper API</name>
+    <description>Uniform client API to perform common operations on top of REST to handle resources of various REST API services through single interface.</description>
+    <url>https://github.com/turnonline/rest-client-wrapper-api</url>
 
     <scm>
-        <connection>scm:git:[fetch=]git@github.com:turnonline/rest-resource-client-api.git</connection>
-        <developerConnection>scm:git:[push=]git@github.com:turnonline/rest-resource-client-api.git</developerConnection>
-        <url>https://github.com/turnonline/rest-resource-client-api/wiki</url>
+        <connection>scm:git:[fetch=]git@github.com:turnonline/rest-client-wrapper-api.git</connection>
+        <developerConnection>scm:git:[push=]git@github.com:turnonline/rest-client-wrapper-api.git</developerConnection>
+        <url>https://github.com/turnonline/rest-client-wrapper-api</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
-        <url>https://github.com/turnonline/rest-resource-client-api/issues</url>
+        <url>${project.scm.url}/issues</url>
     </issueManagement>
 
     <developers>
@@ -38,8 +38,17 @@
         </developer>
     </developers>
 
-    <properties>
-    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <!-- Include site generation and deployment into release -->
+                    <goals>deploy site site-deploy</goals>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
