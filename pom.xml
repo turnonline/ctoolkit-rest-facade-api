@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>org.ctoolkit.maven</groupId>
@@ -13,7 +11,7 @@
 
     <groupId>org.ctoolkit.restapi</groupId>
     <artifactId>rest-client-wrapper-api</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.5</version>
     <packaging>jar</packaging>
     <name>Uniform Rest Client Wrapper API</name>
     <description>Uniform client API to perform common operations on top of REST to handle resources of various REST API services through single interface.</description>
@@ -23,7 +21,7 @@
         <connection>scm:git:[fetch=]git@github.com:turnonline/rest-client-wrapper-api.git</connection>
         <developerConnection>scm:git:[push=]git@github.com:turnonline/rest-client-wrapper-api.git</developerConnection>
         <url>https://github.com/turnonline/rest-client-wrapper-api</url>
-        <tag>HEAD</tag>
+        <tag>rest-client-wrapper-api-0.5</tag>
     </scm>
 
     <issueManagement>
