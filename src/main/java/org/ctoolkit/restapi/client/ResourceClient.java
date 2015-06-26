@@ -7,7 +7,8 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Generic resource client API interface to perform common operations on top of REST
+ * Uniform client API to perform common operations on top of REST to handle resources
+ * of various REST API services through single interface.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
@@ -15,6 +16,8 @@ public interface ResourceClient
 {
     /**
      * Create a new in memory resource instance of requested type.
+     * Based on the concrete implementation of the resource it may result in a remote call
+     * in order to get a more specific resource instance.
      *
      * @param resource the type of resource to create
      * @return the new resource instance for given type
@@ -107,7 +110,8 @@ public interface ResourceClient
                @Nonnull Map<String, Object> parameters );
 
     /**
-     * Retrieve a resource instance of requested type.
+     * Retrieve a resource instance of requested type. At least one of the parameter to identify resource
+     * must be provided, either identifier or parameters.
      *
      * @param resource   the type of resource to get
      * @param identifier the unique identifier of the resource
@@ -117,7 +121,7 @@ public interface ResourceClient
      */
     <T> T get( @Nonnull Class<T> resource,
                @Nullable Object identifier,
-               @Nonnull Map<String, Object> parameters,
+               @Nullable Map<String, Object> parameters,
                @Nullable Locale locale );
 
     /**
@@ -142,21 +146,21 @@ public interface ResourceClient
                       @Nullable Locale locale );
 
     /**
-     * Make a resource instance persistent.
+     * Insert a resource instance.
      *
-     * @param resource the resource instance of concrete type to create
-     * @return the newly created instance of given resource
+     * @param resource the resource instance of concrete type to insert
+     * @return the newly inserted instance of given resource
      */
-    <T> T create( @Nonnull T resource );
+    <T> T insert( @Nonnull T resource );
 
     /**
-     * Make a resource instance persistent.
+     * Insert a resource instance.
      *
-     * @param resource the resource instance of concrete type to create
+     * @param resource the resource instance of concrete type to insert
      * @param parent   the resource parent identifier
-     * @return the newly created instance of given resource
+     * @return the newly inserted instance of given resource
      */
-    <T> T create( @Nonnull T resource, @Nullable Object parent );
+    <T> T insert( @Nonnull T resource, @Nonnull Object parent );
 
     /**
      * Update the given resource instance.
@@ -176,7 +180,7 @@ public interface ResourceClient
      * @param <T>        the type of the response
      * @return the response that describes the result of the update
      */
-    <T> T update( @Nonnull Patch<T> resource, @Nonnull Object identifier );
+    <T> T patch( @Nonnull Patch<T> resource, @Nonnull Object identifier );
 
     /**
      * Remove the resource type for given identifier.
