@@ -7,8 +7,8 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Uniform client API to perform common operations on top of REST to handle resources
- * of various REST API services through single interface.
+ * Uniform client facade API to perform common operations on top of REST to serve a resources
+ * of various REST APIs through single interface.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */

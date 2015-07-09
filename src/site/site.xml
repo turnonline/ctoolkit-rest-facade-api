@@ -1,11 +1,11 @@
-<project name="Rest Client Wrapper API">
+<project name="REST Client Facade API">
     <bannerLeft>
-        <name>Rest Client Wrapper API</name>
+        <name>Rest Client Facade API</name>
         <src>http://maven.apache.org/images/apache-maven-project-2.png</src>
-        <href>https://github.com/turnonline/rest-client-wrapper-api</href>
+        <href>https://github.com/turnonline/rest-client-facade-api</href>
     </bannerLeft>
     <body>
-        <menu name="Rest Client Wrapper API Project">
+        <menu name="REST Client Facade API Project">
             <item name="Overview" href="index.html"/>
         </menu>
         <menu ref="reports"/>
