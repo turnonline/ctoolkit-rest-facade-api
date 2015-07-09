@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface ResourceClient
+public interface ResourceFacade
 {
     /**
      * Create a new in memory resource instance of requested type.
