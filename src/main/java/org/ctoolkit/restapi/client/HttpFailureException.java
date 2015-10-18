@@ -1,11 +1,11 @@
-package org.ctoolkit.restapi.client.error;
+package org.ctoolkit.restapi.client;
 
 /**
- * The base class for all HTTP status codes that represents a failure.
+ * The base class as runtime exception for all HTTP status codes that represents a failure.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public abstract class HttpFailureException
+public class HttpFailureException
         extends RuntimeException
 {
     protected final int statusCode;

@@ -21,6 +21,7 @@ public interface ResourceFacade
      *
      * @param resource the type of resource to create
      * @return the new resource instance for given type
+     * @throws NotFoundException if not matching request URI has found (remote call)
      */
     <T> T newInstance( @Nonnull Class<T> resource );
 
@@ -31,6 +32,7 @@ public interface ResourceFacade
      * @param resource the type of resource to create
      * @param locale   the language the client has configured to prefer in results if applicable
      * @return the new resource instance for given type
+     * @throws NotFoundException if not matching request URI has found (remote call)
      */
     <T> T newInstance( @Nonnull Class<T> resource, @Nullable Locale locale );
 
@@ -40,6 +42,7 @@ public interface ResourceFacade
      * @param resource   the type of resource to create
      * @param parameters the optional resource parameters
      * @return the new resource instance for given type
+     * @throws NotFoundException if not matching request URI has found (remote call)
      */
     <T> T newInstance( @Nonnull Class<T> resource, @Nonnull Map<String, Object> parameters );
 
@@ -54,6 +57,7 @@ public interface ResourceFacade
      * @param parameters the optional resource parameters
      * @param locale     the language the client has configured to prefer in results if applicable
      * @return the new resource instance for given type
+     * @throws NotFoundException if not matching request URI has found (remote call)
      */
     <T> T newInstance( @Nonnull Class<T> resource, @Nonnull Map<String, Object> parameters, @Nullable Locale locale );
 
@@ -62,7 +66,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to get
      * @param identifier the unique identifier of the resource
-     * @return the concrete resource instance for given type and identifier
+     * @return the concrete resource instance for given type and identifier, otherwise returns <tt>null</tt>
      */
     <T> T get( @Nonnull Class<T> resource, @Nonnull Object identifier );
 
@@ -72,7 +76,7 @@ public interface ResourceFacade
      * @param resource   the type of resource to get
      * @param identifier the unique identifier of the resource
      * @param locale     the language the client has configured to prefer in results if applicable
-     * @return the concrete resource instance for given type and identifier
+     * @return the concrete resource instance for given type and identifier, otherwise returns <tt>null</tt>
      */
     <T> T get( @Nonnull Class<T> resource, @Nonnull Object identifier, @Nullable Locale locale );
 
@@ -81,7 +85,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to get
      * @param parameters the optional parameter map
-     * @return the concrete resource instance for given type
+     * @return the concrete resource instance for given type, otherwise returns <tt>null</tt>
      */
     <T> T get( @Nonnull Class<T> resource, @Nonnull Map<String, Object> parameters );
 
@@ -91,7 +95,7 @@ public interface ResourceFacade
      * @param resource   the type of resource to get
      * @param parameters the optional parameter map
      * @param locale     the language the client has configured to prefer in result if applicable
-     * @return the concrete resource instance for given type
+     * @return the concrete resource instance for given type, otherwise returns <tt>null</tt>
      */
     <T> T get( @Nonnull Class<T> resource,
                @Nonnull Map<String, Object> parameters,
@@ -103,7 +107,7 @@ public interface ResourceFacade
      * @param resource   the type of resource to get
      * @param identifier the unique identifier of the resource
      * @param parameters the optional parameter map
-     * @return the concrete resource instance for given type
+     * @return the concrete resource instance for given type, otherwise returns <tt>null</tt>
      */
     <T> T get( @Nonnull Class<T> resource,
                @Nonnull Object identifier,
@@ -117,7 +121,7 @@ public interface ResourceFacade
      * @param identifier the unique identifier of the resource
      * @param parameters the optional parameter map
      * @param locale     the language the client has configured to prefer in result if applicable
-     * @return the concrete resource instance for given type
+     * @return the concrete resource instance for given type, otherwise returns <tt>null</tt>
      */
     <T> T get( @Nonnull Class<T> resource,
                @Nullable Object identifier,
@@ -129,7 +133,7 @@ public interface ResourceFacade
      *
      * @param resource the type of resource to find
      * @param criteria the optional filtering criteria map
-     * @return the list of resource instance matching filtering criteria
+     * @return the list of resource instance matching filtering criteria, otherwise returns empty list
      */
     <T> List<T> list( @Nonnull Class<T> resource, @Nonnull Map<String, Object> criteria );
 
@@ -139,7 +143,7 @@ public interface ResourceFacade
      * @param resource the type of resource to find
      * @param criteria the optional filtering criteria map
      * @param locale   the language the client has configured to prefer in results if applicable
-     * @return the list of resource instance matching filtering criteria
+     * @return the list of resource instance matching filtering criteria, otherwise returns empty list
      */
     <T> List<T> list( @Nonnull Class<T> resource,
                       @Nonnull Map<String, Object> criteria,
@@ -150,6 +154,7 @@ public interface ResourceFacade
      *
      * @param resource the resource instance of concrete type to insert
      * @return the newly inserted instance of given resource
+     * @throws NotFoundException if not matching request URI has found
      */
     <T> T insert( @Nonnull T resource );
 
@@ -159,6 +164,7 @@ public interface ResourceFacade
      * @param resource the resource instance of concrete type to insert
      * @param parent   the resource parent identifier
      * @return the newly inserted instance of given resource
+     * @throws NotFoundException if not matching request URI has found
      */
     <T> T insert( @Nonnull T resource, @Nonnull Object parent );
 
@@ -168,6 +174,7 @@ public interface ResourceFacade
      * @param resource   the resource instance of concrete type
      * @param identifier the unique identifier of resource to update
      * @return the updated instance of given resource
+     * @throws NotFoundException if not matching request URI has found
      */
     <T> T update( @Nonnull T resource, @Nonnull Object identifier );
 
@@ -179,6 +186,7 @@ public interface ResourceFacade
      * @param identifier the unique identifier of resource to update
      * @param <T>        the type of the response
      * @return the response that describes the result of the update
+     * @throws NotFoundException if not matching request URI has found
      */
     <T> T patch( @Nonnull Patch<T> resource, @Nonnull Object identifier );
 
@@ -187,6 +195,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to remove
      * @param identifier the unique identifier of resource
+     * @throws NotFoundException if not matching request URI has found
      */
     <T> void delete( @Nonnull Class<T> resource, @Nonnull Object identifier );
 }

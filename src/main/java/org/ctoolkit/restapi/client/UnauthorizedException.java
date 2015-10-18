@@ -1,7 +1,7 @@
-package org.ctoolkit.restapi.client.error;
+package org.ctoolkit.restapi.client;
 
 /**
- * The request requires user authentication.
+ * The unauthorized exception thrown once the request requires user authentication.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
