@@ -18,4 +18,9 @@ public class RequestTimeoutException
     {
         super( 408, message );
     }
+
+    public RequestTimeoutException( int statusCode, Throwable cause )
+    {
+        super( statusCode, cause );
+    }
 }

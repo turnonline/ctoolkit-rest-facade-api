@@ -20,4 +20,9 @@ public class ClientErrorException
     {
         super( statusCode, message );
     }
+
+    public ClientErrorException( int statusCode, Throwable cause )
+    {
+        super( statusCode, cause );
+    }
 }

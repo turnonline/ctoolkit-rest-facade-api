@@ -21,6 +21,12 @@ public class HttpFailureException
         this.statusCode = statusCode;
     }
 
+    public HttpFailureException( int statusCode, Throwable cause )
+    {
+        super( cause );
+        this.statusCode = statusCode;
+    }
+
     public int getStatusCode()
     {
         return statusCode;

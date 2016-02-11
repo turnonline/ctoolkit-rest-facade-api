@@ -19,4 +19,9 @@ public class RemoteServerErrorException
     {
         super( statusCode, message );
     }
+
+    public RemoteServerErrorException( int statusCode, Throwable cause )
+    {
+        super( statusCode, cause );
+    }
 }
