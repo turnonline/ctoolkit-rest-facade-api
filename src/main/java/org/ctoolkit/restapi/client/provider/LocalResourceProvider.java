@@ -1,4 +1,4 @@
-package org.ctoolkit.restapi.client;
+package org.ctoolkit.restapi.client.provider;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
