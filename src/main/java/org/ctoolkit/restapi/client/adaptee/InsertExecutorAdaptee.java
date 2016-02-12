@@ -12,11 +12,9 @@ import java.util.Map;
  * The adaptee interface to provide execute implementation for REST POST operation on top of concrete type.
  *
  * @param <M> the concrete type of request's model object to work with
- * @param <R> the concrete type of the request
- * @param <K> the concrete type of the resource identifier
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface InsertExecutorAdaptee<M, R, K>
+public interface InsertExecutorAdaptee<M>
 {
     /**
      * Prepare request instance to represent a remote call as INSERT operation.
@@ -26,7 +24,7 @@ public interface InsertExecutorAdaptee<M, R, K>
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    R prepareInsert( @Nonnull M resource, @Nullable Identifier<K> parentKey )
+    Object prepareInsert( @Nonnull M resource, @Nullable Identifier parentKey )
             throws IOException;
 
     /**
@@ -38,8 +36,7 @@ public interface InsertExecutorAdaptee<M, R, K>
      * @return the resource instance as the result of the implementation
      * @throws IOException
      */
-    M executeInsert( @Nonnull R request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    M executeInsert( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
-
 }
 

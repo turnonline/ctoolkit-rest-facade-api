@@ -11,10 +11,9 @@ import java.util.Map;
  * if any on top of concrete type.
  *
  * @param <M> the concrete type of request's model object to work with
- * @param <R> the concrete type of the request
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface NewExecutorAdaptee<M, R>
+public interface NewExecutorAdaptee<M>
 {
     /**
      * Prepare request instance to represent a remote call to GET default instance.
@@ -27,7 +26,7 @@ public interface NewExecutorAdaptee<M, R>
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    R prepareNew( @Nullable String type, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    Object prepareNew( @Nullable String type, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
 
     /**
@@ -39,7 +38,7 @@ public interface NewExecutorAdaptee<M, R>
      * @return the new resource instance
      * @throws IOException
      */
-    M executeNew( @Nonnull R request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    M executeNew( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
 }
 

@@ -12,11 +12,9 @@ import java.util.Map;
  * The adaptee interface to provide execute implementation for REST PUT operation on top of concrete type.
  *
  * @param <M> the concrete type of request's model object to work with
- * @param <R> the concrete type of the request
- * @param <K> the concrete type of the resource identifier
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface UpdateExecutorAdaptee<M, R, K>
+public interface UpdateExecutorAdaptee<M>
 {
     /**
      * Prepare request instance to represent a remote call as UPDATE operation.
@@ -26,7 +24,7 @@ public interface UpdateExecutorAdaptee<M, R, K>
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    R prepareUpdate( @Nonnull M resource, @Nonnull Identifier<K> identifier )
+    Object prepareUpdate( @Nonnull M resource, @Nonnull Identifier identifier )
             throws IOException;
 
     /**
@@ -38,7 +36,7 @@ public interface UpdateExecutorAdaptee<M, R, K>
      * @return the resource instance as the result of the implementation
      * @throws IOException
      */
-    M executeUpdate( @Nonnull R request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    M executeUpdate( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
 }
 

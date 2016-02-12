@@ -12,11 +12,9 @@ import java.util.Map;
  * The adaptee interface to provide execute implementation for REST GET operation on top of concrete type.
  *
  * @param <M> the concrete type of request's model object to work with
- * @param <R> the concrete type of the request
- * @param <K> the concrete type of the resource identifier
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface GetExecutorAdaptee<M, R, K>
+public interface GetExecutorAdaptee<M>
 {
     /**
      * Prepare request instance to represent a remote call as GET operation.
@@ -25,7 +23,7 @@ public interface GetExecutorAdaptee<M, R, K>
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    R prepareGet( @Nonnull Identifier<K> identifier )
+    Object prepareGet( @Nonnull Identifier identifier )
             throws IOException;
 
     /**
@@ -37,8 +35,7 @@ public interface GetExecutorAdaptee<M, R, K>
      * @return the resource instance
      * @throws IOException
      */
-    M executeGet( @Nonnull R request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    M executeGet( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
-
 }
 

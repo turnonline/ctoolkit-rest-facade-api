@@ -10,11 +10,10 @@ import java.util.Locale;
 /**
  * The adaptee interface to provide execute implementation for REST DELETE operation on top of concrete type.
  *
- * @param <R> the concrete type of the request
- * @param <K> the concrete type of the resource identifier
+ * @param <M> the concrete type of request's model object to work with
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface DeleteExecutorAdaptee<R, K>
+public interface DeleteExecutorAdaptee<M>
 {
     /**
      * Prepare request instance to represent a remote call as DELETE operation.
@@ -23,7 +22,7 @@ public interface DeleteExecutorAdaptee<R, K>
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    R prepareDelete( @Nonnull Identifier<K> identifier )
+    Object prepareDelete( @Nonnull Identifier identifier )
             throws IOException;
 
     /**
@@ -33,7 +32,7 @@ public interface DeleteExecutorAdaptee<R, K>
      * @param locale  the optional language to identify language specific resource if applicable
      * @throws IOException
      */
-    void executeDelete( @Nonnull R request, @Nullable Locale locale )
+    void executeDelete( @Nonnull Object request, @Nullable Locale locale )
             throws IOException;
 }
 

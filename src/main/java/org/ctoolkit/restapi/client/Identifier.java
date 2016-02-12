@@ -5,11 +5,11 @@ package org.ctoolkit.restapi.client;
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public class Identifier<K>
+public class Identifier
 {
-    private Identifier<K> child;
+    private Identifier child;
 
-    private K value;
+    private Object value;
 
     /**
      * for debugging purpose only
@@ -19,9 +19,9 @@ public class Identifier<K>
     /**
      * Constructs identifier with given value.
      *
-     * @param value the identifier value to be set
+     * @param value the string type identifier to be set
      */
-    public Identifier( K value )
+    public Identifier( String value )
     {
         if ( value == null )
         {
@@ -31,40 +31,70 @@ public class Identifier<K>
     }
 
     /**
-     * Returns the identifier value.
+     * Constructs identifier with given value.
      *
-     * @return the identifier value.
+     * @param value the long type identifier to be set
      */
-    public K value()
+    public Identifier( Long value )
+    {
+        if ( value == null )
+        {
+            throw new NullPointerException();
+        }
+        this.value = value;
+    }
+
+    /**
+     * Returns the identifier raw value.
+     *
+     * @return the identifier raw value.
+     */
+    public Object value()
     {
         return value;
     }
 
     /**
-     * Returns the identifier string value as parsed {@link Long}.
+     * Returns the identifier value.
      *
      * @return the identifier value.
-     * @throws NumberFormatException
      */
-    public Long valueAsLong()
+    public String getString()
     {
-        if ( value == null || value.toString().length() == 0 )
-        {
-            return null;
-        }
+        return value.toString();
+    }
 
-        return Long.valueOf( value.toString() );
+    /**
+     * Returns the identifier value.
+     *
+     * @return the identifier value
+     */
+    public Long getLong()
+    {
+        return ( Long ) value;
     }
 
     /**
      * Add identifier value as child to this parent.
      *
-     * @param value the value to be set as child value to this parent
+     * @param value the string type identifier to be set as child value to this parent
      * @return the new identifier child instance
      */
-    public Identifier<K> addChild( K value )
+    public Identifier addChild( String value )
     {
-        child = new Identifier<>( value );
+        child = new Identifier( value );
+        return child;
+    }
+
+    /**
+     * Add identifier value as child to this parent.
+     *
+     * @param value the long type identifier to be set as child value to this parent
+     * @return the new identifier child instance
+     */
+    public Identifier addChild( Long value )
+    {
+        child = new Identifier( value );
         return child;
     }
 
@@ -73,7 +103,7 @@ public class Identifier<K>
      *
      * @return the child identifier or <tt>null</tt>
      */
-    public Identifier<K> getChild()
+    public Identifier getChild()
     {
         return child;
     }
