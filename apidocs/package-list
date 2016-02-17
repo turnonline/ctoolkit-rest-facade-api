@@ -1,1 +1,3 @@
 org.ctoolkit.restapi.client
+org.ctoolkit.restapi.client.adaptee
+org.ctoolkit.restapi.client.provider
