@@ -24,7 +24,7 @@ import java.io.InputStream;
 /**
  * The interface to wrap a concrete resource and media content into single media request instance.
  *
- * @author <a href="mailto:aurel.medvegy@turnonline.biz">Aurel Medvegy</a>
+ * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface MediaRequest<T>
 {

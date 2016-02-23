@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
  * The upload media request as wrapper of media content and associated resource.
  * Gives a possibility to this resource to be either inserted or updated.
  *
- * @author <a href="mailto:aurel.medvegy@turnonline.biz">Aurel Medvegy</a>
+ * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface UploadMediaRequest<T>
 {

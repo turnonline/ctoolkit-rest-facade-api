@@ -22,7 +22,7 @@ package org.ctoolkit.restapi.client;
  * The exception thrown once the server has not found anything matching the Request-URI.
  * Note, the retrieval operations (get, list) will return <tt>null</tt> instead of NotFoundException.
  *
- * @author <a href="mailto:aurel.medvegy@turnonline.biz">Aurel Medvegy</a>
+ * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public class NotFoundException
         extends HttpFailureException
