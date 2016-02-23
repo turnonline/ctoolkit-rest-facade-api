@@ -21,16 +21,17 @@ public interface UpdateExecutorAdaptee<M>
      *
      * @param resource   the resource instance
      * @param identifier the unique identifier of the resource
+     * @param provider   the optional media to be uploaded
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    Object prepareUpdate( @Nonnull M resource, @Nonnull Identifier identifier )
+    Object prepareUpdate( @Nonnull M resource, @Nonnull Identifier identifier, @Nullable MediaProvider<?> provider )
             throws IOException;
 
     /**
      * Provide execute implementation of the update operation.
      *
-     * @param request    the concrete request instance, see {@link #prepareUpdate(Object, Identifier)}
+     * @param request    the concrete request instance, see {@link #prepareUpdate(Object, Identifier, MediaProvider)}
      * @param parameters the optional parameter map
      * @param locale     the the optional language the client has configured to be associated with this resource
      * @return the resource instance as the result of the implementation

@@ -21,16 +21,17 @@ public interface InsertExecutorAdaptee<M>
      *
      * @param resource  the resource instance
      * @param parentKey the unique identifier of the parent resource as an owner of the given resource
+     * @param provider  the optional media to be uploaded
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    Object prepareInsert( @Nonnull M resource, @Nullable Identifier parentKey )
+    Object prepareInsert( @Nonnull M resource, @Nullable Identifier parentKey, @Nullable MediaProvider<?> provider )
             throws IOException;
 
     /**
      * Provide execute implementation of the insert operation.
      *
-     * @param request    the concrete request instance, see {@link #prepareInsert(Object, Identifier)}
+     * @param request    the concrete request instance, see {@link #prepareInsert(Object, Identifier, MediaProvider)}
      * @param parameters the optional parameter map
      * @param locale     the the optional language the client has configured to be associated with this resource
      * @return the resource instance as the result of the implementation

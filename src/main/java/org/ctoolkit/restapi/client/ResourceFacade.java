@@ -44,6 +44,15 @@ public interface ResourceFacade
                                       @Nullable Locale locale );
 
     /**
+     * Upload a media together with given resource. Either insert or update.
+     *
+     * @param resource the resource instance of concrete type to insert or update
+     * @return the newly inserted or updated instance of given resource
+     * @throws NotFoundException if not matching request URI has found
+     */
+    <T> MediaRequest<T> media( @Nonnull T resource );
+
+    /**
      * Retrieve a resource instance of requested type and identifier.
      * <p/>
      * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
