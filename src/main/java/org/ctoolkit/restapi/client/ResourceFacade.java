@@ -83,6 +83,24 @@ public interface ResourceFacade
     <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
 
     /**
+     * Same as {@link #get(Class, Identifier)} just identifier is being overloaded.
+     *
+     * @param resource   the type of resource to get
+     * @param identifier the string type identifier of the resource
+     * @return the concrete resource instance for given type and identifier, otherwise returns <tt>null</tt>
+     */
+    <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull String identifier );
+
+    /**
+     * Same as {@link #get(Class, Identifier)} just identifier is being overloaded.
+     *
+     * @param resource   the type of resource to get
+     * @param identifier the long type identifier of the resource
+     * @return the concrete resource instance for given type and identifier, otherwise returns <tt>null</tt>
+     */
+    <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull Long identifier );
+
+    /**
      * Find the list of resource instance of given type and filtering criteria.
      * <p/>
      * Note: the remote call itself will be executed by request instance {@link RetrievalRequest} with possibility
@@ -144,6 +162,26 @@ public interface ResourceFacade
     <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull Identifier identifier );
 
     /**
+     * Same as {@link #update(Object, Identifier)} just identifier is being overloaded.
+     *
+     * @param resource   the resource instance of concrete type
+     * @param identifier the string type identifier of the resource
+     * @return the updated instance of given resource
+     * @throws NotFoundException if not matching request URI has found
+     */
+    <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull String identifier );
+
+    /**
+     * Same as {@link #update(Object, Identifier)} just identifier is being overloaded.
+     *
+     * @param resource   the resource instance of concrete type
+     * @param identifier the long type identifier of the resource
+     * @return the updated instance of given resource
+     * @throws NotFoundException if not matching request URI has found
+     */
+    <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull Long identifier );
+
+    /**
      * The partial update to send updated data only for the specific fields to be changed,
      * represented by different (simpler) resource.
      * <p/>
@@ -169,4 +207,22 @@ public interface ResourceFacade
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
+
+    /**
+     * Same as {@link #delete(Class, Identifier)} just identifier is being overloaded.
+     *
+     * @param resource   the type of resource to remove
+     * @param identifier the string type identifier of the resource
+     * @throws NotFoundException if not matching request URI has found
+     */
+    <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull String identifier );
+
+    /**
+     * Same as {@link #delete(Class, Identifier)} just identifier is being overloaded.
+     *
+     * @param resource   the type of resource to remove
+     * @param identifier the long type identifier of the resource
+     * @throws NotFoundException if not matching request URI has found
+     */
+    <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull Long identifier );
 }
