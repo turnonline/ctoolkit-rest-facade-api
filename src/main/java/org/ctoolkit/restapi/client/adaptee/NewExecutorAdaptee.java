@@ -34,7 +34,7 @@ import java.util.Map;
 public interface NewExecutorAdaptee<M>
 {
     /**
-     * Prepare request instance to represent a remote call to GET default instance.
+     * Prepare request instance as a proxy object to execute a remote call to GET default instance.
      * <p/>
      * Note: return null if remote call or action is not expected.
      *

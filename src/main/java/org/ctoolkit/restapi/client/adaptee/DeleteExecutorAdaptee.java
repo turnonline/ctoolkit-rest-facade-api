@@ -34,7 +34,7 @@ import java.util.Locale;
 public interface DeleteExecutorAdaptee<M>
 {
     /**
-     * Prepare request instance to represent a remote call as DELETE operation.
+     * Prepare request instance as a proxy object to execute a remote call for DELETE operation.
      *
      * @param identifier the unique identifier of the resource
      * @return the new request instance

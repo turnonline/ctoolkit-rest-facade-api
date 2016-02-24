@@ -43,7 +43,7 @@ public interface ResourceFacade
      * to provide optional parameters or locale.
      *
      * @param resource the type of resource to create
-     * @return the new resource instance for given type
+     * @return the consequent call will return new resource instance for given type
      * @throws NotFoundException if not matching request URI has found (remote call)
      */
     <T> SingleRequest<T> newInstance( @Nonnull Class<T> resource );
@@ -54,7 +54,7 @@ public interface ResourceFacade
      * @param resource   the type of resource to create
      * @param parameters the optional resource parameters
      * @param locale     the language the client has configured to prefer in results if applicable
-     * @return the new resource instance for given type
+     * @return the consequent call will return new resource instance for given type
      * @throws NotFoundException if not matching request URI has found (remote call)
      */
     <T> SingleRequest<T> newInstance( @Nonnull Class<T> resource,
@@ -65,7 +65,7 @@ public interface ResourceFacade
      * Upload a media together with given resource. Either insert or update.
      *
      * @param resource the resource instance of concrete type to insert or update
-     * @return the newly inserted or updated instance of given resource
+     * @return the consequent call will return newly inserted or updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
     <T> MediaRequest<T> media( @Nonnull T resource );
@@ -78,7 +78,8 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to get
      * @param identifier the unique identifier of the resource
-     * @return the concrete resource instance for given type and identifier, otherwise returns <tt>null</tt>
+     * @return the consequent call will return concrete resource instance for given type and identifier,
+     * otherwise returns <tt>null</tt>
      */
     <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
 
@@ -87,7 +88,8 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to get
      * @param identifier the string type identifier of the resource
-     * @return the concrete resource instance for given type and identifier, otherwise returns <tt>null</tt>
+     * @return the consequent call will return concrete resource instance for given type and identifier,
+     * otherwise returns <tt>null</tt>
      */
     <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull String identifier );
 
@@ -96,7 +98,8 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to get
      * @param identifier the long type identifier of the resource
-     * @return the concrete resource instance for given type and identifier, otherwise returns <tt>null</tt>
+     * @return the consequent call will return concrete resource instance for given type and identifier,
+     * otherwise returns <tt>null</tt>
      */
     <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull Long identifier );
 
@@ -107,7 +110,8 @@ public interface ResourceFacade
      * to provide optional parameters or locale.
      *
      * @param resource the type of resource to find
-     * @return the list of resource instance matching filtering criteria, otherwise returns empty list
+     * @return the consequent call will return list of resource instance matching filtering criteria,
+     * otherwise returns empty list
      */
     <T> RetrievalRequest<T> list( @Nonnull Class<T> resource );
 
@@ -119,7 +123,8 @@ public interface ResourceFacade
      *
      * @param resource the type of resource to find
      * @param parent   the unique identifier of the parent resource as an owner of given resource if any
-     * @return the list of resource instance matching filtering criteria, otherwise returns empty list
+     * @return the consequent call will return list of resource instance matching filtering criteria,
+     * otherwise returns empty list
      */
     <T> RetrievalRequest<T> list( @Nonnull Class<T> resource, @Nullable Identifier parent );
 
@@ -130,7 +135,7 @@ public interface ResourceFacade
      * to provide optional parameters or locale.
      *
      * @param resource the resource instance of concrete type to insert
-     * @return the newly inserted instance of given resource
+     * @return the consequent call will return newly inserted instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> insert( @Nonnull T resource );
@@ -143,7 +148,7 @@ public interface ResourceFacade
      *
      * @param resource the resource instance of concrete type to insert
      * @param parent   the resource parent identifier
-     * @return the newly inserted instance of given resource
+     * @return the consequent call will return newly inserted instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> insert( @Nonnull T resource, @Nullable Identifier parent );
@@ -156,7 +161,7 @@ public interface ResourceFacade
      *
      * @param resource   the resource instance of concrete type
      * @param identifier the unique identifier of resource to update
-     * @return the updated instance of given resource
+     * @return the consequent call will return updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull Identifier identifier );
@@ -166,7 +171,7 @@ public interface ResourceFacade
      *
      * @param resource   the resource instance of concrete type
      * @param identifier the string type identifier of the resource
-     * @return the updated instance of given resource
+     * @return the consequent call will return updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull String identifier );
@@ -176,7 +181,7 @@ public interface ResourceFacade
      *
      * @param resource   the resource instance of concrete type
      * @param identifier the long type identifier of the resource
-     * @return the updated instance of given resource
+     * @return the consequent call will return updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull Long identifier );
@@ -191,10 +196,18 @@ public interface ResourceFacade
      * @param resource   the resource instance that is subset of the origin resource
      * @param identifier the unique identifier of resource to update
      * @param <T>        the type of the response
-     * @return the response that describes the result of the update
+     * @return the consequent call will return response that describes the result of the partial update
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> patch( @Nonnull Patch<T> resource, @Nonnull Identifier identifier );
+
+    /**
+     * The partial update to send updated data only for the specific fields to be changed.
+     *
+     * @param request the concrete class type of the underlying request
+     * @return the consequent call will return response that describes the result of the partial update
+     */
+    <R> PatchRequest<R> patch( @Nonnull Class<R> request );
 
     /**
      * Remove the resource type for given identifier.

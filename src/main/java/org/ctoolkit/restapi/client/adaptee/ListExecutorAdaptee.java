@@ -37,7 +37,7 @@ import java.util.Map;
 public interface ListExecutorAdaptee<M>
 {
     /**
-     * Prepare request instance to represent a remote call as list operation.
+     * Prepare request instance as a proxy object to execute a remote call for LIST operation.
      *
      * @param parentKey the unique identifier of the parent resource as an owner of this resource if any
      * @return the new request instance

@@ -35,7 +35,7 @@ import java.util.Map;
 public interface InsertExecutorAdaptee<M>
 {
     /**
-     * Prepare request instance to represent a remote call as INSERT operation.
+     * Prepare request instance as a proxy object to execute a remote call for INSERT operation.
      *
      * @param resource  the resource instance
      * @param parentKey the unique identifier of the parent resource as an owner of the given resource
