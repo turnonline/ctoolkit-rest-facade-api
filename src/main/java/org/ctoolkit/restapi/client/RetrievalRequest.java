@@ -39,6 +39,16 @@ public interface RetrievalRequest<T>
     List<T> execute();
 
     /**
+     * Execute a remote call to find filtered list of resource instance.
+     *
+     * @param start  the position of the first result, numbered from 0
+     * @param length the maximum number of results to retrieve
+     * @return the list of filtered resource instance, if none returns empty list
+     * @throws IllegalArgumentException thrown for any negative numbers
+     */
+    List<T> execute( int start, int length );
+
+    /**
      * Execute a remote call to find the list of resource instance of given type and additional filtering criteria.
      *
      * @param criteria the optional filtering criteria map
@@ -54,4 +64,20 @@ public interface RetrievalRequest<T>
      * @return the list of resource instance matching filtering criteria, otherwise returns empty list
      */
     List<T> execute( Map<String, Object> criteria, Locale locale );
+
+    /**
+     * Set the position of the first result to retrieve.
+     *
+     * @param start the position of the first result, numbered from 0
+     * @throws IllegalArgumentException thrown for any negative numbers
+     */
+    void setFirstResult( int start );
+
+    /**
+     * Set the maximum number of results to retrieve.
+     *
+     * @param length the maximum number of results to retrieve
+     * @throws IllegalArgumentException thrown for any negative numbers
+     */
+    void setMaxResults( int length );
 }
