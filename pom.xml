@@ -29,24 +29,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ctoolkit.restapi</groupId>
-    <artifactId>rest-client-facade-api</artifactId>
+    <artifactId>ctoolkit-rest-facade-api</artifactId>
     <version>0.11-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Uniform REST Client Facade API</name>
     <description>Uniform client facade API to perform common operations on top of REST
         to serve a resources of various REST APIs through single interface.
     </description>
-    <url>https://github.com/turnonline/rest-client-facade-api</url>
+    <url>https://github.com/turnonline/ctoolkit-rest-facade-api</url>
 
     <scm>
-        <connection>scm:git:[fetch=]git@github.com:turnonline/rest-client-facade-api.git</connection>
-        <developerConnection>scm:git:[push=]git@github.com:turnonline/rest-client-facade-api.git</developerConnection>
-        <url>https://github.com/turnonline/rest-client-facade-api</url>
+        <connection>scm:git:[fetch=]git@github.com:turnonline/ctoolkit-rest-facade-api.git</connection>
+        <developerConnection>scm:git:[push=]git@github.com:turnonline/ctoolkit-rest-facade-api.git</developerConnection>
+        <url>https://github.com/turnonline/ctoolkit-rest-facade-api</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
-        <url>https://github.com/turnonline/rest-client-facade-api/issues</url>
+        <url>https://github.com/turnonline/ctoolkit-rest-facade-api/issues</url>
     </issueManagement>
 
     <developers>

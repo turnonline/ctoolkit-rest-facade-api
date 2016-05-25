@@ -20,7 +20,7 @@
     <bannerLeft>
         <name>Rest Client Facade API</name>
         <src>http://maven.apache.org/images/apache-maven-project-2.png</src>
-        <href>https://github.com/turnonline/rest-client-facade-api</href>
+        <href>https://github.com/turnonline/ctoolkit-rest-facade-api</href>
     </bannerLeft>
     <body>
         <menu name="REST Client Facade API Project">
