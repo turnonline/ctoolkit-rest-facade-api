@@ -22,12 +22,12 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * The upload media request as wrapper of media content and associated resource.
+ * The single upload media request as wrapper of media content and associated resource.
  * Gives a possibility to this resource to be either inserted or updated.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface UploadMediaRequest<T>
+public interface SingleUploadMediaRequest<T>
 {
     /**
      * Same as {@link ResourceFacade#insert(Object)}.

@@ -62,13 +62,22 @@ public interface ResourceFacade
                                       @Nullable Locale locale );
 
     /**
-     * Upload a media together with given resource. Either insert or update.
+     * Upload a media and related metadata represented by given resource.
      *
      * @param resource the resource instance of concrete type to insert or update
      * @return the consequent call will return newly inserted or updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> MediaRequest<T> media( @Nonnull T resource );
+    <T> UploadMediaRequestProvider<T> media( @Nonnull T resource );
+
+    /**
+     * Download a media for given resource.
+     *
+     * @param resource the type of resource to download as a media
+     * @return the consequent call will return concrete resource instance for given type and identifier,
+     * @throws NotFoundException if not matching request URI has found
+     */
+    <T> DownloadMediaRequestProvider media( @Nonnull Class<T> resource );
 
     /**
      * Retrieve a resource instance of requested type and identifier.
