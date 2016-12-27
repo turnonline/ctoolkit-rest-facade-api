@@ -34,7 +34,7 @@ public interface SingleDownloadMediaRequest<T>
      * @return the consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
-    <T> SingleRequest<T> get( @Nonnull Identifier identifier );
+    <T> SingleRequest<T> identifiedBy( @Nonnull Identifier identifier );
 
     /**
      * Same as {@link ResourceFacade#get(Class, String)}, but resource type is already provided.
@@ -43,7 +43,7 @@ public interface SingleDownloadMediaRequest<T>
      * @return the consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
-    <T> SingleRequest<T> get( @Nonnull String identifier );
+    <T> SingleRequest<T> identifiedBy( @Nonnull String identifier );
 
     /**
      * Same as {@link ResourceFacade#get(Class, Long)}, but resource type is already provided.
@@ -52,5 +52,5 @@ public interface SingleDownloadMediaRequest<T>
      * @return the consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
-    <T> SingleRequest<T> get( @Nonnull Long identifier );
+    <T> SingleRequest<T> identifiedBy( @Nonnull Long identifier );
 }
