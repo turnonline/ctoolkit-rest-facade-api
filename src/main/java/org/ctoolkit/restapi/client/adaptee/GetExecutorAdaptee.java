@@ -49,7 +49,7 @@ public interface GetExecutorAdaptee<M>
      *
      * @param request    the concrete request instance, see {@link #prepareGet(Identifier)}
      * @param parameters the optional parameter map
-     * @param locale     the the optional language the client has configured to prefer in results if applicable
+     * @param locale     the optional language the client has configured to prefer in results if applicable
      * @return the resource instance
      * @throws IOException
      */

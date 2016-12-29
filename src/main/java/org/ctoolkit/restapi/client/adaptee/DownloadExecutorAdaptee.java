@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) 2016 Comvai, s.r.o. All Rights Reserved.
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+
 package org.ctoolkit.restapi.client.adaptee;
 
 import org.ctoolkit.restapi.client.Identifier;
@@ -21,9 +39,11 @@ public interface DownloadExecutorAdaptee<M>
      * Returns the full URL to download requested resource content.
      *
      * @param identifier the unique identifier of the resource
-     * @param type       the content type or {@code null} to expect default
+     * @param type       the requested content type to be downloaded (already part of the request header)
+     *                   or {@code null} to expect default
      * @param parameters the optional resource parameters
-     * @param locale     the the optional language the client has configured to prefer in results if applicable
+     * @param locale     the optional language the client has configured to prefer in results if applicable
+     *                   (already part of the request header if any)
      * @return the full download path
      */
     URL prepareDownloadUrl( @Nonnull Identifier identifier,

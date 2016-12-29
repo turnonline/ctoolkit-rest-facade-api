@@ -51,7 +51,7 @@ public interface ListExecutorAdaptee<M>
      *
      * @param request  the concrete request instance, see {@link #prepareList(Identifier)}
      * @param criteria the optional filtering criteria map
-     * @param locale   the the optional language the client has configured to prefer in results if applicable
+     * @param locale   the optional language the client has configured to prefer in results if applicable
      * @param start    the position of the first result, numbered from 0. The negative number means unused.
      * @param length   the maximum number of results to retrieve. The negative number means unused.
      * @return the list of resource instance matching filtering criteria, otherwise returns empty list

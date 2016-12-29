@@ -52,7 +52,7 @@ public interface NewExecutorAdaptee<M>
      *
      * @param request    the concrete request instance, see {@link #prepareNew(String, Map, Locale)}
      * @param parameters the optional resource parameters
-     * @param locale     the the optional language the client has configured to prefer in results if applicable
+     * @param locale     the optional language the client has configured to prefer in results if applicable
      * @return the new resource instance
      * @throws IOException
      */

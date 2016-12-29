@@ -43,7 +43,7 @@ public interface DownloadMediaRequestProvider
      * will be downloaded to.
      *
      * @param output the empty destination output stream
-     * @param type   the content type or {@code null} to expect default
+     * @param type   the requested content type to be downloaded or {@code null} to expect default
      * @return the download media request instance with associated resource and media content
      */
     SingleDownloadMediaRequest downloadTo( @Nonnull OutputStream output, @Nullable String type );
