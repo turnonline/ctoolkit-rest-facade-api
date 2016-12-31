@@ -48,7 +48,7 @@ public interface GetExecutorAdaptee<M>
      * Provide execute implementation of the get operation.
      *
      * @param request    the concrete request instance, see {@link #prepareGet(Identifier)}
-     * @param parameters the optional parameter map
+     * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to prefer in results if applicable
      * @return the resource instance
      * @throws IOException

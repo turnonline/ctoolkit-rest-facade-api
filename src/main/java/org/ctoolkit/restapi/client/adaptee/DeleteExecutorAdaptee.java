@@ -24,6 +24,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * The adaptee interface to provide execute implementation for REST DELETE operation on top of concrete type.
@@ -46,11 +47,14 @@ public interface DeleteExecutorAdaptee<M>
     /**
      * Provide execute implementation of the delete operation.
      *
-     * @param request the concrete request instance, see {@link #prepareDelete(Identifier)}
-     * @param locale  the optional language to identify language specific resource if applicable
+     * @param request    the concrete request instance, see {@link #prepareDelete(Identifier)}
+     * @param parameters the optional map of parameters, configuration, and credential
+     * @param locale     the optional language to identify language specific resource if applicable
      * @throws IOException
      */
-    void executeDelete( @Nonnull Object request, @Nullable Locale locale )
+    void executeDelete( @Nonnull Object request,
+                        @Nullable Map<String, Object> parameters,
+                        @Nullable Locale locale )
             throws IOException;
 }
 

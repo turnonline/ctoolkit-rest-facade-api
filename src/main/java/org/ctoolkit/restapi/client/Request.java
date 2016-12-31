@@ -71,4 +71,14 @@ public interface Request<T>
      * @return the resource as a result of the remote call
      */
     T execute( Map<String, Object> parameters, Locale locale );
+
+    /**
+     * Apply request specific credential and configuration to this call.
+     * The underlying API must support (at least partially) this functionality
+     * otherwise call to this method will be ignored and default value of target API will be used.
+     *
+     * @param credential the credential and configuration to be applied to this request
+     * @return this request to chain calls
+     */
+    Request<T> config( RequestCredential credential );
 }

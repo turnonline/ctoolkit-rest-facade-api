@@ -50,7 +50,7 @@ public interface UpdateExecutorAdaptee<M>
      * Provide execute implementation of the update operation.
      *
      * @param request    the concrete request instance, see {@link #prepareUpdate(Object, Identifier, MediaProvider)}
-     * @param parameters the optional parameter map
+     * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to be associated with this resource
      * @return the resource instance as the result of the implementation
      * @throws IOException

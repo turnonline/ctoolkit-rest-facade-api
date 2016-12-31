@@ -50,7 +50,7 @@ public interface InsertExecutorAdaptee<M>
      * Provide execute implementation of the insert operation.
      *
      * @param request    the concrete request instance, see {@link #prepareInsert(Object, Identifier, MediaProvider)}
-     * @param parameters the optional parameter map
+     * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to be associated with this resource
      * @return the resource instance as the result of the implementation
      * @throws IOException
