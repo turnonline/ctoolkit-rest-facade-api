@@ -45,29 +45,29 @@ public class ApiCredential
 
     public static final String DEFAULT_READ_TIMEOUT = "20000";
 
-    static final String DEFAULT_CREDENTIAL_PREFIX = "default";
+    public static final String DEFAULT_CREDENTIAL_PREFIX = "default";
 
-    static final String PROPERTY_PROJECT_ID = "projectId";
+    public static final String PROPERTY_PROJECT_ID = "projectId";
 
-    static final String PROPERTY_CLIENT_ID = "clientId";
+    public static final String PROPERTY_CLIENT_ID = "clientId";
 
-    static final String PROPERTY_SERVICE_ACCOUNT_EMAIL = "serviceAccountEmail";
+    public static final String PROPERTY_SERVICE_ACCOUNT_EMAIL = "serviceAccountEmail";
 
-    static final String PROPERTY_APPLICATION_NAME = "appName";
+    public static final String PROPERTY_APPLICATION_NAME = "appName";
 
-    static final String PROPERTY_FILE_NAME = "fileName";
+    public static final String PROPERTY_FILE_NAME = "fileName";
 
-    static final String PROPERTY_API_KEY = "apiKey";
+    public static final String PROPERTY_API_KEY = "apiKey";
 
-    static final String PROPERTY_ENDPOINT_URL = "endpointUrl";
+    public static final String PROPERTY_ENDPOINT_URL = "endpointUrl";
 
-    static final String PROPERTY_CREDENTIAL_ON = "credentialOn";
+    public static final String PROPERTY_CREDENTIAL_ON = "credentialOn";
 
-    static final String PROPERTY_NUMBER_OF_RETRIES = "numberOfRetries";
+    public static final String PROPERTY_NUMBER_OF_RETRIES = "numberOfRetries";
 
-    static final String PROPERTY_READ_TIMEOUT = "readTimeout";
+    public static final String PROPERTY_READ_TIMEOUT = "readTimeout";
 
-    static final String CREDENTIAL_ATTR = "credential.";
+    public static final String CREDENTIAL_ATTR = "credential.";
 
     private static final long serialVersionUID = -2258904700906913513L;
 
