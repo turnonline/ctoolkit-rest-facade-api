@@ -93,24 +93,12 @@ public class Identifier
     }
 
     /**
-     * Add identifier value as child to this parent.
+     * Sets identifier value as child to this parent.
      *
      * @param value the string type identifier to be set as child value to this parent
      * @return the new identifier child instance
      */
-    public Identifier addChild( String value )
-    {
-        child = new Identifier( value );
-        return child;
-    }
-
-    /**
-     * Add identifier value as child to this parent.
-     *
-     * @param value the long type identifier to be set as child value to this parent
-     * @return the new identifier child instance
-     */
-    public Identifier addChild( Long value )
+    public Identifier setChild( String value )
     {
         child = new Identifier( value );
         return child;
@@ -123,6 +111,18 @@ public class Identifier
      */
     public Identifier getChild()
     {
+        return child;
+    }
+
+    /**
+     * Sets identifier value as child to this parent.
+     *
+     * @param value the long type identifier to be set as child value to this parent
+     * @return the new identifier child instance
+     */
+    public Identifier setChild( Long value )
+    {
+        child = new Identifier( value );
         return child;
     }
 
@@ -142,6 +142,7 @@ public class Identifier
         return "Identifier{" +
                 "value=" + value +
                 ", description='" + description + '\'' +
+                ", child=" + child +
                 '}';
     }
 }
