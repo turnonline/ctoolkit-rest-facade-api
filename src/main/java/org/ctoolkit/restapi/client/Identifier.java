@@ -27,6 +27,8 @@ public class Identifier
 {
     private Identifier child;
 
+    private Identifier parent;
+
     private Object value;
 
     /**
@@ -35,7 +37,7 @@ public class Identifier
     private String description;
 
     /**
-     * Constructs identifier with given value.
+     * Constructs root (top level) identifier with given value.
      *
      * @param value the string type identifier to be set
      */
@@ -43,13 +45,13 @@ public class Identifier
     {
         if ( value == null )
         {
-            throw new NullPointerException();
+            throw new NullPointerException( "Identifier value cannot be null!" );
         }
         this.value = value;
     }
 
     /**
-     * Constructs identifier with given value.
+     * Constructs root (top level) identifier with given value.
      *
      * @param value the long type identifier to be set
      */
@@ -57,7 +59,7 @@ public class Identifier
     {
         if ( value == null )
         {
-            throw new NullPointerException();
+            throw new NullPointerException( "Identifier value cannot be null!" );
         }
         this.value = value;
     }
@@ -101,6 +103,8 @@ public class Identifier
     public Identifier setChild( String value )
     {
         child = new Identifier( value );
+        child.parent = this;
+
         return child;
     }
 
@@ -123,7 +127,14 @@ public class Identifier
     public Identifier setChild( Long value )
     {
         child = new Identifier( value );
+        child.parent = this;
+
         return child;
+    }
+
+    public Identifier getParent()
+    {
+        return parent;
     }
 
     /**
