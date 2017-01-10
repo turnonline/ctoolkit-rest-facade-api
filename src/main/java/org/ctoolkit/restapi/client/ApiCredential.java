@@ -57,6 +57,8 @@ public class ApiCredential
 
     public static final String PROPERTY_FILE_NAME = "fileName";
 
+    public static final String PROPERTY_FILE_NAME_JSON_STREAM = "fileNameJsonStream";
+
     public static final String PROPERTY_API_KEY = "apiKey";
 
     public static final String PROPERTY_ENDPOINT_URL = "endpointUrl";
@@ -82,6 +84,7 @@ public class ApiCredential
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
      * <li>{@link #setFileName(String)}</li>
+     * <li>{@link #setFileNameJsonStream(String)} (String)}</li>
      * <li>{@link #setApiKey(String)}</li>
      * <li>{@link #setEndpointUrl(String)}</li>
      * <li>{@link #setCredentialOn(boolean)}</li>
@@ -103,6 +106,7 @@ public class ApiCredential
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
      * <li>{@link #setFileName(String)}</li>
+     * <li>{@link #setFileNameJsonStream(String)} (String)}</li>
      * <li>{@link #setApiKey(String)}</li>
      * <li>{@link #setEndpointUrl(String)}</li>
      * <li>{@link #setCredentialOn(boolean)}</li>
@@ -132,6 +136,7 @@ public class ApiCredential
      * <li>credential.default.serviceAccountEmail</li>
      * <li>credential.default.appName</li>
      * <li>credential.default.fileName</li>
+     * <li>credential.default.fileNameJsonStream</li>
      * <li>credential.default.apiKey</li>
      * <li>credential.default.endpointUrl</li>
      * <li>credential.default.credentialOn</li>
@@ -234,6 +239,25 @@ public class ApiCredential
         if ( !isNullOrEmpty( fileName ) )
         {
             setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_FILE_NAME, fileName );
+        }
+        return this;
+    }
+
+    /**
+     * Sets the path name to the json stream file which contains private key, service account email, client id and others.
+     * <p/>
+     * Use package relative path for example '/biz/turnonline/server/impl/secret.json'
+     * or locate the json stream file in resource package org.ctoolkit.restapi.client.googleapis
+     * directory -> 'secret.json'.
+     *
+     * @param fileName the relative path to file
+     * @return this instance to chain
+     */
+    public ApiCredential setFileNameJsonStream( String fileName )
+    {
+        if ( !isNullOrEmpty( fileName ) )
+        {
+            setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_FILE_NAME_JSON_STREAM, fileName );
         }
         return this;
     }
