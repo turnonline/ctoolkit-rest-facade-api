@@ -51,6 +51,8 @@ public class ApiCredential
 
     public static final String PROPERTY_CLIENT_ID = "clientId";
 
+    public static final String PROPERTY_DISABLE_GZIP_CONTENT = "disableGZipContent";
+
     public static final String PROPERTY_SERVICE_ACCOUNT_EMAIL = "serviceAccountEmail";
 
     public static final String PROPERTY_APPLICATION_NAME = "appName";
@@ -81,6 +83,7 @@ public class ApiCredential
      * <ul>
      * <li>{@link #setProjectId(String)}</li>
      * <li>{@link #setClientId(String)}</li>
+     * <li>{@link #setDisableGZipContent(boolean)}</li>
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
      * <li>{@link #setFileName(String)}</li>
@@ -103,6 +106,7 @@ public class ApiCredential
      * <ul>
      * <li>{@link #setProjectId(String)}</li>
      * <li>{@link #setClientId(String)}</li>
+     * <li>{@link #setDisableGZipContent(boolean)}</li>
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
      * <li>{@link #setFileName(String)}</li>
@@ -133,6 +137,7 @@ public class ApiCredential
      * <ul>
      * <li>credential.default.projectId</li>
      * <li>credential.default.clientId</li>
+     * <li>credential.default.disableGZipContent</li>
      * <li>credential.default.serviceAccountEmail</li>
      * <li>credential.default.appName</li>
      * <li>credential.default.fileName</li>
@@ -186,6 +191,22 @@ public class ApiCredential
         {
             setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_CLIENT_ID, clientId );
         }
+        return this;
+    }
+
+    /**
+     * Sets whether to disable GZip compression of HTTP content.
+     * <p>
+     * By default it's {@code false} if not set.
+     * </p>
+     *
+     * @param disable true to disable GZip compression. Otherwise HTTP content will be compressed.
+     * @return this instance to chain
+     */
+    public ApiCredential setDisableGZipContent( boolean disable )
+    {
+        String valueOf = String.valueOf( disable );
+        setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_DISABLE_GZIP_CONTENT, valueOf );
         return this;
     }
 

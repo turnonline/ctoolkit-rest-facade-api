@@ -80,9 +80,11 @@ public class RequestCredential
 
         props.add( PROPERTY_PROJECT_ID );
         props.add( PROPERTY_CLIENT_ID );
+        props.add( PROPERTY_DISABLE_GZIP_CONTENT );
         props.add( PROPERTY_SERVICE_ACCOUNT_EMAIL );
         props.add( PROPERTY_APPLICATION_NAME );
         props.add( PROPERTY_FILE_NAME );
+        props.add( PROPERTY_FILE_NAME_JSON_STREAM );
         props.add( PROPERTY_API_KEY );
         props.add( PROPERTY_ENDPOINT_URL );
         props.add( PROPERTY_CREDENTIAL_ON );
@@ -162,6 +164,22 @@ public class RequestCredential
     }
 
     /**
+     * Returns whether to disable GZip compression of HTTP content
+     *
+     * @return true to disable GZip compression. Otherwise HTTP content will be compressed.
+     */
+    public final boolean isDisableGZipContent()
+    {
+        String value = getStringValue( PROPERTY_DISABLE_GZIP_CONTENT );
+        if ( value == null )
+        {
+            return false;
+        }
+
+        return Boolean.valueOf( value );
+    }
+
+    /**
      * Returns the service account ID (typically an e-mail address).
      *
      * @return the service email
@@ -219,7 +237,7 @@ public class RequestCredential
      */
     public final boolean isCredentialOn()
     {
-        String value = getProperty( CREDENTIAL_ATTR + prefix + PROPERTY_CREDENTIAL_ON );
+        String value = getStringValue( PROPERTY_CREDENTIAL_ON );
         if ( value == null )
         {
             return false;
