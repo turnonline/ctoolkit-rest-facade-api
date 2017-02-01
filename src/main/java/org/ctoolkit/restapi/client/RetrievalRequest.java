@@ -66,18 +66,30 @@ public interface RetrievalRequest<T>
     List<T> execute( Map<String, Object> criteria, Locale locale );
 
     /**
+     * Apply request specific credential and configuration to this call.
+     * The underlying API must support (at least partially) this functionality
+     * otherwise call to this method will be ignored and default value of target API will be used.
+     *
+     * @param credential the credential and configuration to be applied to this request
+     * @return this request to chain calls
+     */
+    RetrievalRequest<T> config( RequestCredential credential );
+
+    /**
      * Set the position of the first result to retrieve.
      *
      * @param start the position of the first result, numbered from 0
+     * @return this request to chain calls
      * @throws IllegalArgumentException thrown for any negative numbers
      */
-    void setFirstResult( int start );
+    RetrievalRequest<T> start( int start );
 
     /**
      * Set the maximum number of results to retrieve.
      *
      * @param length the maximum number of results to retrieve
+     * @return this request to chain calls
      * @throws IllegalArgumentException thrown for any negative numbers
      */
-    void setMaxResults( int length );
+    RetrievalRequest<T> length( int length );
 }
