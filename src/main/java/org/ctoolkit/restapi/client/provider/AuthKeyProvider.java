@@ -18,6 +18,7 @@
 
 package org.ctoolkit.restapi.client.provider;
 
+import javax.annotation.Nullable;
 import java.io.InputStream;
 
 /**
@@ -32,9 +33,20 @@ public interface AuthKeyProvider
 {
     /**
      * Provides an instance of the authentication key as a stream.
+     * More info about prefix {@link org.ctoolkit.restapi.client.ApiCredential#ApiCredential(String)}.
      *
+     * @param prefix the API prefix used to identify a specific API or null for default
      * @return the authentication key as a stream
      * @throws RuntimeException if the implementation encounters an error while providing an instance.
      */
-    InputStream get();
+    InputStream get( @Nullable String prefix );
+
+    /**
+     * Returns the boolean indication (lightweight operation) whether for given prefix will
+     * {@link #get(String)} return a valid authentication key.
+     *
+     * @param prefix the API prefix used to identify a specific API or null for default
+     * @return true if valid authentication key has been configured
+     */
+    boolean isConfigured( @Nullable String prefix );
 }
