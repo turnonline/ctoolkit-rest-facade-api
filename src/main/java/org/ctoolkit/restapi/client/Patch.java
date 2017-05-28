@@ -26,6 +26,7 @@ import java.io.Serializable;
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
+@Deprecated
 public interface Patch<T>
         extends Serializable
 {

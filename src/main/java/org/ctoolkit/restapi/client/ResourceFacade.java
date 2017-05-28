@@ -35,7 +35,7 @@ public interface ResourceFacade
      * Create a new in memory resource instance of requested type.
      * <p/>
      * Note: Based on the concrete implementation of the resource it may result in a remote call
-     * in order to get a more specific resource instance -> Either created locally with 'new'
+     * in order to get a more specific resource instance. Either created locally with 'new'
      * operator or based on the implementation a remote call may be executed to get a 'new' instance
      * initialized with default values and given parameters if any.
      * <p/>
@@ -82,15 +82,15 @@ public interface ResourceFacade
     /**
      * Retrieve a resource instance of requested type and identifier.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
-     * to provide optional parameters or locale.
+     * Note: the remote call itself will be executed by request instance {@link SingleRetrievalRequest}
+     * with possibility to provide optional parameters or locale.
      *
      * @param resource   the type of resource to get
      * @param identifier the unique identifier of the resource
      * @return the consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
-    <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
+    <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
 
     /**
      * Same as {@link #get(Class, Identifier)} just identifier is being overloaded.
@@ -100,7 +100,7 @@ public interface ResourceFacade
      * @return the consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
-    <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull String identifier );
+    <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull String identifier );
 
     /**
      * Same as {@link #get(Class, Identifier)} just identifier is being overloaded.
@@ -110,7 +110,7 @@ public interface ResourceFacade
      * @return the consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
-    <T> SingleRequest<T> get( @Nonnull Class<T> resource, @Nonnull Long identifier );
+    <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull Long identifier );
 
     /**
      * Find the list of resource instance of given type and filtering criteria.
@@ -140,19 +140,19 @@ public interface ResourceFacade
     /**
      * Insert a resource instance.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
+     * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
      * @param resource the resource instance of concrete type to insert
      * @return the consequent call will return newly inserted instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> SingleRequest<T> insert( @Nonnull T resource );
+    <T> PayloadRequest<T> insert( @Nonnull T resource );
 
     /**
      * Insert a resource instance.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
+     * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
      * @param resource the resource instance of concrete type to insert
@@ -160,12 +160,12 @@ public interface ResourceFacade
      * @return the consequent call will return newly inserted instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> SingleRequest<T> insert( @Nonnull T resource, @Nullable Identifier parent );
+    <T> PayloadRequest<T> insert( @Nonnull T resource, @Nullable Identifier parent );
 
     /**
      * Update the given resource instance.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
+     * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
      * @param resource   the resource instance of concrete type
@@ -173,7 +173,7 @@ public interface ResourceFacade
      * @return the consequent call will return updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull Identifier identifier );
+    <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull Identifier identifier );
 
     /**
      * Same as {@link #update(Object, Identifier)} just identifier is being overloaded.
@@ -183,7 +183,7 @@ public interface ResourceFacade
      * @return the consequent call will return updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull String identifier );
+    <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull String identifier );
 
     /**
      * Same as {@link #update(Object, Identifier)} just identifier is being overloaded.
@@ -193,13 +193,13 @@ public interface ResourceFacade
      * @return the consequent call will return updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> SingleRequest<T> update( @Nonnull T resource, @Nonnull Long identifier );
+    <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull Long identifier );
 
     /**
      * The partial update to send updated data only for the specific fields to be changed,
      * represented by different (simpler) resource.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
+     * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
      * @param resource   the resource instance that is subset of the origin resource
@@ -208,15 +208,17 @@ public interface ResourceFacade
      * @return the consequent call will return response that describes the result of the partial update
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> SingleRequest<T> patch( @Nonnull Patch<T> resource, @Nonnull Identifier identifier );
+    @Deprecated
+    <T> PayloadRequest<T> patch( @Nonnull Patch<T> resource, @Nonnull Identifier identifier );
 
     /**
-     * The partial update to send updated data only for the specific fields to be changed.
+     * Specific patch operation to give underlying request instance
+     * related to concrete API implementation to work with.
      *
      * @param request the concrete class type of the underlying request
-     * @return the consequent call will return response that describes the result of the partial update
+     * @return the consequent call will return response that describes the result of the specific update
      */
-    <R> PatchRequest<R> patch( @Nonnull Class<R> request );
+    <R> PatchRequest<R> underlying( @Nonnull Class<R> request );
 
     /**
      * Remove the resource type for given identifier.

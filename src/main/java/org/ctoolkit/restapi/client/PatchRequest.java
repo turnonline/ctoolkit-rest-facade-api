@@ -18,34 +18,46 @@
 
 package org.ctoolkit.restapi.client;
 
+import javax.annotation.Nonnull;
+
 /**
- * Specific request of the patch operation.
+ * Specific request for a patch operation.
  *
- * @param <R> the concrete type of the underlying request instance
+ * @param <U> the concrete type of the underlying request instance
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface PatchRequest<R>
+public interface PatchRequest<U>
 {
     /**
-     * Build the underlying request instance as a proxy object to execute a remote operation.
+     * Builds underlying request and returns a proxy object related to concrete API implementation.
+     * It gives a possibility to configure an additional query parameters or provide specific request configuration.
      *
      * @return the underlying request instance
      */
-    R build();
+    U get();
 
     /**
-     * Configure resource instance as a source of partial update.
+     * The type of the response expected as a result of the remote call execution.
+     *
+     * @param type the response type
+     * @param <R>  the class type of underlying request to be cast
+     * @return the request to chain calls with new response type defined
+     */
+    <R> Request<R> response( Class<R> type );
+
+    /**
+     * Configure the optional resource instance as a source of specific update.
      *
      * @param resource the resource instance to be set
      * @return this request to be chained
      */
-    PatchRequest<R> resource( Object resource );
+    PatchRequest<U> resource( @Nonnull Object resource );
 
     /**
-     * Configure the unique identifier of the resource.
+     * Configure the optional unique identifier of the resource.
      *
      * @param identifier the unique identifier of the resource to be set
      * @return this request to be chained
      */
-    PatchRequest<R> identifier( Identifier identifier );
+    PatchRequest<U> identifier( @Nonnull Identifier identifier );
 }

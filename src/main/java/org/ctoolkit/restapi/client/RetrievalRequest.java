@@ -29,7 +29,7 @@ import java.util.Map;
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface RetrievalRequest<T>
-        extends Request<List<T>>
+        extends SingleRetrievalRequest<List<T>>
 {
     /**
      * Execute a remote call to find the list of resource instance of given type.

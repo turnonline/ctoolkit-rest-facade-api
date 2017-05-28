@@ -27,35 +27,38 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * The adaptee interface to provide execute implementation for REST PATCH (PUT) operation on top of concrete type.
+ * The adaptee interface to provide execute implementation for underlying API.
  *
  * @param <M> the concrete type of request's model object to work with
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface PatchExecutorAdaptee<M>
+public interface UnderlyingExecutorAdaptee<M>
 {
     /**
-     * Prepare request instance as a proxy object to execute a remote call for PATCH operation.
+     * Prepare request instance as a proxy object to execute a remote call.
      *
-     * @param resource   the resource instance
-     * @param identifier the unique identifier of the resource
-     * @param alias      the patch alias
+     * @param resource   the resource instance, implementation can decide whether instance is mandatory or not
+     * @param identifier the unique identifier of the resource,
+     *                   implementation can decide whether instance is mandatory or not
+     * @param parameters the optional map of parameters or configuration
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    Object preparePatch( @Nonnull Object resource, @Nonnull Identifier identifier, @Nonnull String alias )
+    Object prepareUnderlying( @Nullable Object resource,
+                              @Nullable Identifier identifier,
+                              @Nullable Map<String, Object> parameters )
             throws IOException;
 
     /**
-     * Provide execute implementation of the patch operation.
+     * Provide execute implementation.
      *
-     * @param request    the concrete request instance, see {@link #preparePatch(Object, Identifier, String)}
+     * @param request    the concrete request instance, see {@link #prepareUnderlying(Object, Identifier, Map)}
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to be associated with this resource
      * @return the resource instance as the result of the implementation
      * @throws IOException
      */
-    M executePatch( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    M executeUnderlying( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
 }
 

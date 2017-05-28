@@ -16,18 +16,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-package org.ctoolkit.restapi.client.adaptee;
+package org.ctoolkit.restapi.client;
 
 /**
- * The adaptee interface to provide execute implementation for all REST like operations on top of concrete type.
+ * The extended {@link Request} to provide retrieval specific API.
  *
- * @param <M> the concrete type of the model object to work with
+ * @param <T> the list item resource type
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface RestExecutorAdaptee<M>
-        extends NewExecutorAdaptee<M>, GetExecutorAdaptee<M>, ListExecutorAdaptee<M>,
-        InsertExecutorAdaptee<M>, UpdateExecutorAdaptee<M>, UnderlyingExecutorAdaptee<M>,
-        DeleteExecutorAdaptee<M>
+public interface SingleRetrievalRequest<T>
+        extends Request<T>
 {
 }
-

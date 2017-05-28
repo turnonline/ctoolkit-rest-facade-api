@@ -35,7 +35,7 @@ public interface SingleUploadMediaRequest<T>
      * @return the newly inserted instance of associated resource
      * @throws NotFoundException if not matching request URI has found
      */
-    SingleRequest<T> insert();
+    Request<T> insert();
 
     /**
      * Same as {@link ResourceFacade#insert(Object, Identifier)}.
@@ -44,7 +44,7 @@ public interface SingleUploadMediaRequest<T>
      * @return the newly inserted instance of associated resource
      * @throws NotFoundException if not matching request URI has found
      */
-    SingleRequest<T> insert( @Nullable Identifier parent );
+    Request<T> insert( @Nullable Identifier parent );
 
     /**
      * Same as {@link ResourceFacade#update(Object, Identifier)}.
@@ -53,5 +53,5 @@ public interface SingleUploadMediaRequest<T>
      * @return the updated instance of associated resource
      * @throws NotFoundException if not matching request URI has found
      */
-    SingleRequest<T> update( @Nonnull Identifier identifier );
+    Request<T> update( @Nonnull Identifier identifier );
 }

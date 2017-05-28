@@ -28,6 +28,7 @@ import java.io.IOException;
  * @param <R> the concrete type of the underlying request instance
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
+@Deprecated
 public interface PatchAdaptee<R>
 {
     /**

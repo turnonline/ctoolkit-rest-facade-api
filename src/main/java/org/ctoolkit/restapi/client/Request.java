@@ -30,18 +30,7 @@ import java.util.Map;
 public interface Request<T>
 {
     /**
-     * Returns the underlying request instance in order to configure an additional query parameters
-     * or provide specific request configuration.
-     *
-     * @param type the underlying request related to concrete API implementation
-     * @param <Q>  the class type of underlying request to be cast
-     * @return the underlying request object
-     * @throws ClassCastException
-     */
-    <Q> Q query( Class<Q> type );
-
-    /**
-     * Execute a remote call based on the underlying {@link #query(Class)} instance.
+     * Execute a remote call.
      *
      * @return the resource as a result of the remote call
      */
