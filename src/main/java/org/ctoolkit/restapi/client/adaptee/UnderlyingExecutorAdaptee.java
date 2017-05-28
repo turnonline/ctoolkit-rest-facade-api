@@ -29,10 +29,10 @@ import java.util.Map;
 /**
  * The adaptee interface to provide execute implementation for underlying API.
  *
- * @param <M> the concrete type of request's model object to work with
+ * @param <U> the concrete type of the underlying request
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface UnderlyingExecutorAdaptee<M>
+public interface UnderlyingExecutorAdaptee<U>
 {
     /**
      * Prepare request instance as a proxy object to execute a remote call.
@@ -42,11 +42,11 @@ public interface UnderlyingExecutorAdaptee<M>
      *                   implementation can decide whether instance is mandatory or not
      * @param parameters the optional map of parameters or configuration
      * @return the new request instance
-     * @throws IOException may be thrown during request initialization
+     * @throws IOException might be thrown during request initialization
      */
-    Object prepareUnderlying( @Nullable Object resource,
-                              @Nullable Identifier identifier,
-                              @Nullable Map<String, Object> parameters )
+    U prepareUnderlying( @Nullable Object resource,
+                         @Nullable Identifier identifier,
+                         @Nullable Map<String, Object> parameters )
             throws IOException;
 
     /**
@@ -56,9 +56,11 @@ public interface UnderlyingExecutorAdaptee<M>
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to be associated with this resource
      * @return the resource instance as the result of the implementation
-     * @throws IOException
+     * @throws IOException might be thrown during remote call execution
      */
-    M executeUnderlying( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    Object executeUnderlying( @Nonnull U request,
+                              @Nullable Map<String, Object> parameters,
+                              @Nullable Locale locale )
             throws IOException;
 }
 

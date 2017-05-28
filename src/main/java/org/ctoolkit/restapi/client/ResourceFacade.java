@@ -212,13 +212,13 @@ public interface ResourceFacade
     <T> PayloadRequest<T> patch( @Nonnull Patch<T> resource, @Nonnull Identifier identifier );
 
     /**
-     * Specific patch operation to give underlying request instance
+     * Specific operation to get underlying request instance
      * related to concrete API implementation to work with.
      *
      * @param request the concrete class type of the underlying request
      * @return the consequent call will return response that describes the result of the specific update
      */
-    <R> PatchRequest<R> underlying( @Nonnull Class<R> request );
+    <R> UnderlyingRequest<R> underlying( @Nonnull Class<R> request );
 
     /**
      * Remove the resource type for given identifier.

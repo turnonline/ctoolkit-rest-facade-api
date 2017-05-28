@@ -19,14 +19,15 @@
 package org.ctoolkit.restapi.client;
 
 import javax.annotation.Nonnull;
+import java.util.Map;
 
 /**
- * Specific request for a patch operation.
+ * Specific request to handle API specific proxy object.
  *
- * @param <U> the concrete type of the underlying request instance
+ * @param <U> the concrete type of the underlying request
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface PatchRequest<U>
+public interface UnderlyingRequest<U>
 {
     /**
      * Builds underlying request and returns a proxy object related to concrete API implementation.
@@ -51,13 +52,21 @@ public interface PatchRequest<U>
      * @param resource the resource instance to be set
      * @return this request to be chained
      */
-    PatchRequest<U> resource( @Nonnull Object resource );
+    UnderlyingRequest<U> resource( @Nonnull Object resource );
 
     /**
-     * Configure the optional unique identifier of the resource.
+     * Configure the optional identifier of the resource.
      *
      * @param identifier the unique identifier of the resource to be set
      * @return this request to be chained
      */
-    PatchRequest<U> identifier( @Nonnull Identifier identifier );
+    UnderlyingRequest<U> identifier( @Nonnull Identifier identifier );
+
+    /**
+     * Configure request with additional parameters.
+     *
+     * @param parameters the optional parameters for the request
+     * @return this request to chain calls
+     */
+    UnderlyingRequest<U> parameters( Map<String, Object> parameters );
 }
