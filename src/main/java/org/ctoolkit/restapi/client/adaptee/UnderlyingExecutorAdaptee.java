@@ -37,15 +37,15 @@ public interface UnderlyingExecutorAdaptee<U>
     /**
      * Prepare request instance as a proxy object to execute a remote call.
      *
-     * @param resource   the resource instance, implementation can decide whether instance is mandatory or not
-     * @param identifier the unique identifier of the resource,
-     *                   implementation can decide whether instance is mandatory or not
+     * @param resource   the resource instance, it's implementation specific whether it's mandatory or not
+     * @param identifier the unique identifier of the resource, it's implementation specific whether
+     *                   it's mandatory or not
      * @param parameters the optional map of parameters or configuration
      * @return the new request instance
      * @throws IOException might be thrown during request initialization
      */
-    U prepareUnderlying( @Nullable Object resource,
-                         @Nullable Identifier identifier,
+    U prepareUnderlying( Object resource,
+                         Identifier identifier,
                          @Nullable Map<String, Object> parameters )
             throws IOException;
 

@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 import java.util.Map;
 
 /**
- * Specific request to handle API specific proxy object.
+ * The request to handle API specific proxy object.
  *
  * @param <U> the concrete type of the underlying request
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
@@ -44,15 +44,15 @@ public interface UnderlyingRequest<U>
      * @param <R>  the class type of underlying request to be cast
      * @return the request to chain calls with new response type defined
      */
-    <R> Request<R> response( Class<R> type );
+    <R> Request<R> response( @Nonnull Class<R> type );
 
     /**
-     * Configure the optional resource instance as a source of specific update.
+     * Configure the resource instance as a source of specific update.
      *
      * @param resource the resource instance to be set
      * @return this request to be chained
      */
-    UnderlyingRequest<U> resource( @Nonnull Object resource );
+    <R> Request<R> resource( @Nonnull R resource );
 
     /**
      * Configure the optional identifier of the resource.
@@ -68,5 +68,5 @@ public interface UnderlyingRequest<U>
      * @param parameters the optional parameters for the request
      * @return this request to chain calls
      */
-    UnderlyingRequest<U> parameters( Map<String, Object> parameters );
+    UnderlyingRequest<U> parameters( @Nonnull Map<String, Object> parameters );
 }

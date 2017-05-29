@@ -39,14 +39,14 @@ public interface ResourceFacade
      * operator or based on the implementation a remote call may be executed to get a 'new' instance
      * initialized with default values and given parameters if any.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
+     * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
      * @param resource the type of resource to create
      * @return the consequent call will return new resource instance for given type
      * @throws NotFoundException if not matching request URI has found (remote call)
      */
-    <T> SingleRequest<T> newInstance( @Nonnull Class<T> resource );
+    <T> PayloadRequest<T> newInstance( @Nonnull Class<T> resource );
 
     /**
      * Create a new in memory resource instance of requested type with optional parameters and locale.
@@ -57,9 +57,9 @@ public interface ResourceFacade
      * @return the consequent call will return new resource instance for given type
      * @throws NotFoundException if not matching request URI has found (remote call)
      */
-    <T> SingleRequest<T> newInstance( @Nonnull Class<T> resource,
-                                      @Nullable Map<String, Object> parameters,
-                                      @Nullable Locale locale );
+    <T> PayloadRequest<T> newInstance( @Nonnull Class<T> resource,
+                                       @Nullable Map<String, Object> parameters,
+                                       @Nullable Locale locale );
 
     /**
      * Upload a media and related metadata represented by given resource.
@@ -196,29 +196,12 @@ public interface ResourceFacade
     <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull Long identifier );
 
     /**
-     * The partial update to send updated data only for the specific fields to be changed,
-     * represented by different (simpler) resource.
-     * <p/>
-     * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
-     * to provide optional parameters or locale.
-     *
-     * @param resource   the resource instance that is subset of the origin resource
-     * @param identifier the unique identifier of resource to update
-     * @param <T>        the type of the response
-     * @return the consequent call will return response that describes the result of the partial update
-     * @throws NotFoundException if not matching request URI has found
-     */
-    @Deprecated
-    <T> PayloadRequest<T> patch( @Nonnull Patch<T> resource, @Nonnull Identifier identifier );
-
-    /**
-     * Specific operation to get underlying request instance
-     * related to concrete API implementation to work with.
+     * The operation to get underlying request instance related to concrete API implementation to work with.
      *
      * @param request the concrete class type of the underlying request
      * @return the consequent call will return response that describes the result of the specific update
      */
-    <R> UnderlyingRequest<R> underlying( @Nonnull Class<R> request );
+    <U> UnderlyingRequest<U> underlying( @Nonnull Class<U> request );
 
     /**
      * Remove the resource type for given identifier.
