@@ -18,8 +18,10 @@
 
 package org.ctoolkit.restapi.client;
 
+import javax.annotation.Nonnull;
+
 /**
- * The extended {@link Request} to provide specific API for operation with requests having payload.
+ * The extended {@link Request} to provide additional flow actions for requests having payload.
  *
  * @param <T> the resource type
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
@@ -28,11 +30,18 @@ public interface PayloadRequest<T>
         extends Request<T>
 {
     /**
-     * The type of the response expected as a result of the remote call execution.
+     * The type of the answer expected as a result of the remote call execution.
      *
      * @param type the response type different from the default one
-     * @param <R>  the class type of underlying request to be cast
-     * @return the request to chain calls with new response type defined
+     * @return the request to chain calls with newly defined response type
      */
-    <R> Request<R> response( Class<R> type );
+    <R> Request<R> answerBy( @Nonnull Class<R> type );
+
+    /**
+     * Execute a remote call and return non default type of the response.
+     *
+     * @param type the response type different from the default one
+     * @return the resource as a result of the remote call
+     */
+    <R> R finish( @Nonnull Class<R> type );
 }

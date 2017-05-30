@@ -27,9 +27,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * The adaptee interface to provide execute implementation for REST GET operation on top of concrete type.
+ * The adaptee interface to provide execution implementation of the GET operation for concrete model type.
  *
- * @param <M> the concrete type of request's model object to work with
+ * @param <M> the concrete type of the model object to be retrieved
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface GetExecutorAdaptee<M>

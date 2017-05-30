@@ -27,9 +27,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * The adaptee interface to provide execute implementation for REST PUT operation on top of concrete type.
+ * The adaptee interface to provide execution implementation of the PUT operation for concrete model type.
  *
- * @param <M> the concrete type of request's model object to work with
+ * @param <M> the concrete type of the input model object
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface UpdateExecutorAdaptee<M>
@@ -43,19 +43,19 @@ public interface UpdateExecutorAdaptee<M>
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    Object prepareUpdate( @Nonnull M resource, @Nonnull Identifier identifier, @Nullable MediaProvider<?> provider )
+    Object prepareUpdate( @Nonnull M resource, @Nonnull Identifier identifier, @Nullable MediaProvider provider )
             throws IOException;
 
     /**
-     * Provide execute implementation of the update operation.
+     * Provide execute implementation for the update operation.
      *
      * @param request    the concrete request instance, see {@link #prepareUpdate(Object, Identifier, MediaProvider)}
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to be associated with this resource
-     * @return the resource instance as the result of the implementation
+     * @return the response instance as result of the remote operation
      * @throws IOException
      */
-    M executeUpdate( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    Object executeUpdate( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
 }
 

@@ -27,7 +27,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * The adaptee interface to provide execute implementation for underlying API.
+ * The adaptee interface to provide possibility to access the underlying API request.
  *
  * @param <U> the concrete type of the underlying request
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>

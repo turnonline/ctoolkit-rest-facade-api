@@ -18,6 +18,8 @@
 
 package org.ctoolkit.restapi.client;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -32,38 +34,51 @@ public interface RetrievalRequest<T>
         extends SingleRetrievalRequest<List<T>>
 {
     /**
-     * Execute a remote call to find the list of resource instance of given type.
+     * Execute a remote call to find the list of resources of given type.
      *
-     * @return the list of resource instance
+     * @return the list of resources
      */
-    List<T> execute();
+    @Override
+    List<T> finish();
 
     /**
-     * Execute a remote call to find filtered list of resource instance.
+     * Execute a remote call to find filtered list of resources.
      *
      * @param start  the position of the first result, numbered from 0
      * @param length the maximum number of results to retrieve
-     * @return the list of filtered resource instance, if none returns empty list
+     * @return the list of filtered resources, if none returns empty list
      * @throws IllegalArgumentException thrown for any negative numbers
      */
-    List<T> execute( int start, int length );
+    List<T> finish( int start, int length );
 
     /**
-     * Execute a remote call to find the list of resource instance of given type and additional filtering criteria.
+     * Execute a remote call to find the list of resources of given type and additional filtering criteria.
      *
      * @param criteria the optional filtering criteria map
-     * @return the list of resource instance matching filtering criteria, otherwise returns empty list
+     * @return the list of resources matching filtering criteria, otherwise returns empty list
      */
-    List<T> execute( Map<String, Object> criteria );
+    @Override
+    List<T> finish( @Nullable Map<String, Object> criteria );
 
     /**
-     * Execute a remote call to find the list of resource instance of given type and additional filtering criteria.
+     * Execute a remote call to find the list of resources with specified locale.
+     *
+     * @param locale the language the client has configured to prefer in results if applicable
+     * @return the resource as a result of the remote call
+     */
+    @Override
+    List<T> finish( @Nullable Locale locale );
+
+    /**
+     * Execute a remote call to find the list of resources of given type and additional filtering criteria.
+     * o
      *
      * @param criteria the optional filtering criteria map
      * @param locale   the language the client has configured to prefer in results if applicable
-     * @return the list of resource instance matching filtering criteria, otherwise returns empty list
+     * @return the list of resources matching filtering criteria, otherwise returns empty list
      */
-    List<T> execute( Map<String, Object> criteria, Locale locale );
+    @Override
+    List<T> finish( @Nullable Map<String, Object> criteria, @Nullable Locale locale );
 
     /**
      * Apply request specific credential and configuration to this call.
@@ -73,7 +88,17 @@ public interface RetrievalRequest<T>
      * @param credential the credential and configuration to be applied to this request
      * @return this request to chain calls
      */
-    RetrievalRequest<T> config( RequestCredential credential );
+    @Override
+    RetrievalRequest<T> configWith( @Nonnull RequestCredential credential );
+
+    /**
+     * Config request with optional locale.
+     *
+     * @param locale the language the client has configured to prefer in results if applicable
+     * @return this request to chain calls
+     */
+    @Override
+    RetrievalRequest<T> forLang( @Nonnull Locale locale );
 
     /**
      * Set the position of the first result to retrieve.

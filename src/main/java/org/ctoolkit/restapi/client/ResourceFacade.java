@@ -24,8 +24,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Uniform client facade API to perform common operations on top of REST to serve a resources
- * of various REST APIs through single interface.
+ * Unified client facade API to perform REST operations of various APIs through a single interface.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
@@ -43,7 +42,7 @@ public interface ResourceFacade
      * to provide optional parameters or locale.
      *
      * @param resource the type of resource to create
-     * @return the consequent call will return new resource instance for given type
+     * @return the fluent action for consequent configurations
      * @throws NotFoundException if not matching request URI has found (remote call)
      */
     <T> PayloadRequest<T> newInstance( @Nonnull Class<T> resource );
@@ -54,7 +53,7 @@ public interface ResourceFacade
      * @param resource   the type of resource to create
      * @param parameters the optional resource parameters
      * @param locale     the language the client has configured to prefer in results if applicable
-     * @return the consequent call will return new resource instance for given type
+     * @return the fluent action for consequent configurations
      * @throws NotFoundException if not matching request URI has found (remote call)
      */
     <T> PayloadRequest<T> newInstance( @Nonnull Class<T> resource,
@@ -65,7 +64,7 @@ public interface ResourceFacade
      * Upload a media and related metadata represented by given resource.
      *
      * @param resource the resource instance of concrete type to insert or update
-     * @return the consequent call will return newly inserted or updated instance of given resource
+     * @return the fluent action, consequent call will return newly inserted or updated instance of given resource
      * @throws NotFoundException if not matching request URI has found
      */
     <T> UploadMediaRequestProvider<T> media( @Nonnull T resource );
@@ -74,7 +73,7 @@ public interface ResourceFacade
      * Download a media for given resource.
      *
      * @param resource the type of resource to download as a media
-     * @return the consequent call will return concrete resource instance for given type and identifier,
+     * @return the fluent action, consequent call will return concrete resource instance for given type and identifier
      * @throws NotFoundException if not matching request URI has found
      */
     <T> DownloadMediaRequestProvider media( @Nonnull Class<T> resource );
@@ -87,7 +86,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to get
      * @param identifier the unique identifier of the resource
-     * @return the consequent call will return concrete resource instance for given type and identifier,
+     * @return the fluent action, consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
     <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
@@ -97,7 +96,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to get
      * @param identifier the string type identifier of the resource
-     * @return the consequent call will return concrete resource instance for given type and identifier,
+     * @return the fluent action, consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
     <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull String identifier );
@@ -107,7 +106,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to get
      * @param identifier the long type identifier of the resource
-     * @return the consequent call will return concrete resource instance for given type and identifier,
+     * @return the fluent action, consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
     <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull Long identifier );
@@ -119,7 +118,7 @@ public interface ResourceFacade
      * to provide optional parameters or locale.
      *
      * @param resource the type of resource to find
-     * @return the consequent call will return list of resource instance matching filtering criteria,
+     * @return the fluent action, consequent call will return list of resource instance matching filtering criteria,
      * otherwise returns empty list
      */
     <T> RetrievalRequest<T> list( @Nonnull Class<T> resource );
@@ -132,7 +131,7 @@ public interface ResourceFacade
      *
      * @param resource the type of resource to find
      * @param parent   the unique identifier of the parent resource as an owner of given resource if any
-     * @return the consequent call will return list of resource instance matching filtering criteria,
+     * @return the fluent action, consequent call will return list of resource instance matching filtering criteria,
      * otherwise returns empty list
      */
     <T> RetrievalRequest<T> list( @Nonnull Class<T> resource, @Nullable Identifier parent );
@@ -144,7 +143,7 @@ public interface ResourceFacade
      * to provide optional parameters or locale.
      *
      * @param resource the resource instance of concrete type to insert
-     * @return the consequent call will return newly inserted instance of given resource
+     * @return the fluent action, consequent call will return newly inserted instance
      * @throws NotFoundException if not matching request URI has found
      */
     <T> PayloadRequest<T> insert( @Nonnull T resource );
@@ -157,7 +156,7 @@ public interface ResourceFacade
      *
      * @param resource the resource instance of concrete type to insert
      * @param parent   the resource parent identifier
-     * @return the consequent call will return newly inserted instance of given resource
+     * @return the fluent action, consequent call will return newly inserted instance
      * @throws NotFoundException if not matching request URI has found
      */
     <T> PayloadRequest<T> insert( @Nonnull T resource, @Nullable Identifier parent );
@@ -170,7 +169,7 @@ public interface ResourceFacade
      *
      * @param resource   the resource instance of concrete type
      * @param identifier the unique identifier of resource to update
-     * @return the consequent call will return updated instance of given resource
+     * @return the fluent action, consequent call will return updated instance
      * @throws NotFoundException if not matching request URI has found
      */
     <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull Identifier identifier );
@@ -180,7 +179,7 @@ public interface ResourceFacade
      *
      * @param resource   the resource instance of concrete type
      * @param identifier the string type identifier of the resource
-     * @return the consequent call will return updated instance of given resource
+     * @return the fluent action, consequent call will return updated instance
      * @throws NotFoundException if not matching request URI has found
      */
     <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull String identifier );
@@ -190,7 +189,7 @@ public interface ResourceFacade
      *
      * @param resource   the resource instance of concrete type
      * @param identifier the long type identifier of the resource
-     * @return the consequent call will return updated instance of given resource
+     * @return the fluent action, consequent call will return updated instance
      * @throws NotFoundException if not matching request URI has found
      */
     <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull Long identifier );
@@ -199,7 +198,7 @@ public interface ResourceFacade
      * The operation to get underlying request instance related to concrete API implementation to work with.
      *
      * @param request the concrete class type of the underlying request
-     * @return the consequent call will return response that describes the result of the specific update
+     * @return the fluent action
      */
     <U> UnderlyingRequest<U> underlying( @Nonnull Class<U> request );
 
@@ -211,6 +210,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to remove
      * @param identifier the unique identifier of resource
+     * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
@@ -220,6 +220,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to remove
      * @param identifier the string type identifier of the resource
+     * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull String identifier );
@@ -229,6 +230,7 @@ public interface ResourceFacade
      *
      * @param resource   the type of resource to remove
      * @param identifier the long type identifier of the resource
+     * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
     <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull Long identifier );

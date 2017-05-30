@@ -25,8 +25,8 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * The adaptee interface to provide execute implementation for REST GET operation to get default resource instance
- * if any on top of concrete type.
+ * The adaptee interface to provide execution implementation of the GET operation to get default resource instance
+ * of concrete model type.
  *
  * @param <M> the concrete type of request's model object to work with
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>

@@ -27,9 +27,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * The adaptee interface to provide download configuration as additional functionality to REST GET.
+ * The adaptee interface to provide download configuration as an additional functionality to GET operation.
  *
- * @param <M> the concrete type of request's model object to work with
+ * @param <M> the concrete type of the model object to be downloaded
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface DownloadExecutorAdaptee<M>

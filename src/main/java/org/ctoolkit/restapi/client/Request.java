@@ -18,6 +18,8 @@
 
 package org.ctoolkit.restapi.client;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Locale;
 import java.util.Map;
 
@@ -34,7 +36,7 @@ public interface Request<T>
      *
      * @return the resource as a result of the remote call
      */
-    T execute();
+    T finish();
 
     /**
      * Execute a remote call with additional resource parameters.
@@ -42,7 +44,7 @@ public interface Request<T>
      * @param parameters the optional resource parameters
      * @return the resource as a result of the remote call
      */
-    T execute( Map<String, Object> parameters );
+    T finish( @Nullable Map<String, Object> parameters );
 
     /**
      * Execute a remote call with specified locale.
@@ -50,7 +52,7 @@ public interface Request<T>
      * @param locale the language the client has configured to prefer in results if applicable
      * @return the resource as a result of the remote call
      */
-    T execute( Locale locale );
+    T finish( @Nullable Locale locale );
 
     /**
      * Execute a remote call with additional resource parameters or locale.
@@ -59,7 +61,7 @@ public interface Request<T>
      * @param locale     the language the client has configured to prefer in results if applicable
      * @return the resource as a result of the remote call
      */
-    T execute( Map<String, Object> parameters, Locale locale );
+    T finish( @Nullable Map<String, Object> parameters, @Nullable Locale locale );
 
     /**
      * Apply request specific credential and configuration to this call.
@@ -69,5 +71,31 @@ public interface Request<T>
      * @param credential the credential and configuration to be applied to this request
      * @return this request to chain calls
      */
-    Request<T> config( RequestCredential credential );
+    Request<T> configWith( @Nonnull RequestCredential credential );
+
+    /**
+     * Config request with optional locale.
+     *
+     * @param locale the language the client has configured to prefer in results if applicable
+     * @return this request to chain calls
+     */
+    Request<T> forLang( @Nonnull Locale locale );
+
+    /**
+     * Add parameter to the request.
+     *
+     * @param name  the name of the parameter
+     * @param value the value of the parameter
+     * @return this request to chain calls
+     */
+    Request<T> add( @Nonnull String name, @Nonnull Object value );
+
+    /**
+     * Add optional parameter to the request.
+     *
+     * @param name  the name of the parameter
+     * @param value the value of the parameter
+     * @return this request to chain calls
+     */
+    Request<T> add( @Nonnull String name, @Nonnull String value );
 }

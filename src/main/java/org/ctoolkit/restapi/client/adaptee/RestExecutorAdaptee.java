@@ -19,7 +19,7 @@
 package org.ctoolkit.restapi.client.adaptee;
 
 /**
- * The adaptee interface to provide execute implementation for all REST like operations on top of concrete type.
+ * The adaptee interface to provide execution implementation for all REST like operations for concrete model type.
  *
  * @param <M> the concrete type of the model object to work with
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>

@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 import java.util.Map;
 
 /**
- * The request to handle API specific proxy object.
+ * Specific request to handle API specific proxy (request) object.
  *
  * @param <U> the concrete type of the underlying request
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
@@ -38,13 +38,12 @@ public interface UnderlyingRequest<U>
     U get();
 
     /**
-     * The type of the response expected as a result of the remote call execution.
+     * The type of the answer expected as a result of the remote call execution.
      *
      * @param type the response type
-     * @param <R>  the class type of underlying request to be cast
-     * @return the request to chain calls with new response type defined
+     * @return the request to chain calls with newly defined response type
      */
-    <R> Request<R> response( @Nonnull Class<R> type );
+    <R> Request<R> answerBy( @Nonnull Class<R> type );
 
     /**
      * Configure the resource instance as a source of specific update.
@@ -52,7 +51,7 @@ public interface UnderlyingRequest<U>
      * @param resource the resource instance to be set
      * @return this request to be chained
      */
-    <R> Request<R> resource( @Nonnull R resource );
+    <R> Request<R> withPayload( @Nonnull R resource );
 
     /**
      * Configure the optional identifier of the resource.
@@ -60,7 +59,7 @@ public interface UnderlyingRequest<U>
      * @param identifier the unique identifier of the resource to be set
      * @return this request to be chained
      */
-    UnderlyingRequest<U> identifier( @Nonnull Identifier identifier );
+    UnderlyingRequest<U> identifiedBy( @Nonnull Identifier identifier );
 
     /**
      * Configure request with additional parameters.
@@ -68,5 +67,23 @@ public interface UnderlyingRequest<U>
      * @param parameters the optional parameters for the request
      * @return this request to chain calls
      */
-    UnderlyingRequest<U> parameters( @Nonnull Map<String, Object> parameters );
+    UnderlyingRequest<U> addParams( @Nonnull Map<String, Object> parameters );
+
+    /**
+     * Add parameter to the request.
+     *
+     * @param name  the name of the parameter
+     * @param value the value of the parameter
+     * @return this request to chain calls
+     */
+    UnderlyingRequest<U> add( @Nonnull String name, @Nonnull Object value );
+
+    /**
+     * Add parameter to the request.
+     *
+     * @param name  the name of the parameter
+     * @param value the value of the parameter
+     * @return this request to chain calls
+     */
+    UnderlyingRequest<U> add( @Nonnull String name, @Nonnull String value );
 }

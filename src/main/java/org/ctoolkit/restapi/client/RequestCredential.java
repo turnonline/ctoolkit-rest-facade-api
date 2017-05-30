@@ -70,7 +70,7 @@ public class RequestCredential
     public Map<String, Object> fillInFrom( @Nullable Map<String, Object> source, boolean remove )
     {
         Map<String, Object> removedProps = new HashMap<>();
-        if ( source == null )
+        if ( source == null || source.isEmpty() )
         {
             // nothing to extract
             return removedProps;

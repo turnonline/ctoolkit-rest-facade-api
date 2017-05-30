@@ -1,2 +1,2 @@
-# rest-resource-service
- Generic resource service to perform common operations on top of REST like resources.
+# CtoolkiT REST client facade API
+ Unified client facade API to perform REST operations of various APIs through a single interface.
