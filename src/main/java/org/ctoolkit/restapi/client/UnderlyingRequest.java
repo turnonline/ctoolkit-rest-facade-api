@@ -35,7 +35,7 @@ public interface UnderlyingRequest<U>
      *
      * @return the underlying request instance
      */
-    U get();
+    U build();
 
     /**
      * The type of the answer expected as a result of the remote call execution.
