@@ -28,7 +28,7 @@ import java.util.Map;
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface ResourceFacade
+public interface RestFacade
 {
     /**
      * Create a new in memory resource instance of requested type.

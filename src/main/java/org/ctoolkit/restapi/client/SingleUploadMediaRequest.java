@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 public interface SingleUploadMediaRequest<T>
 {
     /**
-     * Same as {@link ResourceFacade#insert(Object)}.
+     * Same as {@link RestFacade#insert(Object)}.
      *
      * @return the newly inserted instance of associated resource
      * @throws NotFoundException if not matching request URI has found
@@ -38,7 +38,7 @@ public interface SingleUploadMediaRequest<T>
     Request<T> insert();
 
     /**
-     * Same as {@link ResourceFacade#insert(Object, Identifier)}.
+     * Same as {@link RestFacade#insert(Object, Identifier)}.
      *
      * @param parent the resource parent identifier
      * @return the newly inserted instance of associated resource
@@ -47,7 +47,7 @@ public interface SingleUploadMediaRequest<T>
     Request<T> insert( @Nullable Identifier parent );
 
     /**
-     * Same as {@link ResourceFacade#update(Object, Identifier)}.
+     * Same as {@link RestFacade#update(Object, Identifier)}.
      *
      * @param identifier the unique identifier of associated resource to update
      * @return the updated instance of associated resource

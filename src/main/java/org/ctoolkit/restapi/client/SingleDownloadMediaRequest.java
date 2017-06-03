@@ -28,7 +28,7 @@ import javax.annotation.Nonnull;
 public interface SingleDownloadMediaRequest<T>
 {
     /**
-     * Same as {@link ResourceFacade#get(Class, Identifier)}, but resource type is already provided.
+     * Same as {@link RestFacade#get(Class, Identifier)}, but resource type is already provided.
      *
      * @param identifier the unique identifier of the resource
      * @return the consequent call will return concrete resource instance for given type and identifier,
@@ -37,7 +37,7 @@ public interface SingleDownloadMediaRequest<T>
     <T> Request<T> identifiedBy( @Nonnull Identifier identifier );
 
     /**
-     * Same as {@link ResourceFacade#get(Class, String)}, but resource type is already provided.
+     * Same as {@link RestFacade#get(Class, String)}, but resource type is already provided.
      *
      * @param identifier the string type identifier of the resource
      * @return the consequent call will return concrete resource instance for given type and identifier,
@@ -46,7 +46,7 @@ public interface SingleDownloadMediaRequest<T>
     <T> Request<T> identifiedBy( @Nonnull String identifier );
 
     /**
-     * Same as {@link ResourceFacade#get(Class, Long)}, but resource type is already provided.
+     * Same as {@link RestFacade#get(Class, Long)}, but resource type is already provided.
      *
      * @param identifier the long type identifier of the resource
      * @return the consequent call will return concrete resource instance for given type and identifier,
