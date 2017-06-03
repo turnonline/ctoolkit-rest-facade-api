@@ -36,7 +36,7 @@ public interface DownloadMediaRequestProvider
      * @param output the empty destination output stream
      * @return the download media request instance with associated resource and media content
      */
-    SingleDownloadMediaRequest downloadTo( @Nonnull OutputStream output );
+    SingleDownloadMediaRequest to( @Nonnull OutputStream output );
 
     /**
      * Creates a download media request instance with output stream where desired content of requested type
@@ -46,5 +46,5 @@ public interface DownloadMediaRequestProvider
      * @param type   the requested content type to be downloaded or {@code null} to expect default
      * @return the download media request instance with associated resource and media content
      */
-    SingleDownloadMediaRequest downloadTo( @Nonnull OutputStream output, @Nullable String type );
+    SingleDownloadMediaRequest to( @Nonnull OutputStream output, @Nullable String type );
 }

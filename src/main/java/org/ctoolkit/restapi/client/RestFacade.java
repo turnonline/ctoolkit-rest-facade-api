@@ -63,20 +63,20 @@ public interface RestFacade
     /**
      * Upload a media and related metadata represented by given resource.
      *
-     * @param resource the resource instance of concrete type to insert or update
-     * @return the fluent action, consequent call will return newly inserted or updated instance of given resource
+     * @param resource the resource that acts as a metadata to be inserted or updated
+     * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> UploadMediaRequestProvider<T> media( @Nonnull T resource );
+    <T> UploadMediaRequestProvider<T> upload( @Nonnull T resource );
 
     /**
      * Download a media for given resource.
      *
-     * @param resource the type of resource to download as a media
-     * @return the fluent action, consequent call will return concrete resource instance for given type and identifier
+     * @param resource the type of the resource to download
+     * @return the fluent action, consequent call will download requested type
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> DownloadMediaRequestProvider media( @Nonnull Class<T> resource );
+    <T> DownloadMediaRequestProvider download( @Nonnull Class<T> resource );
 
     /**
      * Retrieve a resource instance of requested type and identifier.

@@ -19,10 +19,9 @@
 package org.ctoolkit.restapi.client;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
- * The single upload media request as wrapper of media content and associated resource.
+ * The upload media request as a wrapper of data and associated (metadata) resource.
  * Gives a possibility to this resource to be either inserted or updated.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
@@ -32,26 +31,55 @@ public interface SingleUploadMediaRequest<T>
     /**
      * Same as {@link RestFacade#insert(Object)}.
      *
-     * @return the newly inserted instance of associated resource
+     * @return the fluent action, the consequent call will return the newly inserted instance of associated resource
      * @throws NotFoundException if not matching request URI has found
      */
-    Request<T> insert();
+    PayloadRequest<T> insert();
 
     /**
-     * Same as {@link RestFacade#insert(Object, Identifier)}.
+     * Sets the resource identifier.
+     * <ul>
+     * <li>In case of the consequent {@link #insert()} operation it acts as a parent resource identifier</li>
+     * <li>In case of the consequent {@link #update()} operation it acts as a resource identifier</li>
+     * </ul>
      *
-     * @param parent the resource parent identifier
-     * @return the newly inserted instance of associated resource
+     * @param identifier the unique identifier of the (parent) resource
+     * @return the fluent action, the consequent call will return concrete resource instance for given type and identifier
      * @throws NotFoundException if not matching request URI has found
      */
-    Request<T> insert( @Nullable Identifier parent );
+    SingleUploadMediaRequest<T> identifiedBy( @Nonnull Identifier identifier );
+
+    /**
+     * Sets the resource identifier.
+     * <ul>
+     * <li>In case of the consequent {@link #insert()} operation it acts as a parent resource identifier</li>
+     * <li>In case of the consequent {@link #update()} operation it acts as a resource identifier</li>
+     * </ul>
+     *
+     * @param identifier the unique identifier of the (parent) resource
+     * @return the fluent action, the consequent call will return concrete resource instance for given type and identifier
+     * @throws NotFoundException if not matching request URI has found
+     */
+    SingleUploadMediaRequest<T> identifiedBy( @Nonnull String identifier );
+
+    /**
+     * Sets the resource identifier.
+     * <ul>
+     * <li>In case of the consequent {@link #insert()} operation it acts as a parent resource identifier</li>
+     * <li>In case of the consequent {@link #update()} operation it acts as a resource identifier</li>
+     * </ul>
+     *
+     * @param identifier the unique identifier of the (parent) resource
+     * @return the fluent action, the consequent call will return concrete resource instance for given type and identifier
+     * @throws NotFoundException if not matching request URI has found
+     */
+    SingleUploadMediaRequest<T> identifiedBy( @Nonnull Long identifier );
 
     /**
      * Same as {@link RestFacade#update(Object, Identifier)}.
      *
-     * @param identifier the unique identifier of associated resource to update
-     * @return the updated instance of associated resource
+     * @return the fluent action, the consequent call will return updated instance of associated resource
      * @throws NotFoundException if not matching request URI has found
      */
-    Request<T> update( @Nonnull Identifier identifier );
+    PayloadRequest<T> update();
 }

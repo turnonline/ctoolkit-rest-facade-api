@@ -37,7 +37,7 @@ public interface UploadMediaRequestProvider<T>
      * @param type the content type or {@code null} for none
      * @return the upload media request instance with associated resource and media content
      */
-    SingleUploadMediaRequest<T> upload( File file, String type );
+    SingleUploadMediaRequest<T> data( File file, String type );
 
     /**
      * Creates a media request with media content to be uploaded, content taken from given input stream.
@@ -47,7 +47,7 @@ public interface UploadMediaRequestProvider<T>
      * @param type   the content type or {@code null} for none
      * @return the upload media request instance with associated resource and media content
      */
-    SingleUploadMediaRequest<T> upload( InputStream stream, String type );
+    SingleUploadMediaRequest<T> data( InputStream stream, String type );
 
     /**
      * Creates a media request with media content to be uploaded.
@@ -57,7 +57,7 @@ public interface UploadMediaRequestProvider<T>
      * @param type  the content type or {@code null} for none
      * @return the upload media request instance with associated resource and media content
      */
-    SingleUploadMediaRequest<T> upload( byte[] array, String type );
+    SingleUploadMediaRequest<T> data( byte[] array, String type );
 
     /**
      * Creates a media request with media content to be uploaded.
@@ -69,6 +69,6 @@ public interface UploadMediaRequestProvider<T>
      * @param type   the content type or {@code null} for none
      * @return the upload media request instance with associated resource and media content
      */
-    SingleUploadMediaRequest<T> upload( byte[] array, int offset, int length, String type );
+    SingleUploadMediaRequest<T> data( byte[] array, int offset, int length, String type );
 
 }
