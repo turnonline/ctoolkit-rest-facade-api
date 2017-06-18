@@ -38,23 +38,21 @@ public interface NewExecutorAdaptee<M>
      * <p/>
      * Note: return null if remote call or action is not expected.
      *
-     * @param type       the string representation of the concrete type
-     * @param parameters the optional resource parameters
-     * @param locale     the language the client has configured to prefer in results if applicable
+     * @param type the string representation of the concrete type
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */
-    Object prepareNew( @Nullable String type, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
+    Object prepareNew( @Nullable String type )
             throws IOException;
 
     /**
      * Provide execute implementation of the remote call to get instance or create locally a specific one.
      *
-     * @param request    the concrete request instance, see {@link #prepareNew(String, Map, Locale)}
+     * @param request    the concrete request instance, see {@link #prepareNew(String)}
      * @param parameters the optional resource parameters
      * @param locale     the optional language the client has configured to prefer in results if applicable
      * @return the new resource instance
-     * @throws IOException
+     * @throws IOException may be thrown during request execution
      */
     M executeNew( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
