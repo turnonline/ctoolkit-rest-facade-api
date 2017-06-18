@@ -18,6 +18,7 @@
 
 package org.ctoolkit.restapi.client;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.InputStream;
 
@@ -27,37 +28,34 @@ import java.io.InputStream;
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface UploadMediaRequestProvider<T>
+public interface UploadMediaProvider<T>
 {
     /**
      * Creates a media request with media content to be uploaded.
      * It generates repeatable input stream based on the content of given file.
      *
      * @param file the file to read content from
-     * @param type the content type or {@code null} for none
      * @return the upload media request instance with associated resource and media content
      */
-    SingleUploadMediaRequest<T> data( File file, String type );
+    SingleUploadMediaRequest<T> data( @Nonnull File file );
 
     /**
      * Creates a media request with media content to be uploaded, content taken from given input stream.
      * This should only be used for streams that can not be re-opened and retried.
      *
      * @param stream the input stream to read content from
-     * @param type   the content type or {@code null} for none
      * @return the upload media request instance with associated resource and media content
      */
-    SingleUploadMediaRequest<T> data( InputStream stream, String type );
+    SingleUploadMediaRequest<T> data( @Nonnull InputStream stream );
 
     /**
      * Creates a media request with media content to be uploaded.
      * It generates repeatable input stream based on the content of given byte array.
      *
      * @param array the byte array content
-     * @param type  the content type or {@code null} for none
      * @return the upload media request instance with associated resource and media content
      */
-    SingleUploadMediaRequest<T> data( byte[] array, String type );
+    SingleUploadMediaRequest<T> data( @Nonnull byte[] array );
 
     /**
      * Creates a media request with media content to be uploaded.
@@ -66,9 +64,7 @@ public interface UploadMediaRequestProvider<T>
      * @param array  the byte array content
      * @param offset starting offset into the byte array
      * @param length of bytes to read from byte array
-     * @param type   the content type or {@code null} for none
      * @return the upload media request instance with associated resource and media content
      */
-    SingleUploadMediaRequest<T> data( byte[] array, int offset, int length, String type );
-
+    SingleUploadMediaRequest<T> data( @Nonnull byte[] array, int offset, int length );
 }

@@ -18,6 +18,8 @@
 
 package org.ctoolkit.restapi.client.adaptee;
 
+import javax.annotation.Nullable;
+
 /**
  * The media provider of the content to be uploaded by adaptee.
  *
@@ -30,5 +32,20 @@ public interface MediaProvider
      *
      * @return the instance of media content
      */
-    Object media();
+    Object getMedia();
+
+    /**
+     * Sets the content type or {@code null} for none.
+     *
+     * @param type the content type
+     */
+    void setType( @Nullable String type );
+
+    /**
+     * Sets whether the target input stream should be closed at the end of 'write to' operation.
+     * The default value is {@code true}.
+     *
+     * @param closeInputStream the boolean value to be set
+     */
+    void setCloseInputStream( boolean closeInputStream );
 }

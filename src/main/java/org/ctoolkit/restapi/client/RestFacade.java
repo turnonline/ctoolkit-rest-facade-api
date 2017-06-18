@@ -67,7 +67,7 @@ public interface RestFacade
      * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> UploadMediaRequestProvider<T> upload( @Nonnull T resource );
+    <T> UploadMediaProvider<T> upload( @Nonnull T resource );
 
     /**
      * Download a media for given resource.
@@ -76,7 +76,7 @@ public interface RestFacade
      * @return the fluent action, consequent call will download requested type
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> DownloadMediaRequestProvider download( @Nonnull Class<T> resource );
+    <T> DownloadMediaProvider download( @Nonnull Class<T> resource );
 
     /**
      * Retrieve a resource instance of requested type and identifier.

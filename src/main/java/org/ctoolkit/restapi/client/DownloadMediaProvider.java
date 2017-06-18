@@ -19,7 +19,6 @@
 package org.ctoolkit.restapi.client;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.OutputStream;
 
 /**
@@ -28,23 +27,13 @@ import java.io.OutputStream;
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface DownloadMediaRequestProvider
+public interface DownloadMediaProvider
 {
     /**
      * Creates a download media request instance with output stream where desired content will be downloaded to.
      *
      * @param output the empty destination output stream
-     * @return the download media request instance with associated resource and media content
+     * @return the download media request instance with target media content
      */
     SingleDownloadMediaRequest to( @Nonnull OutputStream output );
-
-    /**
-     * Creates a download media request instance with output stream where desired content of requested type
-     * will be downloaded to.
-     *
-     * @param output the empty destination output stream
-     * @param type   the requested content type to be downloaded or {@code null} to expect default
-     * @return the download media request instance with associated resource and media content
-     */
-    SingleDownloadMediaRequest to( @Nonnull OutputStream output, @Nullable String type );
 }

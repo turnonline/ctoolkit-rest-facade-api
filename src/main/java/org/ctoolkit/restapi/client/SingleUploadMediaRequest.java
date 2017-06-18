@@ -31,10 +31,27 @@ public interface SingleUploadMediaRequest<T>
     /**
      * Same as {@link RestFacade#insert(Object)}.
      *
-     * @return the fluent action, the consequent call will return the newly inserted instance of associated resource
+     * @return the fluent action, the consequent call will return the newly inserted instance
      * @throws NotFoundException if not matching request URI has found
      */
     PayloadRequest<T> insert();
+
+    /**
+     * Sets the content type for the media associated with this request.
+     *
+     * @param type the content type to be set
+     * @return the fluent action
+     */
+    SingleUploadMediaRequest<T> ofType( @Nonnull String type );
+
+    /**
+     * Sets whether the target input stream should be closed at the end of 'write to' operation.
+     * The default value is {@code true}.
+     *
+     * @param closeStream the boolean value to be set
+     * @return the fluent action
+     */
+    SingleUploadMediaRequest<T> closeStreamAtTheEnd( boolean closeStream );
 
     /**
      * Sets the resource identifier.
@@ -44,7 +61,7 @@ public interface SingleUploadMediaRequest<T>
      * </ul>
      *
      * @param identifier the unique identifier of the (parent) resource
-     * @return the fluent action, the consequent call will return concrete resource instance for given type and identifier
+     * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
     SingleUploadMediaRequest<T> identifiedBy( @Nonnull Identifier identifier );
@@ -57,7 +74,7 @@ public interface SingleUploadMediaRequest<T>
      * </ul>
      *
      * @param identifier the unique identifier of the (parent) resource
-     * @return the fluent action, the consequent call will return concrete resource instance for given type and identifier
+     * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
     SingleUploadMediaRequest<T> identifiedBy( @Nonnull String identifier );
@@ -70,7 +87,7 @@ public interface SingleUploadMediaRequest<T>
      * </ul>
      *
      * @param identifier the unique identifier of the (parent) resource
-     * @return the fluent action, the consequent call will return concrete resource instance for given type and identifier
+     * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
     SingleUploadMediaRequest<T> identifiedBy( @Nonnull Long identifier );
@@ -78,7 +95,7 @@ public interface SingleUploadMediaRequest<T>
     /**
      * Same as {@link RestFacade#update(Object, Identifier)}.
      *
-     * @return the fluent action, the consequent call will return updated instance of associated resource
+     * @return the fluent action, the consequent call will return updated instance
      * @throws NotFoundException if not matching request URI has found
      */
     PayloadRequest<T> update();
