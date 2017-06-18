@@ -19,14 +19,13 @@
 package org.ctoolkit.restapi.client;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
- * The single media request as wrapper of media content to download.
+ * The extended action to provide specific {@link IdentificationAction} for delete operation.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface SingleDownloadMediaRequest<T>
+public interface DeleteIdentification<T>
         extends IdentificationAction<T>
 {
     @Override
@@ -37,12 +36,4 @@ public interface SingleDownloadMediaRequest<T>
 
     @Override
     SingleRequest<T> identifiedBy( @Nonnull Long identifier );
-
-    /**
-     * Sets the content type for the media associated with this request.
-     *
-     * @param type the content type to be set
-     * @return the fluent action
-     */
-    SingleDownloadMediaRequest<T> ofType( @Nullable String type );
 }

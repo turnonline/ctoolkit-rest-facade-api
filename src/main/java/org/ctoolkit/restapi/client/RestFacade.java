@@ -20,8 +20,6 @@ package org.ctoolkit.restapi.client;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * Unified client facade API to perform REST operations of various APIs through a single interface.
@@ -48,19 +46,6 @@ public interface RestFacade
     <T> PayloadRequest<T> newInstance( @Nonnull Class<T> resource );
 
     /**
-     * Create a new in memory resource instance of requested type with optional parameters and locale.
-     *
-     * @param resource   the type of resource to create
-     * @param parameters the optional resource parameters
-     * @param locale     the language the client has configured to prefer in results if applicable
-     * @return the fluent action for consequent configurations
-     * @throws NotFoundException if not matching request URI has found (remote call)
-     */
-    <T> PayloadRequest<T> newInstance( @Nonnull Class<T> resource,
-                                       @Nullable Map<String, Object> parameters,
-                                       @Nullable Locale locale );
-
-    /**
      * Upload a media and related metadata represented by given resource.
      *
      * @param resource the resource that acts as a metadata to be inserted or updated
@@ -84,32 +69,11 @@ public interface RestFacade
      * Note: the remote call itself will be executed by request instance {@link SingleRetrievalRequest}
      * with possibility to provide optional parameters or locale.
      *
-     * @param resource   the type of resource to get
-     * @param identifier the unique identifier of the resource
+     * @param resource the type of resource to get
      * @return the fluent action, consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
      */
-    <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
-
-    /**
-     * Same as {@link #get(Class, Identifier)} just identifier is being overloaded.
-     *
-     * @param resource   the type of resource to get
-     * @param identifier the string type identifier of the resource
-     * @return the fluent action, consequent call will return concrete resource instance for given type and identifier,
-     * otherwise returns <tt>null</tt>
-     */
-    <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull String identifier );
-
-    /**
-     * Same as {@link #get(Class, Identifier)} just identifier is being overloaded.
-     *
-     * @param resource   the type of resource to get
-     * @param identifier the long type identifier of the resource
-     * @return the fluent action, consequent call will return concrete resource instance for given type and identifier,
-     * otherwise returns <tt>null</tt>
-     */
-    <T> SingleRetrievalRequest<T> get( @Nonnull Class<T> resource, @Nonnull Long identifier );
+    <T> SingleRetrievalIdentification<T> get( @Nonnull Class<T> resource );
 
     /**
      * Find the list of resource instance of given type and filtering criteria.
@@ -167,32 +131,11 @@ public interface RestFacade
      * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
-     * @param resource   the resource instance of concrete type
-     * @param identifier the unique identifier of resource to update
+     * @param resource the resource instance of concrete type
      * @return the fluent action, consequent call will return updated instance
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull Identifier identifier );
-
-    /**
-     * Same as {@link #update(Object, Identifier)} just identifier is being overloaded.
-     *
-     * @param resource   the resource instance of concrete type
-     * @param identifier the string type identifier of the resource
-     * @return the fluent action, consequent call will return updated instance
-     * @throws NotFoundException if not matching request URI has found
-     */
-    <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull String identifier );
-
-    /**
-     * Same as {@link #update(Object, Identifier)} just identifier is being overloaded.
-     *
-     * @param resource   the resource instance of concrete type
-     * @param identifier the long type identifier of the resource
-     * @return the fluent action, consequent call will return updated instance
-     * @throws NotFoundException if not matching request URI has found
-     */
-    <T> PayloadRequest<T> update( @Nonnull T resource, @Nonnull Long identifier );
+    <T> UpdateIdentification<T> update( @Nonnull T resource );
 
     /**
      * The operation to get underlying request instance related to concrete API implementation to work with.
@@ -208,30 +151,9 @@ public interface RestFacade
      * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
      * to provide optional parameters or locale.
      *
-     * @param resource   the type of resource to remove
-     * @param identifier the unique identifier of resource
+     * @param resource the type of resource to remove
      * @return the fluent action
      * @throws NotFoundException if not matching request URI has found
      */
-    <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull Identifier identifier );
-
-    /**
-     * Same as {@link #delete(Class, Identifier)} just identifier is being overloaded.
-     *
-     * @param resource   the type of resource to remove
-     * @param identifier the string type identifier of the resource
-     * @return the fluent action
-     * @throws NotFoundException if not matching request URI has found
-     */
-    <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull String identifier );
-
-    /**
-     * Same as {@link #delete(Class, Identifier)} just identifier is being overloaded.
-     *
-     * @param resource   the type of resource to remove
-     * @param identifier the long type identifier of the resource
-     * @return the fluent action
-     * @throws NotFoundException if not matching request URI has found
-     */
-    <T> SingleRequest<T> delete( @Nonnull Class<T> resource, @Nonnull Long identifier );
+    <T> DeleteIdentification<T> delete( @Nonnull Class<T> resource );
 }

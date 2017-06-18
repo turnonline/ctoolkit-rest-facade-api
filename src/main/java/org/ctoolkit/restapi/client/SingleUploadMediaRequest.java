@@ -29,9 +29,12 @@ import javax.annotation.Nonnull;
 public interface SingleUploadMediaRequest<T>
 {
     /**
-     * Same as {@link RestFacade#insert(Object)}.
+     * Insert a resource instance.
+     * <p/>
+     * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
+     * to provide optional parameters or locale.
      *
-     * @return the fluent action, the consequent call will return the newly inserted instance
+     * @return the fluent action, consequent call will return newly inserted instance
      * @throws NotFoundException if not matching request URI has found
      */
     PayloadRequest<T> insert();
@@ -93,7 +96,10 @@ public interface SingleUploadMediaRequest<T>
     SingleUploadMediaRequest<T> identifiedBy( @Nonnull Long identifier );
 
     /**
-     * Same as {@link RestFacade#update(Object, Identifier)}.
+     * Update the given (metadata) resource instance.
+     * <p/>
+     * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
+     * to provide optional parameters or locale.
      *
      * @return the fluent action, the consequent call will return updated instance
      * @throws NotFoundException if not matching request URI has found
