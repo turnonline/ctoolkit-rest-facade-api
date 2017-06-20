@@ -52,7 +52,7 @@ public interface NewExecutorAdaptee<M>
      * @param parameters the optional resource parameters
      * @param locale     the optional language the client has configured to prefer in results if applicable
      * @return the new resource instance
-     * @throws IOException may be thrown during request execution
+     * @throws IOException might be thrown during remote call execution
      */
     M executeNew( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;

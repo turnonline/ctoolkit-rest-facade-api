@@ -55,7 +55,7 @@ public interface ListExecutorAdaptee<M>
      * @param start      the position of the first result, numbered from 0. The negative number means unused.
      * @param length     the maximum number of results to retrieve. The negative number means unused.
      * @return the list of resource instance matching filtering criteria, otherwise returns empty list
-     * @throws IOException
+     * @throws IOException might be thrown during remote call execution
      */
     List<M> executeList( @Nonnull Object request,
                          @Nullable Map<String, Object> parameters,

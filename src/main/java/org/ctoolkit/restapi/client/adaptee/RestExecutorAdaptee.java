@@ -25,9 +25,8 @@ package org.ctoolkit.restapi.client.adaptee;
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface RestExecutorAdaptee<M>
-        extends NewExecutorAdaptee<M>, GetExecutorAdaptee<M>, ListExecutorAdaptee<M>,
-        InsertExecutorAdaptee<M>, UpdateExecutorAdaptee<M>, UnderlyingExecutorAdaptee<M>,
-        DeleteExecutorAdaptee<M>
+        extends GetExecutorAdaptee<M>, ListExecutorAdaptee<M>, InsertExecutorAdaptee<M>,
+        UpdateExecutorAdaptee<M>, DeleteExecutorAdaptee<M>
 {
 }
 

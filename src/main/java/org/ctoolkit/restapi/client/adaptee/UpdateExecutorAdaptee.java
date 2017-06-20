@@ -48,12 +48,15 @@ public interface UpdateExecutorAdaptee<M>
 
     /**
      * Provide execute implementation for the update operation.
+     * The response type is either default one (same as the input model) or might be configured via
+     * {@link org.ctoolkit.restapi.client.PayloadRequest#answerBy(Class)}. It's API specific and implementation must
+     * reflect such expectation.
      *
      * @param request    the concrete request instance, see {@link #prepareUpdate(Object, Identifier, MediaProvider)}
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to be associated with this resource
      * @return the response instance as result of the remote operation
-     * @throws IOException
+     * @throws IOException might be thrown during remote call execution
      */
     Object executeUpdate( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;

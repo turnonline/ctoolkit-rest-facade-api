@@ -51,7 +51,7 @@ public interface GetExecutorAdaptee<M>
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to prefer in results if applicable
      * @return the resource instance
-     * @throws IOException
+     * @throws IOException might be thrown during remote call execution
      */
     M executeGet( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;

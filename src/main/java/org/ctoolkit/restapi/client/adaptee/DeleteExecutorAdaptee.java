@@ -51,7 +51,7 @@ public interface DeleteExecutorAdaptee<M>
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language to identify language specific resource if applicable
      * @return the response instance as result of the remote operation if any (may return <code>null</code>)
-     * @throws IOException
+     * @throws IOException might be thrown during remote call execution
      */
     Object executeDelete( @Nonnull Object request,
                           @Nullable Map<String, Object> parameters,

@@ -48,12 +48,15 @@ public interface InsertExecutorAdaptee<M>
 
     /**
      * Provide execute implementation for the insert operation.
+     * The response type is either default one (same as the input model) or might be configured via
+     * {@link org.ctoolkit.restapi.client.PayloadRequest#answerBy(Class)}. It's API specific and implementation must
+     * reflect such expectation.
      *
      * @param request    the concrete request instance, see {@link #prepareInsert(Object, Identifier, MediaProvider)}
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to be associated with this resource
      * @return the response instance as result of the remote operation
-     * @throws IOException
+     * @throws IOException might be thrown during remote call execution
      */
     Object executeInsert( @Nonnull Object request, @Nullable Map<String, Object> parameters, @Nullable Locale locale )
             throws IOException;
