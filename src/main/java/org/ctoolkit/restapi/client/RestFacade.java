@@ -33,7 +33,7 @@ public interface RestFacade
      * <p/>
      * Note: Based on the concrete implementation of the resource it may result in a remote call
      * in order to get a more specific resource instance. Either created locally with 'new'
-     * operator or based on the implementation a remote call may be executed to get a 'new' instance
+     * operator or based on the implementation a remote call might be executed to get a 'new' instance
      * initialized with default values and given parameters if any.
      * <p/>
      * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
@@ -41,7 +41,7 @@ public interface RestFacade
      *
      * @param resource the type of resource to create
      * @return the fluent action for consequent configurations
-     * @throws NotFoundException if not matching request URI has found (remote call)
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> PayloadRequest<T> newInstance( @Nonnull Class<T> resource );
 
@@ -49,8 +49,8 @@ public interface RestFacade
      * Upload a media and related metadata represented by given resource.
      *
      * @param resource the resource that acts as a metadata to be inserted or updated
-     * @return the fluent action
-     * @throws NotFoundException if not matching request URI has found
+     * @return the fluent action, consequent call will let you provide and configure a media to be uploaded
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> UploadMediaProvider<T> upload( @Nonnull T resource );
 
@@ -59,7 +59,7 @@ public interface RestFacade
      *
      * @param resource the type of the resource to download
      * @return the fluent action, consequent call will download requested type
-     * @throws NotFoundException if not matching request URI has found
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> DownloadMediaProvider download( @Nonnull Class<T> resource );
 
@@ -72,6 +72,7 @@ public interface RestFacade
      * @param resource the type of resource to get
      * @return the fluent action, consequent call will return concrete resource instance for given type and identifier,
      * otherwise returns <tt>null</tt>
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> SingleRetrievalIdentification<T> get( @Nonnull Class<T> resource );
 
@@ -84,6 +85,7 @@ public interface RestFacade
      * @param resource the type of resource to find
      * @return the fluent action, consequent call will return list of resource instance matching filtering criteria,
      * otherwise returns empty list
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> RetrievalRequest<T> list( @Nonnull Class<T> resource );
 
@@ -97,6 +99,7 @@ public interface RestFacade
      * @param parent   the unique identifier of the parent resource as an owner of given resource if any
      * @return the fluent action, consequent call will return list of resource instance matching filtering criteria,
      * otherwise returns empty list
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> RetrievalRequest<T> list( @Nonnull Class<T> resource, @Nullable Identifier parent );
 
@@ -108,7 +111,7 @@ public interface RestFacade
      *
      * @param resource the resource instance of concrete type to insert
      * @return the fluent action, consequent call will return newly inserted instance
-     * @throws NotFoundException if not matching request URI has found
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> PayloadRequest<T> insert( @Nonnull T resource );
 
@@ -121,7 +124,7 @@ public interface RestFacade
      * @param resource the resource instance of concrete type to insert
      * @param parent   the resource parent identifier
      * @return the fluent action, consequent call will return newly inserted instance
-     * @throws NotFoundException if not matching request URI has found
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> PayloadRequest<T> insert( @Nonnull T resource, @Nullable Identifier parent );
 
@@ -133,7 +136,7 @@ public interface RestFacade
      *
      * @param resource the resource instance of concrete type
      * @return the fluent action, consequent call will return updated instance
-     * @throws NotFoundException if not matching request URI has found
+     * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> UpdateIdentification<T> update( @Nonnull T resource );
 
@@ -153,7 +156,7 @@ public interface RestFacade
      *
      * @param resource the type of resource to remove
      * @return the fluent action
-     * @throws NotFoundException if not matching request URI has found
+     * @throws HttpFailureException if not matching request URI has found
      */
     <T> DeleteIdentification<T> delete( @Nonnull Class<T> resource );
 }

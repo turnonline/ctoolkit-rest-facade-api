@@ -26,6 +26,7 @@ import java.io.InputStream;
  * (from file, encrypted datastore etc).
  * <p>
  * The implementation is optional and once configured will take a precedence.
+ * See {@link org.ctoolkit.restapi.client.ApiCredential#ApiCredential(String)} for more info how prefix is being used.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */

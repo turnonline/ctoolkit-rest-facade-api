@@ -29,7 +29,7 @@ public interface TokenVerifier<T>
      * Verifies the given token and for positive verification returns an identity instance.
      *
      * @param token the token to be verified
-     * @return the verified and parsed identity instance
+     * @return the verified and parsed implementation specific identity instance.
      */
     T verifyAndGet( String token ) throws UnauthorizedException;
 }
