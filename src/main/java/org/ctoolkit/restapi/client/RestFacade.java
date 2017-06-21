@@ -157,7 +157,7 @@ public interface RestFacade
      *
      * @param type the concrete class type of the underlying client
      * @return the underlying client instance
-     * @throws ClassCastException if wrong client type has been requested
+     * @throws NotFoundException if unknown client type has been requested
      */
     <C> C client( @Nonnull Class<C> type );
 }

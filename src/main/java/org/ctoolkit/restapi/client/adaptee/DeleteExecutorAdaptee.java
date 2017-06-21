@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * The adaptee interface to provide execution implementation of the DELETE operation for concrete model type.
  *
- * @param <M> the concrete type of the model object to be deleted
+ * @param <M> the concrete type of the model object to be deleted, it's here because of injection binding
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface DeleteExecutorAdaptee<M>
@@ -50,12 +50,11 @@ public interface DeleteExecutorAdaptee<M>
      * @param request    the concrete request instance, see {@link #prepareDelete(Identifier)}
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language to identify language specific resource if applicable
-     * @return the response instance as result of the remote operation if any (may return <code>null</code>)
      * @throws IOException might be thrown during remote call execution
      */
-    Object executeDelete( @Nonnull Object request,
-                          @Nullable Map<String, Object> parameters,
-                          @Nullable Locale locale )
+    void executeDelete( @Nonnull Object request,
+                        @Nullable Map<String, Object> parameters,
+                        @Nullable Locale locale )
             throws IOException;
 }
 
