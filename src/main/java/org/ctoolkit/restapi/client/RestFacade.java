@@ -66,7 +66,7 @@ public interface RestFacade
     /**
      * Retrieve a resource instance of requested type and identifier.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link SingleRetrievalRequest}
+     * Note: the remote call itself will be executed by request instance {@link RetrievalRequest}
      * with possibility to provide optional parameters or locale.
      *
      * @param resource the type of resource to get
@@ -79,7 +79,7 @@ public interface RestFacade
     /**
      * Find the list of resource instance of given type and filtering criteria.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link RetrievalRequest} with possibility
+     * Note: the remote call itself will be executed by request instance {@link ListRetrievalRequest} with possibility
      * to provide optional parameters or locale.
      *
      * @param resource the type of resource to find
@@ -87,12 +87,12 @@ public interface RestFacade
      * otherwise returns empty list
      * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
-    <T> RetrievalRequest<T> list( @Nonnull Class<T> resource );
+    <T> ListRetrievalRequest<T> list( @Nonnull Class<T> resource );
 
     /**
      * Find the list of resource instance of given type and filtering criteria.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link RetrievalRequest} with possibility
+     * Note: the remote call itself will be executed by request instance {@link ListRetrievalRequest} with possibility
      * to provide optional parameters or locale.
      *
      * @param resource the type of resource to find
@@ -101,7 +101,7 @@ public interface RestFacade
      * otherwise returns empty list
      * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
-    <T> RetrievalRequest<T> list( @Nonnull Class<T> resource, @Nullable Identifier parent );
+    <T> ListRetrievalRequest<T> list( @Nonnull Class<T> resource, @Nullable Identifier parent );
 
     /**
      * Insert a resource instance.
@@ -141,17 +141,9 @@ public interface RestFacade
     <T> UpdateIdentification<T> update( @Nonnull T resource );
 
     /**
-     * The operation to get underlying request instance related to concrete API implementation to work with.
-     *
-     * @param request the concrete class type of the underlying request
-     * @return the fluent action
-     */
-    <U> UnderlyingRequest<U> underlying( @Nonnull Class<U> request );
-
-    /**
      * Remove the resource type for given identifier.
      * <p/>
-     * Note: the remote call itself will be executed by request instance {@link SingleRequest} with possibility
+     * Note: the remote call itself will be executed by request instance {@link SimpleRequest} with possibility
      * to provide optional parameters or locale.
      *
      * @param resource the type of resource to remove
@@ -159,4 +151,13 @@ public interface RestFacade
      * @throws HttpFailureException if not matching request URI has found
      */
     <T> DeleteIdentification<T> delete( @Nonnull Class<T> resource );
+
+    /**
+     * Get already initialized underlying API specific client instance to work with.
+     *
+     * @param type the concrete class type of the underlying client
+     * @return the underlying client instance
+     * @throws ClassCastException if wrong client type has been requested
+     */
+    <C> C client( @Nonnull Class<C> type );
 }

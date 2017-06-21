@@ -16,15 +16,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-package org.ctoolkit.restapi.client;
+package org.ctoolkit.restapi.client.adaptee;
 
 /**
- * The extended {@link Request} to provide API to work with a single resource.
+ * The adaptee interface to provide access to the API specific underlying client instance.
  *
- * @param <T> the resource type
+ * @param <C> the concrete type of the underlying client
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface SingleRequest<T>
-        extends Request<T>
+public interface UnderlyingClientAdaptee<C>
 {
+    /**
+     * Return API specific underlying client instance.
+     *
+     * @return the underlying client instance
+     */
+    C getUnderlyingClient();
 }
+

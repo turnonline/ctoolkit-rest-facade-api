@@ -30,6 +30,16 @@ public interface PayloadRequest<T>
         extends Request<T>
 {
     /**
+     * Returns the underlying request instance in order to configure an additional query parameters
+     * specific to the underlying API implementation.
+     *
+     * @param type the underlying request type to cast to
+     * @return the underlying request instance
+     * @throws ClassCastException if wrong type has been requested
+     */
+    <U> U underlying( Class<U> type );
+
+    /**
      * The type of the answer expected as a result of the remote call execution.
      *
      * @param type the response type different from the default one

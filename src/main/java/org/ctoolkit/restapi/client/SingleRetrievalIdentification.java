@@ -29,11 +29,11 @@ public interface SingleRetrievalIdentification<T>
         extends IdentificationAction<T>
 {
     @Override
-    SingleRetrievalRequest<T> identifiedBy( @Nonnull Identifier identifier );
+    RetrievalRequest<T> identifiedBy( @Nonnull Identifier identifier );
 
     @Override
-    SingleRetrievalRequest<T> identifiedBy( @Nonnull String identifier );
+    RetrievalRequest<T> identifiedBy( @Nonnull String identifier );
 
     @Override
-    SingleRetrievalRequest<T> identifiedBy( @Nonnull Long identifier );
+    RetrievalRequest<T> identifiedBy( @Nonnull Long identifier );
 }

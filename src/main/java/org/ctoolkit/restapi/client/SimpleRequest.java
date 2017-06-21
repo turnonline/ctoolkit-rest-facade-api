@@ -19,12 +19,12 @@
 package org.ctoolkit.restapi.client;
 
 /**
- * The extended {@link Request} to provide retrieval specific API.
+ * The {@link Request} API for light request doesn't require any specific configuration.
  *
- * @param <T> the list item resource type
+ * @param <T> the resource type
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface SingleRetrievalRequest<T>
+public interface SimpleRequest<T>
         extends Request<T>
 {
 }

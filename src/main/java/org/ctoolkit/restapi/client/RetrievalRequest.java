@@ -18,103 +18,22 @@
 
 package org.ctoolkit.restapi.client;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
 /**
- * The extended {@link Request} to provide retrieval specific API to work with list of resources.
+ * The extended {@link Request} to provide single retrieval specific API.
  *
- * @param <T> the list item resource type
+ * @param <T> the single item resource type
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface RetrievalRequest<T>
-        extends SingleRetrievalRequest<List<T>>
+        extends Request<T>
 {
     /**
-     * Execute a remote call to find the list of resources of given type.
+     * Returns the underlying request instance in order to configure an additional query parameters
+     * specific to the underlying API implementation.
      *
-     * @return the list of resources
+     * @param type the underlying request type to cast to
+     * @return the underlying request instance
+     * @throws ClassCastException if wrong type has been requested
      */
-    @Override
-    List<T> finish();
-
-    /**
-     * Execute a remote call to find filtered list of resources.
-     *
-     * @param start  the position of the first result, numbered from 0
-     * @param length the maximum number of results to retrieve
-     * @return the list of filtered resources, if none returns empty list
-     * @throws IllegalArgumentException thrown for any negative numbers
-     */
-    List<T> finish( int start, int length );
-
-    /**
-     * Execute a remote call to find the list of resources of given type and additional filtering criteria.
-     *
-     * @param criteria the optional filtering criteria map
-     * @return the list of resources matching filtering criteria, otherwise returns empty list
-     */
-    @Override
-    List<T> finish( @Nullable Map<String, Object> criteria );
-
-    /**
-     * Execute a remote call to find the list of resources with specified locale.
-     *
-     * @param locale the language the client has configured to prefer in results if applicable
-     * @return the resource as a result of the remote call
-     */
-    @Override
-    List<T> finish( @Nullable Locale locale );
-
-    /**
-     * Execute a remote call to find the list of resources of given type and additional filtering criteria.
-     * o
-     *
-     * @param criteria the optional filtering criteria map
-     * @param locale   the language the client has configured to prefer in results if applicable
-     * @return the list of resources matching filtering criteria, otherwise returns empty list
-     */
-    @Override
-    List<T> finish( @Nullable Map<String, Object> criteria, @Nullable Locale locale );
-
-    /**
-     * Apply request specific credential and configuration to this call.
-     * The underlying API must support (at least partially) this functionality
-     * otherwise call to this method will be ignored and default value of target API will be used.
-     *
-     * @param credential the credential and configuration to be applied to this request
-     * @return this request to chain calls
-     */
-    @Override
-    RetrievalRequest<T> configWith( @Nonnull RequestCredential credential );
-
-    /**
-     * Config request with optional locale.
-     *
-     * @param locale the language the client has configured to prefer in results if applicable
-     * @return this request to chain calls
-     */
-    @Override
-    RetrievalRequest<T> forLang( @Nonnull Locale locale );
-
-    /**
-     * Set the position of the first result to retrieve.
-     *
-     * @param start the position of the first result, numbered from 0
-     * @return this request to chain calls
-     * @throws IllegalArgumentException thrown for any negative numbers
-     */
-    RetrievalRequest<T> start( int start );
-
-    /**
-     * Set the maximum number of results to retrieve.
-     *
-     * @param length the maximum number of results to retrieve
-     * @return this request to chain calls
-     * @throws IllegalArgumentException thrown for any negative numbers
-     */
-    RetrievalRequest<T> length( int length );
+    <U> U underlying( Class<U> type );
 }
