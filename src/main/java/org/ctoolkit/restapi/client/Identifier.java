@@ -19,7 +19,22 @@
 package org.ctoolkit.restapi.client;
 
 /**
- * The resource identifier with possibility to express parent child relation.
+ * The resource identifier with possibility to express parent child relationship.
+ * Examples:
+ * <pre>
+ * {@code
+ * The first value acts as a root identifier and next will act as a child identifier(s).
+ * In terms of URL the root identifier is the first from the left side: /user-id/10/foo-id/20/child-id/30
+ *
+ * Identifier identifier = new Identifier( 10L, 20L, 30L );
+ *
+ * // chaining String id's
+ * Identifier identifier = new Identifier( "abc" ).add( "ghb" ).add( "klf" );
+ *
+ * // mixing id's type
+ * Identifier identifier = new Identifier( "abc", "ghb" ).add( 40L ).add( "xbbc" );
+ * }
+ * </pre>
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
@@ -32,36 +47,77 @@ public class Identifier
     private Object value;
 
     /**
-     * for debugging purpose only
-     */
-    private String description;
-
-    /**
-     * Constructs root (top level) identifier with given value.
+     * Constructs identifier with given identification values.
+     * The first value acts as a root identifier and next will act as a child identifier(s).
      *
-     * @param value the string type identifier to be set
+     * @param value the string type identifier(s) to be set
      */
-    public Identifier( String value )
+    public Identifier( String... value )
     {
-        if ( value == null )
+        if ( value == null || value.length == 0 )
         {
-            throw new NullPointerException( "Identifier value cannot be null!" );
+            throw new NullPointerException( "Identifier value cannot be null or empty!" );
         }
-        this.value = value;
+
+        if ( value.length >= 1 )
+        {
+            this.value = value[0];
+        }
+
+        Identifier next = this;
+        for ( int index = 1; index < value.length; index++ )
+        {
+            next = next.setChild( value[index] );
+        }
     }
 
     /**
-     * Constructs root (top level) identifier with given value.
+     * Constructs identifier with given identification values.
+     * The first value acts as a root identifier and next will act as a child identifier(s).
      *
-     * @param value the long type identifier to be set
+     * @param value the long type identifier(s) to be set
      */
-    public Identifier( Long value )
+    public Identifier( Long... value )
     {
-        if ( value == null )
+        if ( value == null || value.length == 0 )
         {
-            throw new NullPointerException( "Identifier value cannot be null!" );
+            throw new NullPointerException( "Identifier value cannot be null or empty!" );
         }
-        this.value = value;
+
+        if ( value.length >= 1 )
+        {
+            this.value = value[0];
+        }
+
+        Identifier next = this;
+        for ( int index = 1; index < value.length; index++ )
+        {
+            next = next.setChild( value[index] );
+        }
+    }
+
+    /**
+     * Adds given value as a child identifier to this identifier that acts as a parent.
+     *
+     * @param value the string type identifier to be set as child identifier
+     * @return the root identifier to chain calls
+     */
+    public Identifier add( String value )
+    {
+        leaf().setChild( value );
+        return this;
+    }
+
+    /**
+     * Adds given value as a child identifier to this identifier that acts as a parent.
+     *
+     * @param value the string type identifier to be set as child identifier
+     * @return the root identifier to chain calls
+     */
+    public Identifier add( Long value )
+    {
+        leaf().setChild( value );
+        return this;
     }
 
     /**
@@ -95,12 +151,32 @@ public class Identifier
     }
 
     /**
+     * Returns a boolean identification whether this identifier has a parent identifier.
+     *
+     * @return true if this identifier has a parent identifier
+     */
+    public boolean hasParent()
+    {
+        return parent != null;
+    }
+
+    /**
+     * Returns a boolean identification whether this identifier has a child identifier.
+     *
+     * @return true if this identifier has a child identifier
+     */
+    public boolean hasChild()
+    {
+        return child != null;
+    }
+
+    /**
      * Sets identifier value as child to this parent.
      *
      * @param value the string type identifier to be set as child value to this parent
      * @return the new identifier child instance
      */
-    public Identifier setChild( String value )
+    private Identifier setChild( String value )
     {
         child = new Identifier( value );
         child.parent = this;
@@ -113,7 +189,7 @@ public class Identifier
      *
      * @return the child identifier or <tt>null</tt>
      */
-    public Identifier getChild()
+    public Identifier child()
     {
         return child;
     }
@@ -124,7 +200,7 @@ public class Identifier
      * @param value the long type identifier to be set as child value to this parent
      * @return the new identifier child instance
      */
-    public Identifier setChild( Long value )
+    private Identifier setChild( Long value )
     {
         child = new Identifier( value );
         child.parent = this;
@@ -132,28 +208,75 @@ public class Identifier
         return child;
     }
 
+    /**
+     * Traverses and returns the leaf identifier, as opposite to the root identifier.
+     *
+     * @return the leaf identifier
+     */
+    public Identifier leaf()
+    {
+        Identifier child = this;
+        while ( child.hasChild() )
+        {
+            child = child.child();
+        }
+        return child;
+    }
+
+    /**
+     * Traverses and returns the root (top level) identifier.
+     *
+     * @return the root identifier
+     */
+    public Identifier root()
+    {
+        Identifier root = this;
+        while ( root.hasParent() )
+        {
+            root = root.getParent();
+        }
+        return root;
+    }
+
+    /**
+     * Returns the parent of this identifier if any. If {@code null} this Identifier is root.
+     *
+     * @return the parent identifier or {@code null}
+     */
     public Identifier getParent()
     {
         return parent;
     }
 
-    /**
-     * Sets the optional description, used for debugging purpose only.
-     *
-     * @param description the description to be set
-     */
-    public void setDescription( String description )
+    private void append( StringBuilder builder, Identifier identifier )
     {
-        this.description = description;
+        if ( identifier == this )
+        {
+            // marking the current identifier
+            builder.append( "[" );
+            builder.append( identifier.value().toString() );
+            builder.append( "]" );
+        }
+        else
+        {
+            builder.append( identifier.value().toString() );
+        }
     }
 
     @Override
     public String toString()
     {
-        return "Identifier{" +
-                "value=" + value +
-                ", description='" + description + '\'' +
-                ", child=" + child +
-                '}';
+        Identifier child = root();
+        StringBuilder builder = new StringBuilder();
+        append( builder, child );
+
+        while ( child.hasChild() )
+        {
+            child = child.child();
+            builder.append( ":" );
+            append( builder, child );
+        }
+
+        return "Identifier{" + builder + '}';
     }
 }
