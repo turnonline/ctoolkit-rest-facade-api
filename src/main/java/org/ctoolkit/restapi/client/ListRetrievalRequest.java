@@ -23,6 +23,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * The extended {@link Request} to provide retrieval specific API to work with list of resources.
@@ -40,6 +41,19 @@ public interface ListRetrievalRequest<T>
      */
     @Override
     List<T> finish();
+
+    /**
+     * Execute a remote call to find the list of resources of given type
+     * with request specific credential and configuration.
+     * <p>
+     * Note: The underlying API must support (at least partially) this functionality
+     * otherwise these properties will be ignored and default value of target API will be used.
+     *
+     * @param credential the credential and configuration to be applied to this request
+     * @return the resource as a result of the remote call
+     */
+    @Override
+    List<T> finish( @Nonnull RequestCredential credential );
 
     /**
      * Execute a remote call to find filtered list of resources.
@@ -81,15 +95,14 @@ public interface ListRetrievalRequest<T>
     List<T> finish( @Nullable Map<String, Object> criteria, @Nullable Locale locale );
 
     /**
-     * Apply request specific credential and configuration to this call.
-     * The underlying API must support (at least partially) this functionality
-     * otherwise call to this method will be ignored and default value of target API will be used.
+     * Apply specific properties as request configuration to this call.
      *
-     * @param credential the credential and configuration to be applied to this request
+     * @param properties the properties and configuration to be applied to this request
      * @return this request to chain calls
+     * @see #finish(Map)
      */
     @Override
-    ListRetrievalRequest<T> configWith( @Nonnull RequestCredential credential );
+    ListRetrievalRequest<T> configWith( @Nonnull Properties properties );
 
     /**
      * Config request with optional locale.

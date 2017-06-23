@@ -22,6 +22,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * The top level request wrapper to provide possibility to isolate a remote call to standalone object.
@@ -37,6 +38,17 @@ public interface Request<T>
      * @return the resource as a result of the remote call
      */
     T finish();
+
+    /**
+     * Execute a remote call with request specific credential and configuration.
+     * <p>
+     * Note: The underlying API must support (at least partially) this functionality
+     * otherwise these properties will be ignored and default value of target API will be used.
+     *
+     * @param credential the credential and configuration to be applied to this request
+     * @return the resource as a result of the remote call
+     */
+    T finish( @Nonnull RequestCredential credential );
 
     /**
      * Execute a remote call with additional resource parameters.
@@ -64,14 +76,13 @@ public interface Request<T>
     T finish( @Nullable Map<String, Object> parameters, @Nullable Locale locale );
 
     /**
-     * Apply request specific credential and configuration to this call.
-     * The underlying API must support (at least partially) this functionality
-     * otherwise call to this method will be ignored and default value of target API will be used.
+     * Apply specific properties as request configuration to this call.
      *
-     * @param credential the credential and configuration to be applied to this request
+     * @param properties the properties and configuration to be applied to this request
      * @return this request to chain calls
+     * @see #finish(Map)
      */
-    Request<T> configWith( @Nonnull RequestCredential credential );
+    Request<T> configWith( @Nonnull Properties properties );
 
     /**
      * Config request with optional locale.
