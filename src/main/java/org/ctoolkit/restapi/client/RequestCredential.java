@@ -24,6 +24,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 /**
@@ -46,6 +47,39 @@ public class RequestCredential
     public RequestCredential( @Nonnull Map<String, String> properties )
     {
         super( properties, REQUEST_CREDENTIAL_PREFIX );
+    }
+
+    /**
+     * Populates the given map with properties from given instance by
+     * list of key (if key is string) and its corresponding value.
+     *
+     * @param properties the the source of the properties
+     * @param target     the map to be populated
+     * @return the same instance (populated) as input or a new map if {@code null} was given
+     */
+    public static Map<String, Object> populate( @Nonnull Properties properties, @Nullable Map<String, Object> target )
+    {
+        Map<String, Object> map;
+        if ( target == null )
+        {
+            map = new HashMap<>();
+        }
+        else
+        {
+            map = target;
+        }
+
+        for ( Enumeration next = properties.keys(); next.hasMoreElements(); )
+        {
+            Object key = next.nextElement();
+            Object value;
+            if ( key instanceof String )
+            {
+                value = properties.get( key );
+                map.put( ( String ) key, value );
+            }
+        }
+        return map;
     }
 
     /**
@@ -114,33 +148,12 @@ public class RequestCredential
      * Populates the given map with properties from this instance by
      * list of key (if key is string) and its corresponding value.
      *
-     * @param properties the map to be populated
+     * @param target the map to be populated
      * @return the same instance (populated) as input or a new map if {@code null} was given
      */
-    public Map<String, Object> populate( @Nullable Map<String, Object> properties )
+    public Map<String, Object> populate( @Nullable Map<String, Object> target )
     {
-        Map<String, Object> map;
-        if ( properties == null )
-        {
-            map = new HashMap<>();
-        }
-        else
-        {
-            map = properties;
-        }
-
-        for ( Enumeration next = keys(); next.hasMoreElements(); )
-        {
-            Object key = next.nextElement();
-            Object value;
-            if ( key instanceof String )
-            {
-                value = get( key );
-                map.put( ( String ) key, value );
-            }
-        }
-
-        return map;
+        return populate( this, target );
     }
 
     /**
