@@ -248,6 +248,26 @@ public class Identifier
         return parent;
     }
 
+    /**
+     * Returns the identifier as a string key composed always from the root separated by ':'.
+     *
+     * @return the string key of the identifier
+     */
+    public String key()
+    {
+        Identifier child = root();
+        StringBuilder builder = new StringBuilder();
+        builder.append( child.value().toString() );
+
+        while ( child.hasChild() )
+        {
+            child = child.child();
+            builder.append( ":" );
+            builder.append( child.value().toString() );
+        }
+        return builder.toString();
+    }
+
     private void append( StringBuilder builder, Identifier identifier )
     {
         if ( identifier == this )

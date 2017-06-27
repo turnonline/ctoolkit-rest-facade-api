@@ -114,4 +114,20 @@ public class IdentifierTest
         assertEquals( identifier.leaf().toString(), "Identifier{salma:something:45:[last]}" );
         assertEquals( identifier.root().toString(), "Identifier{[salma]:something:45:last}" );
     }
+
+    @Test
+    public void keyTest() throws Exception
+    {
+        // single
+        Identifier identifier = new Identifier( "salma" );
+
+        assertEquals( identifier.leaf().key(), "salma" );
+        assertEquals( identifier.root().key(), "salma" );
+
+        // parent/child
+        identifier = new Identifier( "salma", "something" ).add( 45L ).add( "last" );
+
+        assertEquals( identifier.leaf().key(), "salma:something:45:last" );
+        assertEquals( identifier.root().key(), "salma:something:45:last" );
+    }
 }

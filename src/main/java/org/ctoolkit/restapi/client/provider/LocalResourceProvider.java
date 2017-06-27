@@ -18,6 +18,8 @@
 
 package org.ctoolkit.restapi.client.provider;
 
+import org.ctoolkit.restapi.client.Identifier;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Date;
@@ -41,23 +43,21 @@ public interface LocalResourceProvider<T>
 {
     /**
      * Retrieve a local resource to avoid a remote call.
-     * Note: if this method returns <tt>null</tt> it will make call of {@link #persist(Object, Object, Map, Locale)}
-     * once a remote resource call returns a non <tt>null</tt> value. Processed in the same thread.
+     * Note: if this method returns <tt>null</tt> the {@link #persist(Object, Identifier, Map, Locale, Long)}
+     * will be called once a remote call returns a non <tt>null</tt> value. Processed in the same thread.
      *
-     * @param identifier       the unique identifier of the resource
-     * @param parameters       the optional resource parameters
-     * @param locale           the language the client has configured to prefer in results if applicable
-     * @param lastModifiedDate the last modified date of the remote resource if any
+     * @param identifier the unique identifier of the resource
+     * @param parameters the optional resource parameters
+     * @param locale     the language the client has configured to prefer in results if applicable
      * @return the locally cached or stored resource if exist, otherwise returns <tt>null</tt>
      */
-    T get( Object identifier,
+    T get( @Nonnull Identifier identifier,
            @Nullable Map<String, Object> parameters,
-           @Nullable Locale locale,
-           @Nullable Date lastModifiedDate );
+           @Nullable Locale locale );
 
     /**
      * Optionally, persist the resource instance as a result of the remote call.
-     * This method will be called in case if {@link #get(Object, Map, Locale, Date)}
+     * This method will be called in case if {@link #get(Identifier, Map, Locale)}
      * returns <tt>null</tt> and for a non null result of the remote call. Processed in the same thread.
      * <p/>
      * Note: prefer asynchronous implementation.
@@ -66,16 +66,18 @@ public interface LocalResourceProvider<T>
      * @param identifier the unique identifier of the resource
      * @param parameters the optional resource parameters
      * @param locale     the language the client has configured to prefer in results if applicable
+     * @param lastFor    the time in milliseconds how long to keep the resource cached, <tt>null</tt> for undefined
      */
     void persist( @Nonnull T instance,
-                  @Nullable Object identifier,
+                  @Nonnull Identifier identifier,
                   @Nullable Map<String, Object> parameters,
-                  @Nullable Locale locale );
+                  @Nullable Locale locale,
+                  @Nullable Long lastFor );
 
     /**
      * Retrieve a local list of resource to avoid a remote call.
-     * Note: if this method returns <tt>null</tt> it will make call of {@link #persistList(List, Map, Locale)}
-     * once a remote resource call returns a non <tt>null</tt> value. Processed in the same thread.
+     * Note: if this method returns <tt>null</tt> the {@link #persistList(List, Map, Locale, Long)}
+     * will be called once a remote call returns a non <tt>null</tt> value. Processed in the same thread.
      *
      * @param parameters       the optional resource parameters
      * @param locale           the language the client has configured to prefer in results if applicable
@@ -93,11 +95,13 @@ public interface LocalResourceProvider<T>
      * <p/>
      * Note: prefer asynchronous implementation.
      *
-     * @param instance   the resource instance to be either persisted or cached
+     * @param list       the list of resources to be either persisted or cached
      * @param parameters the optional resource parameters
      * @param locale     the language the client has configured to prefer in results if applicable
+     * @param lastFor    the time in milliseconds how long to keep the resource cached, <tt>null</tt> for undefined
      */
-    void persistList( @Nonnull List<T> instance,
+    void persistList( @Nonnull List<T> list,
                       @Nullable Map<String, Object> parameters,
-                      @Nullable Locale locale );
+                      @Nullable Locale locale,
+                      @Nullable Long lastFor );
 }
