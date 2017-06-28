@@ -111,8 +111,8 @@ public class IdentifierTest
     {
         Identifier identifier = new Identifier( "salma", "something" ).add( 45L ).add( "last" );
 
-        assertEquals( identifier.leaf().toString(), "Identifier{salma:something:45:[last]}" );
-        assertEquals( identifier.root().toString(), "Identifier{[salma]:something:45:last}" );
+        assertEquals( identifier.leaf().toString(), "Identifier: salma:something:45:[last]" );
+        assertEquals( identifier.root().toString(), "Identifier: [salma]:something:45:last" );
     }
 
     @Test
