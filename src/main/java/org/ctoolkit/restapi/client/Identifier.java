@@ -297,6 +297,6 @@ public class Identifier
             append( builder, child );
         }
 
-        return "Identifier{" + builder + '}';
+        return "Identifier: " + builder;
     }
 }
