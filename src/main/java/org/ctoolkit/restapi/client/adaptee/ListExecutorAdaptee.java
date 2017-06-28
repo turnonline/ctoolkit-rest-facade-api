@@ -48,7 +48,6 @@ public interface ListExecutorAdaptee<M>
 
     /**
      * Provide execute implementation of the list operation.
-     * {@code null} value means not configured by client.
      *
      * @param request    the concrete request instance, see {@link #prepareList(Identifier)}
      * @param parameters the optional map of parameters, configuration, and credential
