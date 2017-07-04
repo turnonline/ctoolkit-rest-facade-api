@@ -106,6 +106,20 @@ public class IdentifierTest
         assertEquals( root.getString(), "salma" );
     }
 
+    @Test( expectedExceptions = NullPointerException.class )
+    public void getParentNull() throws Exception
+    {
+        Identifier identifier = new Identifier( "salma" );
+        identifier.getParent();
+    }
+
+    @Test( expectedExceptions = NullPointerException.class )
+    public void getChildNull() throws Exception
+    {
+        Identifier identifier = new Identifier( "salma" );
+        identifier.child();
+    }
+
     @Test
     public void toStringTest() throws Exception
     {

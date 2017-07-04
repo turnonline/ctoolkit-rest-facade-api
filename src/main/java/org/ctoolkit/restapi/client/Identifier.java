@@ -185,12 +185,19 @@ public class Identifier
     }
 
     /**
-     * Returns the child identifier if any.
+     * Returns the child identifier.
+     * <p>
+     * It throws {@link NullPointerException} if child is null.
+     * To check child presence use {@link #hasChild()}.
      *
-     * @return the child identifier or <tt>null</tt>
+     * @return the child identifier.
      */
     public Identifier child()
     {
+        if ( child == null )
+        {
+            throw new NullPointerException( "Child identifier is null, to check presence use #hasChild()" );
+        }
         return child;
     }
 
@@ -239,12 +246,19 @@ public class Identifier
     }
 
     /**
-     * Returns the parent of this identifier if any. If {@code null} this Identifier is root.
+     * Returns the parent of this identifier. If you need root identifier use {@link #root()} instead.
+     * <p>
+     * It throws {@link NullPointerException} if parent is null.
+     * To check parent presence use {@link #hasParent()}.
      *
-     * @return the parent identifier or {@code null}
+     * @return the parent identifier
      */
     public Identifier getParent()
     {
+        if ( parent == null )
+        {
+            throw new NullPointerException( "Parent identifier is null, to check presence use #hasParent()" );
+        }
         return parent;
     }
 
