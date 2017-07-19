@@ -18,6 +18,8 @@
 
 package org.ctoolkit.restapi.client;
 
+import java.util.Objects;
+
 /**
  * The resource identifier with possibility to express parent child relationship.
  * Examples:
@@ -295,6 +297,23 @@ public class Identifier
         {
             builder.append( identifier.value().toString() );
         }
+    }
+
+    @Override
+    public boolean equals( Object o )
+    {
+        if ( this == o ) return true;
+        if ( !( o instanceof Identifier ) ) return false;
+        Identifier that = ( Identifier ) o;
+        return Objects.equals( child, that.child ) &&
+                Objects.equals( parent, that.parent ) &&
+                Objects.equals( value, that.value );
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash( child, parent, value );
     }
 
     @Override
