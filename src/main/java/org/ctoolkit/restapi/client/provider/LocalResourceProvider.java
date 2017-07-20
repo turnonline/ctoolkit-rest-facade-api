@@ -46,7 +46,7 @@ public interface LocalResourceProvider<T>
      * Note: if this method returns <tt>null</tt> the {@link #persist(Object, Identifier, Map, Locale, Long)}
      * will be called once a remote call returns a non <tt>null</tt> value. Processed in the same thread.
      *
-     * @param identifier the unique identifier of the resource
+     * @param identifier the unique (root) identifier of the resource
      * @param parameters the optional resource parameters
      * @param locale     the language the client has configured to prefer in results if applicable
      * @return the locally cached or stored resource if exist, otherwise returns <tt>null</tt>
@@ -63,7 +63,7 @@ public interface LocalResourceProvider<T>
      * Note: prefer asynchronous implementation.
      *
      * @param instance   the resource instance to be either persisted or cached
-     * @param identifier the unique identifier of the resource
+     * @param identifier the unique (root) identifier of the resource
      * @param parameters the optional resource parameters
      * @param locale     the language the client has configured to prefer in results if applicable
      * @param lastFor    the time in milliseconds how long to keep the resource cached, <tt>null</tt> for undefined

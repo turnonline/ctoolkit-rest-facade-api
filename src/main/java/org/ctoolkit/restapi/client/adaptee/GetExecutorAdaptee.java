@@ -37,7 +37,7 @@ public interface GetExecutorAdaptee<M>
     /**
      * Prepare request instance as a proxy object to execute a remote call for GET operation.
      *
-     * @param identifier the unique identifier of the resource
+     * @param identifier the unique (root) identifier of the resource
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */

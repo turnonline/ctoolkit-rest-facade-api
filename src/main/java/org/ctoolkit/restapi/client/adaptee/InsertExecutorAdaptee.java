@@ -38,7 +38,7 @@ public interface InsertExecutorAdaptee<M>
      * Prepare request instance as a proxy object to execute a remote call for INSERT operation.
      *
      * @param resource  the resource instance
-     * @param parentKey the unique identifier of the parent resource as an owner of the given resource
+     * @param parentKey the unique (root) identifier of the parent resource as an owner of the given resource
      * @param provider  the optional media to be uploaded
      * @return the new request instance
      * @throws IOException may be thrown during request initialization

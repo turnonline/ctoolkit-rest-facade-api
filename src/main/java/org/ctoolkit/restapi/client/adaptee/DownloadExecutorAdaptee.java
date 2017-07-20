@@ -38,7 +38,7 @@ public interface DownloadExecutorAdaptee<M>
     /**
      * Returns the full URL to download requested resource content.
      *
-     * @param identifier the unique identifier of the resource
+     * @param identifier the unique (root) identifier of the resource
      * @param type       the requested content type to be downloaded (already part of the request header)
      *                   or {@code null} to expect default
      * @param parameters the optional resource parameters

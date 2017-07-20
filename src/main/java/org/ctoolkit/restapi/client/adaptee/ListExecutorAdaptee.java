@@ -39,7 +39,7 @@ public interface ListExecutorAdaptee<M>
     /**
      * Prepare request instance as a proxy object to execute a remote call for LIST operation.
      *
-     * @param parentKey the unique identifier of the parent resource as an owner of this resource if any
+     * @param parentKey the unique (root) identifier of the parent resource as an owner of this resource if any
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
      */

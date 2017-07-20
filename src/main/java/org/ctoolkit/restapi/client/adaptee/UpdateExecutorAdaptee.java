@@ -38,7 +38,7 @@ public interface UpdateExecutorAdaptee<M>
      * Prepare request instance as a proxy object to execute a remote call for UPDATE operation.
      *
      * @param resource   the resource instance
-     * @param identifier the unique identifier of the resource
+     * @param identifier the unique (root) identifier of the resource
      * @param provider   the optional media to be uploaded
      * @return the new request instance
      * @throws IOException may be thrown during request initialization
