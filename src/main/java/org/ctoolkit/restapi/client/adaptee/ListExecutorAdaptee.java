@@ -52,8 +52,8 @@ public interface ListExecutorAdaptee<M>
      * @param request    the concrete request instance, see {@link #prepareList(Identifier)}
      * @param parameters the optional map of parameters, configuration, and credential
      * @param locale     the optional language the client has configured to prefer in results if applicable
-     * @param start      the position of the first result, numbered from 0. The negative number means unused.
-     * @param length     the maximum number of results to retrieve. The negative number means unused.
+     * @param start      the optional position of the first result, numbered from 0.
+     * @param length     the optional maximum number of results to retrieve. Only positive values.
      * @param orderBy    the resource property name used to sort the result if any
      * @param ascending  true to sort the result ascending
      * @return the list of resource instance matching filtering criteria, otherwise returns empty list
@@ -62,8 +62,8 @@ public interface ListExecutorAdaptee<M>
     List<M> executeList( @Nonnull Object request,
                          @Nullable Map<String, Object> parameters,
                          @Nullable Locale locale,
-                         int start,
-                         int length,
+                         @Nullable Integer start,
+                         @Nullable Integer length,
                          @Nullable String orderBy,
                          @Nullable Boolean ascending )
             throws IOException;
