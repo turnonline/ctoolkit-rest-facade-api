@@ -144,4 +144,21 @@ public class IdentifierTest
         assertEquals( identifier.leaf().key(), "salma:something:45:last" );
         assertEquals( identifier.root().key(), "salma:something:45:last" );
     }
+
+    @Test
+    public void identifierEquals() throws Exception
+    {
+        Identifier identifier = new Identifier( "abc", "ghb" ).add( 40L ).add( "xbbc" );
+
+        assertTrue( identifier.hasChild() );
+        assertFalse( identifier.equals( identifier.child() ) );
+
+        assertTrue( identifier.child().hasChild() );
+        assertFalse( identifier.child().equals( identifier.child().child() ) );
+
+        assertTrue( identifier.child().child().hasChild() );
+        assertFalse( identifier.child().equals( identifier.child().child().child() ) );
+
+        assertTrue( identifier.leaf().equals( identifier.child().leaf() ) );
+    }
 }
