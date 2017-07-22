@@ -247,10 +247,10 @@ public class ApiCredential
 
     /**
      * Sets the path name to the private key file.
-     * <p/>
+     * <p>
      * Use package relative path for example '/biz/turnonline/server/impl/PrivateKeyFile.p12'
      * or locate the private key file in resource package org.ctoolkit.restapi.client.googleapis
-     * directory -> 'PrivateKeyFile.p12'.
+     * directory - 'PrivateKeyFile.p12'.
      *
      * @param fileName the relative path to file
      * @return this instance to chain
@@ -266,10 +266,10 @@ public class ApiCredential
 
     /**
      * Sets the path name to the json stream file which contains private key, service account email, client id and others.
-     * <p/>
+     * <p>
      * Use package relative path for example '/biz/turnonline/server/impl/secret.json'
      * or locate the json stream file in resource package org.ctoolkit.restapi.client.googleapis
-     * directory -> 'secret.json'.
+     * directory - 'secret.json'.
      *
      * @param fileName the relative path to file
      * @return this instance to chain

@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * The interface that provides possibility to plug-in right before a remote resource retrieval.
  * The implementation of concrete type is optional and will be used once binded in configuration.
- * <p/>
+ * <p>
  * To bind a concrete implementation use this in your guice module: <pre>{@code
  *  bind( new TypeLiteral<LocalResourceProvider<MyResource>>(){} )
  *      .to( MyResourceProvider.class );
@@ -57,7 +57,7 @@ public interface LocalResourceProvider<T>
      * Optionally, persist the resource instance as a result of the remote call.
      * This method will be called in case if {@link #get(Identifier, Map, Locale)}
      * returns <tt>null</tt> and for a non null result of the remote call. Processed in the same thread.
-     * <p/>
+     * <p>
      * Note: prefer asynchronous implementation.
      *
      * @param instance   the resource instance to be either persisted or cached

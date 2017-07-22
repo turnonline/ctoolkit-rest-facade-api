@@ -30,12 +30,12 @@ public interface RestFacade
 {
     /**
      * Create a new in memory resource instance of requested type.
-     * <p/>
+     * <p>
      * Note: Based on the concrete implementation of the resource it may result in a remote call
      * in order to get a more specific resource instance. Either created locally with 'new'
      * operator or based on the implementation a remote call might be executed to get a 'new' instance
      * initialized with default values and given parameters if any.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
@@ -65,7 +65,7 @@ public interface RestFacade
 
     /**
      * Retrieve a resource instance of requested type and identifier.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link RetrievalRequest}
      * with possibility to provide optional parameters or locale.
      *
@@ -78,7 +78,7 @@ public interface RestFacade
 
     /**
      * Find the list of resource instance of given type and filtering criteria.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link ListRetrievalRequest} with possibility
      * to provide optional parameters or locale.
      *
@@ -91,7 +91,7 @@ public interface RestFacade
 
     /**
      * Find the list of resource instance of given type and filtering criteria.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link ListRetrievalRequest} with possibility
      * to provide optional parameters or locale.
      *
@@ -105,7 +105,7 @@ public interface RestFacade
 
     /**
      * Insert a resource instance.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
@@ -117,7 +117,7 @@ public interface RestFacade
 
     /**
      * Insert a resource instance.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
@@ -130,7 +130,7 @@ public interface RestFacade
 
     /**
      * Update the given resource instance.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
@@ -142,7 +142,7 @@ public interface RestFacade
 
     /**
      * Remove the resource type for given identifier.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link SimpleRequest} with possibility
      * to provide optional parameters or locale.
      *

@@ -30,7 +30,7 @@ public interface SingleUploadMediaRequest<T>
 {
     /**
      * Insert a resource instance.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *
@@ -97,7 +97,7 @@ public interface SingleUploadMediaRequest<T>
 
     /**
      * Update the given (metadata) resource instance.
-     * <p/>
+     * <p>
      * Note: the remote call itself will be executed by request instance {@link PayloadRequest} with possibility
      * to provide optional parameters or locale.
      *

@@ -35,7 +35,7 @@ public interface NewExecutorAdaptee<M>
 {
     /**
      * Prepare request instance as a proxy object to execute a remote call to GET default instance.
-     * <p/>
+     * <p>
      * Note: return null if remote call or action is not expected.
      *
      * @param type the string representation of the concrete type
