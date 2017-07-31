@@ -18,32 +18,14 @@
 
 package org.ctoolkit.restapi.client;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Map;
 
 /**
- * The single media request as wrapper of media content to download.
+ * Download {@link Request} API with defined map of header values as response.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public interface SingleDownloadMediaRequest
-        extends IdentificationAction<Map<String, Object>>
+public interface DownloadRequest
+        extends SimpleRequest<Map<String, Object>>
 {
-    @Override
-    DownloadRequest identifiedBy( @Nonnull Identifier identifier );
-
-    @Override
-    DownloadRequest identifiedBy( @Nonnull String identifier );
-
-    @Override
-    DownloadRequest identifiedBy( @Nonnull Long identifier );
-
-    /**
-     * Sets the content type for the media associated with this request.
-     *
-     * @param type the content type to be set
-     * @return the fluent action
-     */
-    SingleDownloadMediaRequest ofType( @Nullable String type );
 }
