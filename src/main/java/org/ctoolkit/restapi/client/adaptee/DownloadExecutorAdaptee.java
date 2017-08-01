@@ -29,11 +29,10 @@ import java.util.Map;
 /**
  * The adaptee interface to provide download configuration as an additional functionality to GET operation.
  *
- * @param <M> the concrete type of the model object to be downloaded
+ * @param <M> the concrete type of the model object to be downloaded, it's here because of injection binding
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
 public interface DownloadExecutorAdaptee<M>
-        extends GetExecutorAdaptee<M>
 {
     /**
      * Returns the full URL to download requested resource content.
