@@ -51,9 +51,9 @@ public interface Request<T>
     T finish( @Nonnull RequestCredential credential );
 
     /**
-     * Execute a remote call with additional resource parameters.
+     * Execute a remote call with additional resource (query) parameters.
      *
-     * @param parameters the optional resource parameters
+     * @param parameters the optional resource (query) parameters
      * @return the resource as a result of the remote call
      */
     T finish( @Nullable Map<String, Object> parameters );
@@ -67,18 +67,18 @@ public interface Request<T>
     T finish( @Nullable Locale locale );
 
     /**
-     * Execute a remote call with additional resource parameters or locale.
+     * Execute a remote call with additional resource (query) parameters or locale.
      *
-     * @param parameters the optional resource parameters
+     * @param parameters the optional resource (query) parameters
      * @param locale     the language the client has configured to prefer in results if applicable
      * @return the resource as a result of the remote call
      */
     T finish( @Nullable Map<String, Object> parameters, @Nullable Locale locale );
 
     /**
-     * Apply specific properties as request configuration to this call.
+     * Apply specific request configuration properties (query parameters) to this call.
      *
-     * @param properties the properties and configuration to be applied to this request
+     * @param properties the request configuration properties to be applied to this request
      * @return this request to chain calls
      * @see #finish(Map)
      */
@@ -93,20 +93,29 @@ public interface Request<T>
     Request<T> forLang( @Nonnull Locale locale );
 
     /**
-     * Add parameter to the request.
+     * Add optional (query) parameter to the request.
      *
-     * @param name  the name of the parameter
+     * @param name  the name of the (query) parameter
      * @param value the value of the parameter
      * @return this request to chain calls
      */
     Request<T> add( @Nonnull String name, @Nonnull Object value );
 
     /**
-     * Add optional parameter to the request.
+     * Add optional (query) parameter to the request.
      *
-     * @param name  the name of the parameter
+     * @param name  the name of the (query) parameter
      * @param value the value of the parameter
      * @return this request to chain calls
      */
     Request<T> add( @Nonnull String name, @Nonnull String value );
+
+    /**
+     * Add optional header to the request.
+     *
+     * @param header the name of the header
+     * @param value  the header value
+     * @return this request to chain calls
+     */
+    Request<T> addHeader( @Nonnull String header, @Nonnull String value );
 }
