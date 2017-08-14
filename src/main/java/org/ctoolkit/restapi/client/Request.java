@@ -118,4 +118,13 @@ public interface Request<T>
      * @return this request to chain calls
      */
     Request<T> addHeader( @Nonnull String header, @Nonnull String value );
+
+    /**
+     * Authorize this request by given authorization token.
+     * It will be set right before a remote call and will override an existing value.
+     *
+     * @param token the authorization header value
+     * @return this request to chain calls
+     */
+    Request<T> authBy( @Nonnull String token );
 }
