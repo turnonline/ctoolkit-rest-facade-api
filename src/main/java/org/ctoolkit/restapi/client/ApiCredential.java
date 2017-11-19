@@ -19,6 +19,8 @@
 package org.ctoolkit.restapi.client;
 
 import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 
@@ -161,6 +163,37 @@ public class ApiCredential
         for ( String next : properties.keySet() )
         {
             setProperty( next, properties.get( next ) );
+        }
+    }
+
+    /**
+     * Reads a property list (key and element pairs) from the properties file
+     *
+     * @param path the path of the desired properties file to be loaded
+     * @throws RuntimeException         if an error occurred while reading from the properties file.
+     * @throws IllegalArgumentException if the properties file has not been found at specified path.
+     */
+    public synchronized void load( String path )
+    {
+        if ( path == null )
+        {
+            throw new IllegalArgumentException( "The path to the properties file cannot be null." );
+        }
+
+        InputStream stream = ApiCredential.class.getResourceAsStream( path );
+        if ( stream == null )
+        {
+            String msg = "The properties file at '" + path + "' has not been found.";
+            throw new IllegalArgumentException( msg );
+        }
+
+        try
+        {
+            this.load( stream );
+        }
+        catch ( IOException e )
+        {
+            throw new RuntimeException( "Reading from the properties file '" + path + "' has failed.", e );
         }
     }
 
