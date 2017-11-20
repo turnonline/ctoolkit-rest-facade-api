@@ -161,4 +161,57 @@ public class IdentifierTest
 
         assertTrue( identifier.leaf().equals( identifier.child().leaf() ) );
     }
+
+    @Test
+    public void isLong()
+    {
+        Identifier identifier = new Identifier( 40L );
+        assertTrue( identifier.isLong() );
+
+        identifier = new Identifier( "40" );
+        assertFalse( identifier.isLong() );
+    }
+
+    @Test( expectedExceptions = NullPointerException.class )
+    public void firstNullLongValueCheck()
+    {
+        Long[] ids = new Long[1];
+        ids[0] = null;
+        new Identifier( ids );
+    }
+
+    @Test( expectedExceptions = NullPointerException.class )
+    public void anywhereNullLongValueCheck()
+    {
+        Long[] ids = new Long[2];
+        ids[0] = 1L;
+        ids[1] = null;
+        new Identifier( ids );
+    }
+
+    @Test( expectedExceptions = NullPointerException.class )
+    public void firstNullStringValueCheck()
+    {
+        String[] ids = new String[1];
+        ids[0] = null;
+        new Identifier( ids );
+    }
+
+    @Test( expectedExceptions = NullPointerException.class )
+    public void anywhereNullStringValueCheck()
+    {
+        String[] ids = new String[2];
+        ids[0] = "abc";
+        ids[1] = null;
+        new Identifier( ids );
+    }
+
+    @Test( expectedExceptions = NullPointerException.class )
+    public void anywhereEmptyStringValueCheck()
+    {
+        String[] ids = new String[2];
+        ids[0] = "abc";
+        ids[1] = "";
+        new Identifier( ids );
+    }
 }

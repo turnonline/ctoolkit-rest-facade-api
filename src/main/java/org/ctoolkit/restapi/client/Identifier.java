@@ -18,6 +18,7 @@
 
 package org.ctoolkit.restapi.client;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -61,6 +62,15 @@ public class Identifier
             throw new NullPointerException( "Identifier value cannot be null or empty!" );
         }
 
+        for ( String next : value )
+        {
+            if ( next == null || next.isEmpty() )
+            {
+                throw new NullPointerException( "Any of the Identifier value cannot be null or empty! "
+                        + Arrays.toString( value ) );
+            }
+        }
+
         this.value = value[0];
 
         Identifier next = this;
@@ -80,7 +90,16 @@ public class Identifier
     {
         if ( value == null || value.length == 0 )
         {
-            throw new NullPointerException( "Identifier value cannot be null or empty!" );
+            throw new NullPointerException( "Identifier value cannot be null!" );
+        }
+
+        for ( Long next : value )
+        {
+            if ( next == null )
+            {
+                throw new NullPointerException( "Any of the Identifier value cannot be null! "
+                        + Arrays.toString( value ) );
+            }
         }
 
         this.value = value[0];
@@ -114,6 +133,16 @@ public class Identifier
     {
         leaf().setChild( value );
         return this;
+    }
+
+    /**
+     * Returns the boolean indicating whether the identifier value is type of {@link Long} or not.
+     *
+     * @return true if the value is type of Long
+     */
+    public boolean isLong()
+    {
+        return value instanceof Long;
     }
 
     /**
