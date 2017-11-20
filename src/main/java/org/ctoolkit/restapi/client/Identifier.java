@@ -61,10 +61,7 @@ public class Identifier
             throw new NullPointerException( "Identifier value cannot be null or empty!" );
         }
 
-        if ( value.length >= 1 )
-        {
-            this.value = value[0];
-        }
+        this.value = value[0];
 
         Identifier next = this;
         for ( int index = 1; index < value.length; index++ )
@@ -86,10 +83,7 @@ public class Identifier
             throw new NullPointerException( "Identifier value cannot be null or empty!" );
         }
 
-        if ( value.length >= 1 )
-        {
-            this.value = value[0];
-        }
+        this.value = value[0];
 
         Identifier next = this;
         for ( int index = 1; index < value.length; index++ )
