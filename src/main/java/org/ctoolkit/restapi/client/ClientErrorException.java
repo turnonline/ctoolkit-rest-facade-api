@@ -20,7 +20,7 @@ package org.ctoolkit.restapi.client;
 
 /**
  * The client error, the request that could not be understood by the server. The client SHOULD NOT repeat the request
- * without modifications. Ideally all client error exceptions should be catched during development.
+ * without modifications. Ideally all client error exceptions should be caught during development.
  * <p>
  * Generally most of HTTP 4xx status codes are converted into this exception.
  *
@@ -29,18 +29,42 @@ package org.ctoolkit.restapi.client;
 public class ClientErrorException
         extends HttpFailureException
 {
+    /**
+     * The default client error exception, HTTP 400 status code, with no error message.
+     */
+    public ClientErrorException()
+    {
+        super( 400 );
+    }
+
+    /**
+     * The client error exception with HTTP 400 status code and customized error message.
+     *
+     * @param message the error message
+     */
+    public ClientErrorException( String message )
+    {
+        super( 400, message );
+    }
+
+    /**
+     * The client error exception with defined HTTP 4xx status code.
+     *
+     * @param statusCode the HTTP 4xx status code
+     */
     public ClientErrorException( int statusCode )
     {
         super( statusCode );
     }
 
+    /**
+     * The client error exception with defined HTTP 4xx status code and customized error message.
+     *
+     * @param statusCode the HTTP 4xx status code
+     * @param message    the error message
+     */
     public ClientErrorException( int statusCode, String message )
     {
         super( statusCode, message );
-    }
-
-    public ClientErrorException( int statusCode, Throwable cause )
-    {
-        super( statusCode, cause );
     }
 }
