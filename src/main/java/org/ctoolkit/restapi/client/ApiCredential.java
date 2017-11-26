@@ -53,6 +53,8 @@ public class ApiCredential
 
     public static final String PROPERTY_CLIENT_ID = "clientId";
 
+    public static final String PROPERTY_CLIENT_SECRET = "clientSecret";
+
     public static final String PROPERTY_DISABLE_GZIP_CONTENT = "disableGZipContent";
 
     public static final String PROPERTY_SERVICE_ACCOUNT_EMAIL = "serviceAccountEmail";
@@ -85,6 +87,7 @@ public class ApiCredential
      * <ul>
      * <li>{@link #setProjectId(String)}</li>
      * <li>{@link #setClientId(String)}</li>
+     * <li>{@link #setClientSecret(String)}</li>
      * <li>{@link #setDisableGZipContent(boolean)}</li>
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
@@ -108,6 +111,7 @@ public class ApiCredential
      * <ul>
      * <li>{@link #setProjectId(String)}</li>
      * <li>{@link #setClientId(String)}</li>
+     * <li>{@link #setClientSecret(String)}</li>
      * <li>{@link #setDisableGZipContent(boolean)}</li>
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
@@ -139,6 +143,7 @@ public class ApiCredential
      * <ul>
      * <li>credential.default.projectId</li>
      * <li>credential.default.clientId</li>
+     * <li>credential.default.clientSecret</li>
      * <li>credential.default.disableGZipContent</li>
      * <li>credential.default.serviceAccountEmail</li>
      * <li>credential.default.appName</li>
@@ -213,7 +218,7 @@ public class ApiCredential
     }
 
     /**
-     * Sets the Google API OAuth 2.0 Client ID Credential.
+     * Sets the API OAuth 2.0 Client ID Credential.
      *
      * @param clientId the Client ID
      * @return this instance to chain
@@ -223,6 +228,21 @@ public class ApiCredential
         if ( !isNullOrEmpty( clientId ) )
         {
             setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_CLIENT_ID, clientId );
+        }
+        return this;
+    }
+
+    /**
+     * Sets the API client secret (signature).
+     *
+     * @param clientSecret the client secret
+     * @return this instance to chain
+     */
+    public ApiCredential setClientSecret( String clientSecret )
+    {
+        if ( !isNullOrEmpty( clientSecret ) )
+        {
+            setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_CLIENT_SECRET, clientSecret );
         }
         return this;
     }
@@ -410,7 +430,7 @@ public class ApiCredential
     {
         if ( isNullOrEmpty( property ) )
         {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException( "The property is a mandatory input!" );
         }
 
         return getProperty( CREDENTIAL_ATTR + prefix + property );
