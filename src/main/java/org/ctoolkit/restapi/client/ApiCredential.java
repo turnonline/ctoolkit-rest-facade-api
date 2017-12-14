@@ -35,6 +35,13 @@ import java.util.Properties;
  *     &#064;Inject <b>@Named("credential.default.clientId")</b> String clientId;
  *     ...
  *   }</pre>
+ * <b>Credential loaded via properties file</b>
+ * <pre>
+ * {@code
+ *  ApiCredential credential = new ApiCredential();
+ *     credential.load( "/identity.properties" );
+ * }
+ * </pre>
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
