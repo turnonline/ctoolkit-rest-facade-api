@@ -31,9 +31,9 @@
     <artifactId>ctoolkit-rest-facade-api</artifactId>
     <version>0.21-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>CtoolkiT REST Client Facade API</name>
+    <name>CtoolkiT REST Facade API</name>
     <description>
-        Unified client facade API to perform REST operations of various APIs through a single interface.
+        Unified facade API to allow perform REST operations of various APIs through a single interface.
     </description>
     <url>https://github.com/turnonline/ctoolkit-rest-facade-api</url>
 
