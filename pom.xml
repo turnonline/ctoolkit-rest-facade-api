@@ -29,7 +29,7 @@
 
     <groupId>org.ctoolkit.restapi</groupId>
     <artifactId>ctoolkit-rest-facade-api</artifactId>
-    <version>0.21-SNAPSHOT</version>
+    <version>0.21</version>
     <packaging>jar</packaging>
     <name>CtoolkiT REST Facade API</name>
     <description>
@@ -41,7 +41,7 @@
         <connection>scm:git:[fetch=]git@github.com:turnonline/ctoolkit-rest-facade-api.git</connection>
         <developerConnection>scm:git:[push=]git@github.com:turnonline/ctoolkit-rest-facade-api.git</developerConnection>
         <url>https://github.com/turnonline/ctoolkit-rest-facade-api</url>
-        <tag>HEAD</tag>
+        <tag>ctoolkit-rest-facade-api-0.21</tag>
     </scm>
 
     <issueManagement>
