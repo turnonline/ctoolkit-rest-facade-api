@@ -33,7 +33,7 @@
     <packaging>jar</packaging>
     <name>CtoolkiT REST Facade API</name>
     <description>
-        Unified facade API to allow perform REST operations of various APIs through a single interface.
+        Fluent facade API to allow perform REST operations of various APIs through a single interface.
     </description>
     <url>https://github.com/turnonline/ctoolkit-rest-facade-api</url>
 
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.9.10</version>
+            <version>6.11</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

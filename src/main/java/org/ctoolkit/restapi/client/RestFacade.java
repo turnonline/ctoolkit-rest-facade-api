@@ -22,7 +22,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * Unified client facade API to perform REST operations of various APIs through a single interface.
+ * Fluent facade API to allow perform REST operations of various APIs through a single interface.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */

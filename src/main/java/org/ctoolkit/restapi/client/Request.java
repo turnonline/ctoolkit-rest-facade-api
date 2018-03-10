@@ -126,5 +126,5 @@ public interface Request<T>
      * @param token the authorization header value
      * @return this request to chain calls
      */
-    Request<T> authBy( @Nonnull String token );
+    AuthRequest<T> authBy( @Nonnull String token );
 }
