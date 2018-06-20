@@ -29,11 +29,11 @@ public interface DeleteIdentification<T>
         extends IdentificationAction<T>
 {
     @Override
-    SimpleRequest<T> identifiedBy( @Nonnull Identifier identifier );
+    PayloadRequest<T> identifiedBy( @Nonnull Identifier identifier );
 
     @Override
-    SimpleRequest<T> identifiedBy( @Nonnull String identifier );
+    PayloadRequest<T> identifiedBy( @Nonnull String identifier );
 
     @Override
-    SimpleRequest<T> identifiedBy( @Nonnull Long identifier );
+    PayloadRequest<T> identifiedBy( @Nonnull Long identifier );
 }

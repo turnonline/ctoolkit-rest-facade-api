@@ -21,7 +21,7 @@ package org.ctoolkit.restapi.client;
 import javax.annotation.Nonnull;
 
 /**
- * The extended {@link Request} to provide additional flow actions for requests having payload.
+ * The extended {@link Request} to provide additional flow actions for requests or responses having a payload.
  *
  * @param <T> the resource type
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
