@@ -28,18 +28,13 @@ package org.ctoolkit.restapi.client;
 public class RemoteServerErrorException
         extends HttpFailureException
 {
-    public RemoteServerErrorException( int statusCode )
+    public RemoteServerErrorException()
     {
-        super( statusCode );
+        super( 500 );
     }
 
-    public RemoteServerErrorException( int statusCode, String message )
+    public RemoteServerErrorException( String message )
     {
-        super( statusCode, message );
-    }
-
-    public RemoteServerErrorException( int statusCode, Throwable cause )
-    {
-        super( statusCode, cause );
+        super( 500, message );
     }
 }

@@ -35,9 +35,4 @@ public class UnauthorizedException
     {
         super( 401, message );
     }
-
-    public UnauthorizedException( Throwable cause )
-    {
-        super( 401, cause );
-    }
 }

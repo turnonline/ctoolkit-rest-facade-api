@@ -46,25 +46,4 @@ public class ClientErrorException
     {
         super( 400, message );
     }
-
-    /**
-     * The client error exception with defined HTTP 4xx status code.
-     *
-     * @param statusCode the HTTP 4xx status code
-     */
-    public ClientErrorException( int statusCode )
-    {
-        super( statusCode );
-    }
-
-    /**
-     * The client error exception with defined HTTP 4xx status code and customized error message.
-     *
-     * @param statusCode the HTTP 4xx status code
-     * @param message    the error message
-     */
-    public ClientErrorException( int statusCode, String message )
-    {
-        super( statusCode, message );
-    }
 }

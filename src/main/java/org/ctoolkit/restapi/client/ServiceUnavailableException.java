@@ -20,25 +20,20 @@ package org.ctoolkit.restapi.client;
 
 /**
  * The exception thrown once the client did not produce a request within the time that the server was prepared to wait.
- * The client MAY repeat the request without modifications at any later time.
+ * Thus service is unavailable. The client MAY repeat the request without modifications at any later time.
  *
  * @author <a href="mailto:aurel.medvegy@ctoolkit.org">Aurel Medvegy</a>
  */
-public class RequestTimeoutException
+public class ServiceUnavailableException
         extends HttpFailureException
 {
-    public RequestTimeoutException()
+    public ServiceUnavailableException()
     {
-        super( 408 );
+        super( 503 );
     }
 
-    public RequestTimeoutException( String message )
+    public ServiceUnavailableException( String message )
     {
-        super( 408, message );
-    }
-
-    public RequestTimeoutException( int statusCode, Throwable cause )
-    {
-        super( statusCode, cause );
+        super( 503, message );
     }
 }
