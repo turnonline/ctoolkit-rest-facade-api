@@ -18,6 +18,8 @@
 
 package org.ctoolkit.restapi.client;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -47,6 +49,8 @@ public class Identifier
 
     private Identifier parent;
 
+    private String controller;
+
     private Object value;
 
     /**
@@ -55,9 +59,9 @@ public class Identifier
      *
      * @param value the string type identifier(s) to be set
      */
-    public Identifier( String... value )
+    public Identifier( @Nonnull String... value )
     {
-        if ( value == null || value.length == 0 )
+        if ( value.length == 0 )
         {
             throw new NullPointerException( "Identifier value cannot be null or empty!" );
         }
@@ -86,9 +90,9 @@ public class Identifier
      *
      * @param value the long type identifier(s) to be set
      */
-    public Identifier( Long... value )
+    public Identifier( @Nonnull Long... value )
     {
-        if ( value == null || value.length == 0 )
+        if ( value.length == 0 )
         {
             throw new NullPointerException( "Identifier value cannot be null!" );
         }
@@ -117,7 +121,7 @@ public class Identifier
      * @param value the string type identifier to be set as child identifier
      * @return the root identifier to chain calls
      */
-    public Identifier add( String value )
+    public Identifier add( @Nonnull String value )
     {
         leaf().setChild( value );
         return this;
@@ -129,10 +133,51 @@ public class Identifier
      * @param value the string type identifier to be set as child identifier
      * @return the root identifier to chain calls
      */
-    public Identifier add( Long value )
+    public Identifier add( @Nonnull Long value )
     {
         leaf().setChild( value );
         return this;
+    }
+
+    /**
+     * Appends given controller to the path as a discriminator for the current resource.
+     * For example, origin /accounts/{account_id} extended: /accounts/{account_id}/controller
+     *
+     * @param controller the controller to be appended (excluding flash)
+     */
+    public Identifier controller( @Nullable String controller )
+    {
+        if ( controller != null && controller.trim().startsWith( "/" ) )
+        {
+            throw new IllegalArgumentException( "Controller must not start with slash" );
+        }
+        leaf().setController( controller );
+        return this;
+    }
+
+    /**
+     * Returns a boolean identification whether this identifier has a controller.
+     *
+     * @return true if this identifier has a controller
+     */
+    public boolean hasController()
+    {
+        return this.controller != null;
+    }
+
+    /**
+     * Returns the controller value.
+     *
+     * @return the controller
+     */
+    public String getController()
+    {
+        return controller;
+    }
+
+    private void setController( @Nullable String controller )
+    {
+        this.controller = controller == null ? null : controller.trim();
     }
 
     /**
@@ -201,7 +246,7 @@ public class Identifier
      * @param value the string type identifier to be set as child value to this parent
      * @return the new identifier child instance
      */
-    private Identifier setChild( String value )
+    private Identifier setChild( @Nonnull String value )
     {
         child = new Identifier( value );
         child.parent = this;
@@ -232,7 +277,7 @@ public class Identifier
      * @param value the long type identifier to be set as child value to this parent
      * @return the new identifier child instance
      */
-    private Identifier setChild( Long value )
+    private Identifier setChild( @Nonnull Long value )
     {
         child = new Identifier( value );
         child.parent = this;
@@ -295,12 +340,24 @@ public class Identifier
     public String key()
     {
         Identifier child = root();
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = child.hasController()
+                ? new StringBuilder( "/" + child.getController() ) : new StringBuilder();
+
+        if ( child.hasChild() && child.hasController() )
+        {
+            // first child
+            builder.append( ":" );
+        }
         builder.append( child.value().toString() );
 
         while ( child.hasChild() )
         {
             child = child.child();
+            if ( child.hasController() )
+            {
+                builder.append( ":/" );
+                builder.append( child.getController() );
+            }
             builder.append( ":" );
             builder.append( child.value().toString() );
         }
@@ -313,11 +370,21 @@ public class Identifier
         {
             // marking the current identifier
             builder.append( "[" );
+            if ( identifier.hasController() )
+            {
+                builder.append( identifier.getController() );
+                builder.append( ":" );
+            }
             builder.append( identifier.value().toString() );
             builder.append( "]" );
         }
         else
         {
+            if ( identifier.hasController() )
+            {
+                builder.append( identifier.getController() );
+                builder.append( ":" );
+            }
             builder.append( identifier.value().toString() );
         }
     }
@@ -330,13 +397,14 @@ public class Identifier
         Identifier that = ( Identifier ) o;
         return Objects.equals( child, that.child ) &&
                 Objects.equals( parent, that.parent ) &&
-                Objects.equals( value, that.value );
+                Objects.equals( value, that.value ) &&
+                Objects.equals( controller, that.controller );
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash( child, parent, value );
+        return Objects.hash( child, parent, value, controller );
     }
 
     @Override

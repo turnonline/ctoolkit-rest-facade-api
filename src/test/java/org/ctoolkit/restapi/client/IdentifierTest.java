@@ -22,6 +22,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
@@ -33,7 +34,7 @@ import static org.testng.Assert.assertTrue;
 public class IdentifierTest
 {
     @Test
-    public void identifierHierarchyLongOnly() throws Exception
+    public void identifierHierarchyLongOnly()
     {
         Identifier identifier = new Identifier( 10L, 20L, 30L );
 
@@ -54,7 +55,7 @@ public class IdentifierTest
     }
 
     @Test
-    public void identifierHierarchyStringOnly() throws Exception
+    public void identifierHierarchyStringOnly()
     {
         Identifier identifier = new Identifier( "abc", "ghb", "klf" );
 
@@ -77,7 +78,7 @@ public class IdentifierTest
     }
 
     @Test
-    public void identifierHierarchyMixedType() throws Exception
+    public void identifierHierarchyMixedType()
     {
         Identifier identifier = new Identifier( "abc", "ghb" ).add( 40L ).add( "xbbc" );
 
@@ -92,7 +93,7 @@ public class IdentifierTest
     }
 
     @Test
-    public void rootLeafIdentifierRetrieval() throws Exception
+    public void rootLeafIdentifierRetrieval()
     {
         Identifier identifier = new Identifier( "salma", "something" ).add( 45L ).add( "last" );
         Identifier leaf = identifier.leaf();
@@ -107,30 +108,33 @@ public class IdentifierTest
     }
 
     @Test( expectedExceptions = NullPointerException.class )
-    public void getParentNull() throws Exception
+    public void getParentNull()
     {
         Identifier identifier = new Identifier( "salma" );
         identifier.getParent();
     }
 
     @Test( expectedExceptions = NullPointerException.class )
-    public void getChildNull() throws Exception
+    public void getChildNull()
     {
         Identifier identifier = new Identifier( "salma" );
         identifier.child();
     }
 
     @Test
-    public void toStringTest() throws Exception
+    public void toStringTest()
     {
-        Identifier identifier = new Identifier( "salma", "something" ).add( 45L ).add( "last" );
+        Identifier identifier = new Identifier( "salma", "something" )
+                .add( 45L )
+                .add( "last" )
+                .controller( "action" );
 
-        assertEquals( identifier.leaf().toString(), "Identifier: salma:something:45:[last]" );
-        assertEquals( identifier.root().toString(), "Identifier: [salma]:something:45:last" );
+        assertEquals( identifier.leaf().toString(), "Identifier: salma:something:45:[action:last]" );
+        assertEquals( identifier.root().toString(), "Identifier: [salma]:something:45:action:last" );
     }
 
     @Test
-    public void keyTest() throws Exception
+    public void keyTest()
     {
         // single
         Identifier identifier = new Identifier( "salma" );
@@ -146,20 +150,51 @@ public class IdentifierTest
     }
 
     @Test
-    public void identifierEquals() throws Exception
+    public void keyTest_withController()
     {
-        Identifier identifier = new Identifier( "abc", "ghb" ).add( 40L ).add( "xbbc" );
+        // controller first
+        Identifier identifier = new Identifier( "salma" )
+                .controller( "control" )
+                .add( 45L )
+                .add( "last" );
+
+        assertEquals( identifier.leaf().key(), "/control:salma:45:last" );
+        assertEquals( identifier.root().key(), "/control:salma:45:last" );
+
+        // controller in middle
+        identifier = new Identifier( "salma", "something" )
+                .add( 45L )
+                .controller( "control" )
+                .add( "last" );
+
+        assertEquals( identifier.leaf().key(), "salma:something:/control:45:last" );
+        assertEquals( identifier.root().key(), "salma:something:/control:45:last" );
+
+        // controller as last
+        identifier = new Identifier( "salma", "something" )
+                .add( 45L )
+                .add( "last" )
+                .controller( "control" );
+
+        assertEquals( identifier.leaf().key(), "salma:something:45:/control:last" );
+        assertEquals( identifier.root().key(), "salma:something:45:/control:last" );
+    }
+
+    @Test
+    public void identifierEquals()
+    {
+        Identifier identifier = new Identifier( "abc", "ghb" ).add( 40L ).add( "xbbc" ).controller( "control" );
 
         assertTrue( identifier.hasChild() );
-        assertFalse( identifier.equals( identifier.child() ) );
+        assertNotEquals( identifier, identifier.child() );
 
         assertTrue( identifier.child().hasChild() );
-        assertFalse( identifier.child().equals( identifier.child().child() ) );
+        assertNotEquals( identifier.child(), identifier.child().child() );
 
         assertTrue( identifier.child().child().hasChild() );
-        assertFalse( identifier.child().equals( identifier.child().child().child() ) );
+        assertNotEquals( identifier.child(), identifier.child().child().child() );
 
-        assertTrue( identifier.leaf().equals( identifier.child().leaf() ) );
+        assertEquals( identifier.leaf(), identifier.child().leaf() );
     }
 
     @Test
