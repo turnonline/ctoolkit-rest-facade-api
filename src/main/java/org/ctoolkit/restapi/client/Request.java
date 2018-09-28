@@ -32,6 +32,10 @@ import java.util.Properties;
  */
 public interface Request<T>
 {
+    String ON_BEHALF_OF_EMAIL = "X-On-Behalf-Of-Email";
+
+    String ON_BEHALF_OF_USER_ID = "X-On-Behalf-Of-User-Id";
+
     /**
      * Execute a remote call.
      *
@@ -118,6 +122,19 @@ public interface Request<T>
      * @return this request to chain calls
      */
     Request<T> addHeader( @Nonnull String header, @Nonnull String value );
+
+    /**
+     * Add on behalf of email and its identification as a headers.
+     * <ul>
+     * <li>Email: {@link #ON_BEHALF_OF_EMAIL} header</li>
+     * <li>Identity ID: {@link #ON_BEHALF_OF_USER_ID} header</li>
+     * </ul>
+     *
+     * @param email      the email
+     * @param identityId the identity ID, the email identification within login provider system
+     * @return this request to chain calls
+     */
+    Request<T> onBehalf( @Nonnull String email, @Nonnull String identityId );
 
     /**
      * Authorize this request by given authorization token.
