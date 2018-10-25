@@ -78,9 +78,30 @@ public class IdentifierTest
     }
 
     @Test
+    public void identifierHierarchyIntegerOnly()
+    {
+        Identifier identifier = new Identifier( 10, 20, 30 );
+
+        assertEquals( identifier.getInt(), Integer.valueOf( 10 ) );
+        assertEquals( identifier.child().getInt(), Integer.valueOf( 20 ) );
+        assertEquals( identifier.child().child().getInt(), Integer.valueOf( 30 ) );
+
+        // chaining Integer ids
+        identifier = new Identifier( 10 ).add( 20 ).add( 30 );
+
+        assertEquals( identifier.getInt(), Integer.valueOf( 10 ) );
+
+        assertTrue( identifier.hasChild() );
+        assertEquals( identifier.child().getInt(), Integer.valueOf( 20 ) );
+
+        assertTrue( identifier.child().hasChild() );
+        assertEquals( identifier.child().child().getInt(), Integer.valueOf( 30 ) );
+    }
+
+    @Test
     public void identifierHierarchyMixedType()
     {
-        Identifier identifier = new Identifier( "abc", "ghb" ).add( 40L ).add( "xbbc" );
+        Identifier identifier = new Identifier( "abc", "ghb" ).add( 40L ).add( "xbbc" ).add( 9 );
 
         assertTrue( identifier.hasChild() );
         assertTrue( identifier.child().hasChild() );
@@ -90,6 +111,7 @@ public class IdentifierTest
         assertEquals( identifier.child().getString(), "ghb" );
         assertEquals( identifier.child().child().getLong(), Long.valueOf( 40L ) );
         assertEquals( identifier.child().child().child().getString(), "xbbc" );
+        assertEquals( identifier.child().child().child().child().getInt(), Integer.valueOf( 9 ) );
     }
 
     @Test
@@ -207,6 +229,17 @@ public class IdentifierTest
         assertFalse( identifier.isLong() );
     }
 
+    @Test
+    public void isInteger()
+    {
+        Identifier identifier = new Identifier( 40 );
+        assertTrue( identifier.isInt() );
+
+        identifier = new Identifier( "40" );
+        assertFalse( identifier.isLong() );
+        assertFalse( identifier.isInt() );
+    }
+
     @Test( expectedExceptions = NullPointerException.class )
     public void firstNullLongValueCheck()
     {
@@ -220,6 +253,23 @@ public class IdentifierTest
     {
         Long[] ids = new Long[2];
         ids[0] = 1L;
+        ids[1] = null;
+        new Identifier( ids );
+    }
+
+    @Test( expectedExceptions = NullPointerException.class )
+    public void firstNullIntegerValueCheck()
+    {
+        Integer[] ids = new Integer[1];
+        ids[0] = null;
+        new Identifier( ids );
+    }
+
+    @Test( expectedExceptions = NullPointerException.class )
+    public void anywhereNullIntegerValueCheck()
+    {
+        Integer[] ids = new Integer[2];
+        ids[0] = 1;
         ids[1] = null;
         new Identifier( ids );
     }

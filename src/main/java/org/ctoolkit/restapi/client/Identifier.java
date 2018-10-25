@@ -116,6 +116,37 @@ public class Identifier
     }
 
     /**
+     * Constructs identifier with given identification values.
+     * The first value acts as a root identifier and next will act as a child identifier(s).
+     *
+     * @param value the long type identifier(s) to be set
+     */
+    public Identifier( @Nonnull Integer... value )
+    {
+        if ( value.length == 0 )
+        {
+            throw new NullPointerException( "Identifier value cannot be null!" );
+        }
+
+        for ( Integer next : value )
+        {
+            if ( next == null )
+            {
+                throw new NullPointerException( "Any of the Identifier value cannot be null! "
+                        + Arrays.toString( value ) );
+            }
+        }
+
+        this.value = value[0];
+
+        Identifier next = this;
+        for ( int index = 1; index < value.length; index++ )
+        {
+            next = next.setChild( value[index] );
+        }
+    }
+
+    /**
      * Adds given value as a child identifier to this identifier that acts as a parent.
      *
      * @param value the string type identifier to be set as child identifier
@@ -130,10 +161,22 @@ public class Identifier
     /**
      * Adds given value as a child identifier to this identifier that acts as a parent.
      *
-     * @param value the string type identifier to be set as child identifier
+     * @param value the long type identifier to be set as child identifier
      * @return the root identifier to chain calls
      */
     public Identifier add( @Nonnull Long value )
+    {
+        leaf().setChild( value );
+        return this;
+    }
+
+    /**
+     * Adds given value as a child identifier to this identifier that acts as a parent.
+     *
+     * @param value the integer type identifier to be set as child identifier
+     * @return the root identifier to chain calls
+     */
+    public Identifier add( @Nonnull Integer value )
     {
         leaf().setChild( value );
         return this;
@@ -144,6 +187,7 @@ public class Identifier
      * For example, origin /accounts/{account_id} extended: /accounts/{account_id}/controller
      *
      * @param controller the controller to be appended (excluding flash)
+     * @return the root identifier to chain calls
      */
     public Identifier controller( @Nullable String controller )
     {
@@ -191,6 +235,16 @@ public class Identifier
     }
 
     /**
+     * Returns the boolean indicating whether the identifier value is type of {@link Integer} or not.
+     *
+     * @return true if the value is type of Integer
+     */
+    public boolean isInt()
+    {
+        return value instanceof Integer;
+    }
+
+    /**
      * Returns the identifier raw value.
      *
      * @return the identifier raw value.
@@ -218,6 +272,16 @@ public class Identifier
     public Long getLong()
     {
         return ( Long ) value;
+    }
+
+    /**
+     * Returns the identifier value.
+     *
+     * @return the identifier value
+     */
+    public Integer getInt()
+    {
+        return ( Integer ) value;
     }
 
     /**
@@ -278,6 +342,20 @@ public class Identifier
      * @return the new identifier child instance
      */
     private Identifier setChild( @Nonnull Long value )
+    {
+        child = new Identifier( value );
+        child.parent = this;
+
+        return child;
+    }
+
+    /**
+     * Sets identifier value as child to this parent.
+     *
+     * @param value the integer type identifier to be set as child value to this parent
+     * @return the new identifier child instance
+     */
+    private Identifier setChild( @Nonnull Integer value )
     {
         child = new Identifier( value );
         child.parent = this;
