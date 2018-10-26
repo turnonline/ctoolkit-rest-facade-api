@@ -147,6 +147,39 @@ public class Identifier
     }
 
     /**
+     * Creates a new identifier with given identification values.
+     *
+     * @param value the string type identifier(s) to create new identifier from
+     * @return the newly instantiated identifier
+     */
+    public static Identifier of( @Nonnull String... value )
+    {
+        return new Identifier( value );
+    }
+
+    /**
+     * Creates a new identifier with given identification values.
+     *
+     * @param value the long type identifier(s) to create new identifier from
+     * @return the newly instantiated identifier
+     */
+    public static Identifier of( @Nonnull Long... value )
+    {
+        return new Identifier( value );
+    }
+
+    /**
+     * Creates a new identifier with given identification values.
+     *
+     * @param value the integer type identifier(s) to create new identifier from
+     * @return the newly instantiated identifier
+     */
+    public static Identifier of( @Nonnull Integer... value )
+    {
+        return new Identifier( value );
+    }
+
+    /**
      * Adds given value as a child identifier to this identifier that acts as a parent.
      *
      * @param value the string type identifier to be set as child identifier

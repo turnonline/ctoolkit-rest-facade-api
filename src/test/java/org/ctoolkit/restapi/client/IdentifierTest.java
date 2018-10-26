@@ -36,7 +36,7 @@ public class IdentifierTest
     @Test
     public void identifierHierarchyLongOnly()
     {
-        Identifier identifier = new Identifier( 10L, 20L, 30L );
+        Identifier identifier = Identifier.of( 10L, 20L, 30L );
 
         assertEquals( identifier.getLong(), Long.valueOf( 10L ) );
         assertEquals( identifier.child().getLong(), Long.valueOf( 20L ) );
@@ -57,7 +57,7 @@ public class IdentifierTest
     @Test
     public void identifierHierarchyStringOnly()
     {
-        Identifier identifier = new Identifier( "abc", "ghb", "klf" );
+        Identifier identifier = Identifier.of( "abc", "ghb", "klf" );
 
         assertTrue( identifier.hasChild() );
         assertTrue( identifier.child().hasChild() );
@@ -80,7 +80,7 @@ public class IdentifierTest
     @Test
     public void identifierHierarchyIntegerOnly()
     {
-        Identifier identifier = new Identifier( 10, 20, 30 );
+        Identifier identifier = Identifier.of( 10, 20, 30 );
 
         assertEquals( identifier.getInt(), Integer.valueOf( 10 ) );
         assertEquals( identifier.child().getInt(), Integer.valueOf( 20 ) );
