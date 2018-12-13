@@ -127,14 +127,14 @@ public interface Request<T>
      * Add on behalf of email and its identification as a headers.
      * <ul>
      * <li>Email: {@link #ON_BEHALF_OF_EMAIL} header</li>
-     * <li>Identity ID: {@link #ON_BEHALF_OF_USER_ID} header</li>
+     * <li>Identity ID: {@link #ON_BEHALF_OF_USER_ID} header (optional)</li>
      * </ul>
      *
      * @param email      the email
      * @param identityId the identity ID, the email identification within login provider system
      * @return this request to chain calls
      */
-    Request<T> onBehalf( @Nonnull String email, @Nonnull String identityId );
+    Request<T> onBehalf( @Nonnull String email, @Nullable String identityId );
 
     /**
      * Authorize this request by given authorization token.
