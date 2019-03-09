@@ -29,6 +29,18 @@ import javax.annotation.Nullable;
 public interface RestFacade
 {
     /**
+     * ISO-8601 (RFC-3339), date format.
+     * Recommended messaging (Publish/Subscribe)
+     * <p>
+     * <strong>It includes:</strong>
+     * <ul>
+     * <li>2018-12-28T20:00:30.999Z - Millisecond fractions, UTC/Zulu time, has no offset</li>
+     * <li>2018-12-28T21:00:30.999+01:00 - Millisecond fractions, CET time</li>
+     * </ul>
+     */
+    String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+
+    /**
      * Create a new in memory resource instance of requested type.
      * <p>
      * Note: Based on the concrete implementation of the resource it may result in a remote call
