@@ -39,7 +39,8 @@ import java.util.Properties;
  * <pre>
  * {@code
  *  ApiCredential credential = new ApiCredential();
- *     credential.load( "/identity.properties" );
+ *  credential.load( "/identity.properties" );
+ *  Names.bindProperties( binder(), credential );
  * }
  * </pre>
  *
