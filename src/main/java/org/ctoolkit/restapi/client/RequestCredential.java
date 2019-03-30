@@ -119,7 +119,7 @@ public class RequestCredential
         props.add( PROPERTY_SERVICE_ACCOUNT_EMAIL );
         props.add( PROPERTY_APPLICATION_NAME );
         props.add( PROPERTY_FILE_NAME );
-        props.add( PROPERTY_FILE_NAME_JSON_STREAM );
+        props.add( PROPERTY_FILE_NAME_JSON );
         props.add( PROPERTY_API_KEY );
         props.add( PROPERTY_ENDPOINT_URL );
         props.add( PROPERTY_CREDENTIAL_ON );

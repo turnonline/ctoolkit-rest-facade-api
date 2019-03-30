@@ -71,7 +71,7 @@ public class ApiCredential
 
     public static final String PROPERTY_FILE_NAME = "fileName";
 
-    public static final String PROPERTY_FILE_NAME_JSON_STREAM = "fileNameJsonStream";
+    public static final String PROPERTY_FILE_NAME_JSON = "fileNameJson";
 
     public static final String PROPERTY_API_KEY = "apiKey";
 
@@ -100,7 +100,7 @@ public class ApiCredential
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
      * <li>{@link #setFileName(String)}</li>
-     * <li>{@link #setFileNameJsonStream(String)} (String)}</li>
+     * <li>{@link #setFileNameJson(String)} (String)}</li>
      * <li>{@link #setApiKey(String)}</li>
      * <li>{@link #setEndpointUrl(String)}</li>
      * <li>{@link #setCredentialOn(boolean)}</li>
@@ -124,7 +124,7 @@ public class ApiCredential
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
      * <li>{@link #setFileName(String)}</li>
-     * <li>{@link #setFileNameJsonStream(String)} (String)}</li>
+     * <li>{@link #setFileNameJson(String)} (String)}</li>
      * <li>{@link #setApiKey(String)}</li>
      * <li>{@link #setEndpointUrl(String)}</li>
      * <li>{@link #setCredentialOn(boolean)}</li>
@@ -156,7 +156,7 @@ public class ApiCredential
      * <li>credential.default.serviceAccountEmail</li>
      * <li>credential.default.appName</li>
      * <li>credential.default.fileName</li>
-     * <li>credential.default.fileNameJsonStream</li>
+     * <li>credential.default.fileNameJson</li>
      * <li>credential.default.apiKey</li>
      * <li>credential.default.endpointUrl</li>
      * <li>credential.default.credentialOn</li>
@@ -335,11 +335,11 @@ public class ApiCredential
      * @param fileName the relative path to file
      * @return this instance to chain
      */
-    public ApiCredential setFileNameJsonStream( String fileName )
+    public ApiCredential setFileNameJson( String fileName )
     {
         if ( !isNullOrEmpty( fileName ) )
         {
-            setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_FILE_NAME_JSON_STREAM, fileName );
+            setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_FILE_NAME_JSON, fileName );
         }
         return this;
     }
