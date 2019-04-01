@@ -20,6 +20,7 @@ package org.ctoolkit.restapi.client;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Collection;
 
 /**
  * Fluent facade API to allow perform REST operations of various APIs through a single interface.
@@ -172,4 +173,19 @@ public interface RestFacade
      * @throws NotFoundException if unknown client type has been requested
      */
     <C> C client( @Nonnull Class<C> type );
+
+    /**
+     * Sets the email address of the user and API scopes the application is trying to impersonate in the service
+     * account flow for current thread (only).
+     * <p>
+     * It enables a service account (with domain-wide delegation enabled) to impersonate a managed user,
+     * ie. act on behalf of an identity, via domain-wide delegation of authority (for example G-Suite).
+     * An administrator of a target domain must configure service account's Client ID
+     * to allow access to desired domain.
+     *
+     * @param scopes    the scopes for use with API
+     * @param userEmail the email address of the user to impersonate
+     * @param api       the short name of an API that has been installed with this facade
+     */
+    void impersonate( @Nonnull Collection<String> scopes, @Nonnull String userEmail, @Nonnull String api );
 }
