@@ -115,6 +115,7 @@ public class RequestCredential
         props.add( PROPERTY_PROJECT_ID );
         props.add( PROPERTY_CLIENT_ID );
         props.add( PROPERTY_CLIENT_SECRET );
+        props.add( PROPERTY_SCOPES );
         props.add( PROPERTY_DISABLE_GZIP_CONTENT );
         props.add( PROPERTY_SERVICE_ACCOUNT_EMAIL );
         props.add( PROPERTY_APPLICATION_NAME );
@@ -185,6 +186,16 @@ public class RequestCredential
     public String getClientSecret()
     {
         return getStringValue( PROPERTY_CLIENT_SECRET );
+    }
+
+    /**
+     * Returns the API scopes, a comma separated values.
+     *
+     * @return the API scopes
+     */
+    public String getScopes()
+    {
+        return getStringValue( PROPERTY_SCOPES );
     }
 
     /**

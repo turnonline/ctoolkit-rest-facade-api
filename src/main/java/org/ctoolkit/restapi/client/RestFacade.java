@@ -186,6 +186,7 @@ public interface RestFacade
      * @param scopes    the scopes for use with API
      * @param userEmail the email address of the user to impersonate
      * @param api       the short name of an API that has been installed with this facade
+     * @throws IllegalArgumentException if requested API is not installed
      */
     void impersonate( @Nonnull Collection<String> scopes, @Nonnull String userEmail, @Nonnull String api );
 }

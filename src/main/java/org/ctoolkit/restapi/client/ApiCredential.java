@@ -63,6 +63,8 @@ public class ApiCredential
 
     public static final String PROPERTY_CLIENT_SECRET = "clientSecret";
 
+    public static final String PROPERTY_SCOPES = "scopes";
+
     public static final String PROPERTY_DISABLE_GZIP_CONTENT = "disableGZipContent";
 
     public static final String PROPERTY_SERVICE_ACCOUNT_EMAIL = "serviceAccountEmail";
@@ -96,6 +98,7 @@ public class ApiCredential
      * <li>{@link #setProjectId(String)}</li>
      * <li>{@link #setClientId(String)}</li>
      * <li>{@link #setClientSecret(String)}</li>
+     * <li>{@link #setScopes(String)} (String)}</li>
      * <li>{@link #setDisableGZipContent(boolean)}</li>
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
@@ -120,6 +123,7 @@ public class ApiCredential
      * <li>{@link #setProjectId(String)}</li>
      * <li>{@link #setClientId(String)}</li>
      * <li>{@link #setClientSecret(String)}</li>
+     * <li>{@link #setScopes(String)} (String)}</li>
      * <li>{@link #setDisableGZipContent(boolean)}</li>
      * <li>{@link #setServiceAccountEmail(String)}</li>
      * <li>{@link #setApplicationName(String)}</li>
@@ -152,6 +156,7 @@ public class ApiCredential
      * <li>credential.default.projectId</li>
      * <li>credential.default.clientId</li>
      * <li>credential.default.clientSecret</li>
+     * <li>credential.default.scopes</li>
      * <li>credential.default.disableGZipContent</li>
      * <li>credential.default.serviceAccountEmail</li>
      * <li>credential.default.appName</li>
@@ -251,6 +256,21 @@ public class ApiCredential
         if ( !isNullOrEmpty( clientSecret ) )
         {
             setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_CLIENT_SECRET, clientSecret );
+        }
+        return this;
+    }
+
+    /**
+     * Sets the API scopes, a comma separated values.
+     *
+     * @param scopes the API scopes
+     * @return this instance to chain
+     */
+    public ApiCredential setScopes( String scopes )
+    {
+        if ( !isNullOrEmpty( scopes ) )
+        {
+            setProperty( CREDENTIAL_ATTR + prefix + PROPERTY_SCOPES, scopes );
         }
         return this;
     }
