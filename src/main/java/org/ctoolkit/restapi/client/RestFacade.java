@@ -175,6 +175,16 @@ public interface RestFacade
     <C> C client( @Nonnull Class<C> type );
 
     /**
+     * Same as {@link #impersonate(Collection, String, String)}
+     * where scopes parameter will be the same as for default configuration.
+     *
+     * @param userEmail the email address of the user to impersonate
+     * @param api       the short name of an API that has been installed with this facade
+     * @throws IllegalArgumentException if requested API is not initialized or impersonate is not supported
+     */
+    void impersonate( @Nonnull String userEmail, @Nonnull String api );
+
+    /**
      * Sets the email address of the user and API scopes the application is trying to impersonate in the service
      * account flow for current thread (only) of the specified API.
      * <p>
@@ -186,7 +196,7 @@ public interface RestFacade
      * @param scopes    the scopes for use with API
      * @param userEmail the email address of the user to impersonate
      * @param api       the short name of an API that has been installed with this facade
-     * @throws IllegalArgumentException if requested API is not initialized
+     * @throws IllegalArgumentException if requested API is not initialized or impersonate is not supported
      */
     void impersonate( @Nonnull Collection<String> scopes, @Nonnull String userEmail, @Nonnull String api );
 }
