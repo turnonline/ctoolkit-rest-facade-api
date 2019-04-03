@@ -176,7 +176,7 @@ public interface RestFacade
 
     /**
      * Sets the email address of the user and API scopes the application is trying to impersonate in the service
-     * account flow for current thread (only).
+     * account flow for current thread (only) of the specified API.
      * <p>
      * It enables a service account (with domain-wide delegation enabled) to impersonate a managed user,
      * ie. act on behalf of an identity, via domain-wide delegation of authority (for example G-Suite).
@@ -186,7 +186,7 @@ public interface RestFacade
      * @param scopes    the scopes for use with API
      * @param userEmail the email address of the user to impersonate
      * @param api       the short name of an API that has been installed with this facade
-     * @throws IllegalArgumentException if requested API is not installed
+     * @throws IllegalArgumentException if requested API is not initialized
      */
     void impersonate( @Nonnull Collection<String> scopes, @Nonnull String userEmail, @Nonnull String api );
 }
