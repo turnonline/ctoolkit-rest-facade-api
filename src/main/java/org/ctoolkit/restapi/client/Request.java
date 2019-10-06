@@ -36,6 +36,8 @@ public interface Request<T>
 
     String ON_BEHALF_OF_USER_ID = "X-On-Behalf-Of-User-Id";
 
+    String ON_BEHALF_OF_AUDIENCE = "X-On-Behalf-Of-Audience";
+
     /**
      * Execute a remote call.
      *
@@ -124,17 +126,21 @@ public interface Request<T>
     Request<T> addHeader( @Nonnull String header, @Nonnull String value );
 
     /**
-     * Add on behalf of email and its identification as a headers.
+     * Add on behalf of email its identification and audience as a headers.
      * <ul>
      * <li>Email: {@link #ON_BEHALF_OF_EMAIL} header</li>
      * <li>Identity ID: {@link #ON_BEHALF_OF_USER_ID} header (optional)</li>
+     * <li>Audience: {@link #ON_BEHALF_OF_AUDIENCE} header (optional)</li>
      * </ul>
      *
-     * @param email      the email
+     * @param email      the email address
      * @param identityId the identity ID, the email identification within login provider system
+     * @param audience   identifies the recipients that the authorization is intended for
      * @return this request to chain calls
      */
-    Request<T> onBehalf( @Nonnull String email, @Nullable String identityId );
+    Request<T> onBehalf( @Nonnull String email,
+                         @Nullable String identityId,
+                         @Nullable String audience );
 
     /**
      * Authorize this request by given authorization token.
