@@ -79,7 +79,7 @@ public class ApiCredential
 
     public static final String PROPERTY_ENDPOINT_URL = "endpointUrl";
 
-    public static final String PROPERTY_CREDENTIAL_ON = "credentialOn";
+    public static final String PROPERTY_CREDENTIAL_ON = "on";
 
     public static final String PROPERTY_NUMBER_OF_RETRIES = "numberOfRetries";
 
@@ -164,7 +164,7 @@ public class ApiCredential
      * <li>credential.default.fileNameJson</li>
      * <li>credential.default.apiKey</li>
      * <li>credential.default.endpointUrl</li>
-     * <li>credential.default.credentialOn</li>
+     * <li>credential.default.on</li>
      * <li>credential.default.numberOfRetries</li>
      * <li>credential.default.readTimeout</li>
      * <li>credential.drive.projectId</li>
