@@ -32,9 +32,9 @@ import java.util.Properties;
  */
 public interface Request<T>
 {
-    String ON_BEHALF_OF_EMAIL = "X-On-Behalf-Of-Email";
+    String ON_BEHALF_OF_EMAIL = "vnd.turnon.cloud.on-behalf-of-email";
 
-    String ON_BEHALF_OF_USER_ID = "X-On-Behalf-Of-User-Id";
+    String ON_BEHALF_OF_USER_ID = "vnd.turnon.cloud.on-behalf-of-userId";
 
     /**
      * Execute a remote call.
