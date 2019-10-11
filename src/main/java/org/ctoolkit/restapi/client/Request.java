@@ -34,7 +34,7 @@ public interface Request<T>
 {
     String ON_BEHALF_OF_EMAIL = "vnd.turnon.cloud.on-behalf-of-email";
 
-    String ON_BEHALF_OF_USER_ID = "vnd.turnon.cloud.on-behalf-of-userId";
+    String ON_BEHALF_OF_USER_ID = "vnd.turnon.cloud.on-behalf-of-user-id";
 
     /**
      * Execute a remote call.
