@@ -138,10 +138,21 @@ public interface Request<T>
 
     /**
      * Authorize this request by given authorization token.
-     * It will be set right before a remote call and will override an existing value.
+     * It will be set right before a remote call and will override an existing value
+     * and bypass the underlying authorization mechanism.
      *
      * @param token the authorization header value
      * @return this request to chain calls
      */
     AuthRequest<T> authBy( @Nonnull String token );
+
+    /**
+     * Authorize this request by token prepared by {@link AuthRequest.TokenProvider}.
+     * It will be set right before a remote call and will override an existing value
+     * and bypass the underlying authorization mechanism.
+     *
+     * @param provider the authorization header token provider
+     * @return this request to chain calls
+     */
+    AuthRequest<T> authBy( @Nonnull AuthRequest.TokenProvider provider );
 }
