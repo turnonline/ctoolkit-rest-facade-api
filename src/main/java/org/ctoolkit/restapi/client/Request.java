@@ -18,6 +18,8 @@
 
 package org.ctoolkit.restapi.client;
 
+import org.ctoolkit.restapi.client.provider.TokenProvider;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
@@ -124,17 +126,26 @@ public interface Request<T>
     Request<T> addHeader( @Nonnull String header, @Nonnull String value );
 
     /**
-     * Add on behalf of email and its identification as a headers.
+     * Execute current request on behalf of specified user.
+     * <p>
+     * Client is being required to provide custom implementation of the {@link TokenProvider}
+     * Possible options:
+     * <ul>
+     *     <li>{@link #authBy(String)}</li>
+     *     <li>{@link #authBy(TokenProvider)}</li>
+     *     <li>If missing configuration via above methods,
+     *     will search via Injection for {@link TokenProvider} implementation,
+     *     where {@code TokenProvider<O>} is being expected to be the same type as input param of this method</li>
+     * </ul>
+     * See headers:
      * <ul>
      * <li>Email: {@link #ON_BEHALF_OF_EMAIL} header</li>
-     * <li>Identity ID: {@link #ON_BEHALF_OF_USER_ID} header (optional)</li>
+     * <li>Identity ID: {@link #ON_BEHALF_OF_USER_ID} header</li>
      * </ul>
      *
-     * @param email      the email
-     * @param identityId the identity ID, the email identification within login provider system
      * @return this request to chain calls
      */
-    Request<T> onBehalf( @Nonnull String email, @Nullable String identityId );
+    Request<T> onBehalfOf( @Nonnull Object of );
 
     /**
      * Authorize this request by given authorization token.
@@ -147,12 +158,12 @@ public interface Request<T>
     AuthRequest<T> authBy( @Nonnull String token );
 
     /**
-     * Authorize this request by token prepared by {@link AuthRequest.TokenProvider}.
+     * Authorize this request by token prepared by {@link TokenProvider}.
      * It will be set right before a remote call and will override an existing value
      * and bypass the underlying authorization mechanism.
      *
      * @param provider the authorization header token provider
      * @return this request to chain calls
      */
-    AuthRequest<T> authBy( @Nonnull AuthRequest.TokenProvider provider );
+    AuthRequest<T> authBy( @Nonnull TokenProvider<Object> provider );
 }

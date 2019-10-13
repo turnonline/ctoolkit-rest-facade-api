@@ -18,9 +18,6 @@
 
 package org.ctoolkit.restapi.client;
 
-import javax.annotation.Nullable;
-import java.util.Map;
-
 /**
  * The interface to provide possibility to configure request with authentication token.
  * Once token is being provided at the request level, it bypasses the underlying authorization mechanism.
@@ -64,27 +61,4 @@ public interface AuthRequest<T>
         }
     }
 
-    /**
-     * The abstraction to provide 'Authorization' token via client custom implementation.
-     */
-    interface TokenProvider
-    {
-        /**
-         * Prepares token to be added as a 'Authorization' header right before the remote call.
-         *
-         * @param scheme the authorization scheme or {@code null} if no scheme to be prepended to the token
-         * @return the 'Authorization' token
-         */
-        String token( @Nullable AuthRequest.AuthScheme scheme );
-
-        /**
-         * Prepares headers to be added in to client request right before the remote call.
-         *
-         * @return headers or {@code null} if nothing to be added
-         */
-        default Map<String, String> headers()
-        {
-            return null;
-        }
-    }
 }
