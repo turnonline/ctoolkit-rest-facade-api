@@ -36,7 +36,7 @@ public interface TokenProvider<O>
      *
      * @param scheme the authorization scheme or {@code null} if no scheme to be prepended to the token
      * @param of     the on behalf of user
-     * @return the 'Authorization' token
+     * @return the 'Authorization' token or {@code null} to be ignored
      */
     String token( @Nullable AuthRequest.AuthScheme scheme, @Nullable O of );
 
