@@ -165,5 +165,5 @@ public interface Request<T>
      * @param provider the authorization header token provider
      * @return this request to chain calls
      */
-    AuthRequest<T> authBy( @Nonnull TokenProvider<Object> provider );
+    AuthRequest<T> authBy( @Nonnull TokenProvider<?> provider );
 }
