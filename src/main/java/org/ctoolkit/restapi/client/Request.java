@@ -34,9 +34,13 @@ import java.util.Properties;
  */
 public interface Request<T>
 {
-    String ON_BEHALF_OF_EMAIL = "vnd.turnon.cloud.on-behalf-of-email";
+    String HEADER_VND_PREFIX = "Vnd-ConnecSys-";
 
-    String ON_BEHALF_OF_USER_ID = "vnd.turnon.cloud.on-behalf-of-user-id";
+    String ON_BEHALF_OF_EMAIL = HEADER_VND_PREFIX + "On-Behalf-Of-Email";
+
+    String ON_BEHALF_OF_USER_ID = HEADER_VND_PREFIX + "On-Behalf-Of-User-Id";
+
+    String ON_BEHALF_OF_AUDIENCE = HEADER_VND_PREFIX + "On-Behalf-Of-Audience";
 
     /**
      * Execute a remote call.
