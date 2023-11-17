@@ -29,7 +29,7 @@
 
     <groupId>org.ctoolkit.restapi</groupId>
     <artifactId>ctoolkit-rest-facade-api</artifactId>
-    <version>0.31-SNAPSHOT</version>
+    <version>0.30-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>CtoolkiT REST Facade API</name>
     <description>
