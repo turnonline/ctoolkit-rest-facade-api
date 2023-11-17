@@ -22,14 +22,14 @@
     <parent>
         <groupId>org.ctoolkit.maven</groupId>
         <artifactId>ctoolkit-public</artifactId>
-        <version>2</version>
+        <version>4</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ctoolkit.restapi</groupId>
     <artifactId>ctoolkit-rest-facade-api</artifactId>
-    <version>0.30-SNAPSHOT</version>
+    <version>0.30</version>
     <packaging>jar</packaging>
     <name>CtoolkiT REST Facade API</name>
     <description>
@@ -41,7 +41,7 @@
         <connection>scm:git:[fetch=]git@github.com:turnonline/ctoolkit-rest-facade-api.git</connection>
         <developerConnection>scm:git:[push=]git@github.com:turnonline/ctoolkit-rest-facade-api.git</developerConnection>
         <url>https://github.com/turnonline/ctoolkit-rest-facade-api</url>
-        <tag>HEAD</tag>
+        <tag>ctoolkit-rest-facade-api-0.30</tag>
     </scm>
 
     <issueManagement>
@@ -52,7 +52,7 @@
         <developer>
             <name>Aurel Medvegy</name>
             <id>medvegy</id>
-            <email>aurel.medvegy@ctoolkit.org</email>
+            <email>medvegy@turnonline.biz</email>
         </developer>
     </developers>
 
@@ -73,6 +73,6 @@
     </dependencies>
 
     <properties>
-        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
     </properties>
 </project>
