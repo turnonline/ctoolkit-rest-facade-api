@@ -151,7 +151,6 @@ public class ApiCredential
     /**
      * Creates credential map used to authenticate API calls.
      * It's client responsibility to make sure that map has at least a default credential configured.
-     * <p>
      * <ul>
      * <li>credential.default.projectId</li>
      * <li>credential.default.clientId</li>

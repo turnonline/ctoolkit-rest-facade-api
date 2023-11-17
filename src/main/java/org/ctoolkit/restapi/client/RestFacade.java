@@ -84,7 +84,7 @@ public interface RestFacade
      *
      * @param resource the type of resource to get
      * @return the fluent action, consequent call will return concrete resource instance for given type and identifier,
-     * otherwise returns <tt>null</tt>
+     * otherwise returns <code>null</code>
      * @throws HttpFailureException a runtime exception wrapping all REST (status code) related exceptions
      */
     <T> SingleRetrievalIdentification<T> get( @Nonnull Class<T> resource );
